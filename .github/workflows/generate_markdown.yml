@@ -1,4 +1,4 @@
-name: Generate Daily Markdown
+name: Generate Daily Markdown and HTML
 
 on:
   schedule:
@@ -32,14 +32,18 @@ jobs:
         PRODUCTHUNT_CLIENT_SECRET: ${{ secrets.PRODUCTHUNT_CLIENT_SECRET }}
         HUGGINGFACE_API_TOKEN: ${{ secrets.HUGGINGFACE_API_TOKEN }}
       run: |
-        python scripts/product_hunt_list_to_md_by_hf.py
+        python scripts/product_hunt_list_to_md_by_open_router.py
+
+    - name: Generate HTML
+      run: |
+        python scripts/markdown_to_png_card.py
 
     - name: Commit files
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         git add .
-        git commit -m "Generated daily content"
+        git commit -m "Generated daily content and HTML"
 
     - name: Push changes
       run: |

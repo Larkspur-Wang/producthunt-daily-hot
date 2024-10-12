@@ -1,0 +1,808 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Product Hunt 每日热榜 | 2024-10-11</title>
+        <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600&display=swap" rel="stylesheet">
+        <style>
+            :root {
+                --background-color: #f7f7f7;
+                --text-color: #333333;
+                --accent-color: #0066cc;
+                --card-background: #ffffff;
+                --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            body {
+                font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+                background-color: var(--background-color);
+                color: var(--text-color);
+                margin: 0;
+                padding: 0;
+                line-height: 1.4;
+                overflow-x: hidden;
+            }
+            .container {
+                max-width: 100%;
+                margin: 0 auto;
+                padding: 2rem 0;
+            }
+            header {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+            h1 {
+                font-size: 48px;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+            .date {
+                font-size: 18px;
+                color: #666;
+            }
+            .scroll-container {
+                overflow: hidden;
+                margin-bottom: 2rem;
+            }
+            .scroll-row {
+                display: flex;
+                animation: scroll 30s linear infinite;
+                width: 200%; /* 显示8个卡片的宽度 */
+            }
+            .card {
+                flex: 0 0 12.5%;
+                max-width: 12.5%;
+                padding: 1rem;
+                box-sizing: border-box;
+                position: relative;
+            }
+            .card-inner {
+                background-color: var(--card-background);
+                border-radius: 12px;
+                box-shadow: var(--card-shadow);
+                overflow: hidden;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+            .product-image {
+                width: 100%;
+                height: 150px;
+                object-fit: cover;
+            }
+            h2 {
+                font-size: 18px;
+                font-weight: 600;
+                margin: 0.5rem 0;
+                padding: 0 1rem;
+            }
+            a {
+                color: var(--text-color);
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+            a:hover {
+                color: var(--accent-color);
+            }
+            p {
+                margin: 0.25rem 0;
+                font-size: 14px;
+                padding: 0 1rem;
+            }
+            .tagline {
+                font-weight: 500;
+                color: #555;
+            }
+            .description {
+                flex-grow: 1;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+            }
+            .votes {
+                font-weight: 600;
+                color: var(--accent-color);
+            }
+            .keywords, .time {
+                font-size: 12px;
+                color: #888;
+            }
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(-50%);
+                }
+            }
+            .title-container {
+                position: relative;
+                display: inline-block;
+                overflow: hidden;
+                padding: 0 30px;
+            }
+            .robot {
+                position: absolute;
+                font-size: 24px;
+                transition: all 0.5s ease;
+            }
+            @keyframes float {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+            }
+            footer {
+                text-align: center;
+                padding: 20px 0;
+                background-color: #f0f0f0;
+                color: #666;
+                font-size: 14px;
+                margin-top: 2rem;
+            }
+            .votes-badge {
+                position: absolute;
+                top: 0.5rem;
+                left: 0.5rem;
+                background-color: rgba(0, 0, 0, 0.6);
+                color: white;
+                padding: 0.25rem 0.5rem;
+                border-radius: 12px;
+                font-size: 12px;
+                font-weight: bold;
+                z-index: 1;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <div class="title-container">
+                    <h1>Product Hunt 每日热榜</h1>
+                    <span class="robot" id="robot">🤖</span>
+                </div>
+                <div class="date">2024-10-11</div>
+            </header>
+            
+        <div class="scroll-container">
+            <div class="scroll-row" style="animation-direction: normal;">
+                
+    <div class="card">
+        <div class="votes-badge">🔺553</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/9001b551-f2da-401d-8819-dd532d1700a2.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Mitzu" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/mitzu?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Mitzu</a></h2>
+            <p class="tagline">SaaS的自助式商业智能</p>
+            <p class="description">Mitzu 是一个专为 SaaS 企业设计的统一仓库原生产品，提供市场营销和订阅分析的平台。只需将数据导入你的数据仓库，连接 Mitzu，就能开始做出更明智的决策。Mitzu 采用按座位计费的定价模式，并且绝不会复制你的数据。</p>
+            <p class="keywords">Mitzu, 自助商业智能, SaaS, 数据仓库, 产品分析, 营销分析, 订阅分析, 数据连接, 决策支持, 座位定价, 数据安全</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺463</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/14268bd7-887f-4cd5-b297-9a01586553a2.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Latitude" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/latitude-7?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Latitude</a></h2>
+            <p class="tagline">开源提示工程平台</p>
+            <p class="description">使用人工智能构建、评估和优化你的提示。Latitude是一个开源的提示工程平台，让你能够自信地推出大语言模型（LLM）功能。</p>
+            <p class="keywords">Latitude, 开源, 提示工程平台, AI, 构建, 评估, 精炼, LLM特性, 自信, 技术平台</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺388</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/f7a5990f-0f68-4f37-b6da-654928d9371f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Generect Email Finder" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/generect-email-finder?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Generect Email Finder</a></h2>
+            <p class="tagline">大规模验证和确认电子邮件地址</p>
+            <p class="description">Generect邮箱查找器以98%的准确率发现和验证电子邮件。通过独特的全覆盖验证，将风险降低到10%。支持批量上传和验证列表，并可通过API进行集成。优化您的推广活动，自信地与高质量潜在客户建立联系。</p>
+            <p class="keywords">Generect 邮件查找器, 邮件验证, 大规模验证, 98% 准确率, 降低风险, 独特的全捕获验证, 批量上传验证, API 集成, 优化外展, 高质量潜在客户</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺321</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/540c3dc5-a598-4ec9-8246-c271ab482613.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Height 2.0" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/height-2-0-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Height 2.0</a></h2>
+            <p class="tagline">自主项目管理工具</p>
+            <p class="description">Height是一个为开发者打造的人工智能项目协作工具。它内置了推理引擎，可以自动处理一些繁琐的任务，比如错误分类、待办事项整理、规格更新等。</p>
+            <p class="keywords">高度2.0, 自主项目管理工具, AI项目协作工具, 自动化, 理性引擎, 手动任务自动化, 缺陷分类, 待办事项整理, 规格更新, 项目管理</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺249</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/d187dd86-618a-461b-a0a0-b1085ae7dbfe.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Handinger" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/handinger?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Handinger</a></h2>
+            <p class="tagline">从互联网提取数据</p>
+            <p class="description">Handinger 是一个API，旨在让从互联网提取数据变得简单且经济，非常适合需要抓取大量信息的产品开发者。随着互联网数据提取变得越来越复杂，Handinger 为你简化了这个过程。</p>
+            <p class="keywords">Handinger, 数据提取, API, 网络数据, 信息抓取, 产品构建者, 数据抓取工具, 互联网, 数据提取服务, 简化数据提取</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺218</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/634f0643-2f55-4b70-80d9-80e00ba20964.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="JobJump" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/jobjump?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">JobJump</a></h2>
+            <p class="tagline">通过实时AI定制的回答提示，轻松掌握视频面试技巧。</p>
+            <p class="description">JobJump 是你在视频面试中的 AI 助手。作为一个 Chrome 扩展，它可以与 Zoom、MS Teams 和 Google Meet 配合使用。它会自动识别面试问题，并根据你的简历提供简洁、针对性的回答提示，帮助你顺利获得理想的工作！</p>
+            <p class="keywords">JobJump, 视频面试, AI助手, Chrome扩展, Zoom, MS Teams, Google Meet, 自动识别问题, 答案提示, 简历, 求职, 职业发展, 面试技巧</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺553</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/9001b551-f2da-401d-8819-dd532d1700a2.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Mitzu" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/mitzu?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Mitzu</a></h2>
+            <p class="tagline">SaaS的自助式商业智能</p>
+            <p class="description">Mitzu 是一个专为 SaaS 企业设计的统一仓库原生产品，提供市场营销和订阅分析的平台。只需将数据导入你的数据仓库，连接 Mitzu，就能开始做出更明智的决策。Mitzu 采用按座位计费的定价模式，并且绝不会复制你的数据。</p>
+            <p class="keywords">Mitzu, 自助商业智能, SaaS, 数据仓库, 产品分析, 营销分析, 订阅分析, 数据连接, 决策支持, 座位定价, 数据安全</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺463</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/14268bd7-887f-4cd5-b297-9a01586553a2.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Latitude" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/latitude-7?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Latitude</a></h2>
+            <p class="tagline">开源提示工程平台</p>
+            <p class="description">使用人工智能构建、评估和优化你的提示。Latitude是一个开源的提示工程平台，让你能够自信地推出大语言模型（LLM）功能。</p>
+            <p class="keywords">Latitude, 开源, 提示工程平台, AI, 构建, 评估, 精炼, LLM特性, 自信, 技术平台</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺388</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/f7a5990f-0f68-4f37-b6da-654928d9371f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Generect Email Finder" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/generect-email-finder?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Generect Email Finder</a></h2>
+            <p class="tagline">大规模验证和确认电子邮件地址</p>
+            <p class="description">Generect邮箱查找器以98%的准确率发现和验证电子邮件。通过独特的全覆盖验证，将风险降低到10%。支持批量上传和验证列表，并可通过API进行集成。优化您的推广活动，自信地与高质量潜在客户建立联系。</p>
+            <p class="keywords">Generect 邮件查找器, 邮件验证, 大规模验证, 98% 准确率, 降低风险, 独特的全捕获验证, 批量上传验证, API 集成, 优化外展, 高质量潜在客户</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺321</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/540c3dc5-a598-4ec9-8246-c271ab482613.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Height 2.0" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/height-2-0-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Height 2.0</a></h2>
+            <p class="tagline">自主项目管理工具</p>
+            <p class="description">Height是一个为开发者打造的人工智能项目协作工具。它内置了推理引擎，可以自动处理一些繁琐的任务，比如错误分类、待办事项整理、规格更新等。</p>
+            <p class="keywords">高度2.0, 自主项目管理工具, AI项目协作工具, 自动化, 理性引擎, 手动任务自动化, 缺陷分类, 待办事项整理, 规格更新, 项目管理</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺249</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/d187dd86-618a-461b-a0a0-b1085ae7dbfe.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Handinger" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/handinger?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Handinger</a></h2>
+            <p class="tagline">从互联网提取数据</p>
+            <p class="description">Handinger 是一个API，旨在让从互联网提取数据变得简单且经济，非常适合需要抓取大量信息的产品开发者。随着互联网数据提取变得越来越复杂，Handinger 为你简化了这个过程。</p>
+            <p class="keywords">Handinger, 数据提取, API, 网络数据, 信息抓取, 产品构建者, 数据抓取工具, 互联网, 数据提取服务, 简化数据提取</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺218</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/634f0643-2f55-4b70-80d9-80e00ba20964.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="JobJump" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/jobjump?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">JobJump</a></h2>
+            <p class="tagline">通过实时AI定制的回答提示，轻松掌握视频面试技巧。</p>
+            <p class="description">JobJump 是你在视频面试中的 AI 助手。作为一个 Chrome 扩展，它可以与 Zoom、MS Teams 和 Google Meet 配合使用。它会自动识别面试问题，并根据你的简历提供简洁、针对性的回答提示，帮助你顺利获得理想的工作！</p>
+            <p class="keywords">JobJump, 视频面试, AI助手, Chrome扩展, Zoom, MS Teams, Google Meet, 自动识别问题, 答案提示, 简历, 求职, 职业发展, 面试技巧</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="scroll-container">
+            <div class="scroll-row" style="animation-direction: reverse;">
+                
+    <div class="card">
+        <div class="votes-badge">🔺188</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/2914e533-3a9d-49fe-a2be-88bbb2b92f48.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AnonAI" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/anonai?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">AnonAI</a></h2>
+            <p class="tagline">私人AI助手</p>
+            <p class="description">像ChatGPT，但默认保护隐私。无需注册、登录或追踪。所有对话都保存在你的设备上。由最优秀的开源AI模型驱动，如Llama 3.1 405B、Llama 3.2 Vision和FLUX。</p>
+            <p class="keywords">AnonAI, 私人AI助手, 隐私优先, 无需账户, 无需登录, 无追踪, 本地存储, 开源AI模型, Llama 3.1 405B, Llama 3.2 Vision, FLUX</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺186</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/a70cfef2-aaee-457f-903b-29ef4e28021a.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="pipl.ai 2.0" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/pipl-ai-2-0?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">pipl.ai 2.0</a></h2>
+            <p class="tagline">利用人工智能驱动的冷邮件推广，成交量提升5倍！</p>
+            <p class="description">厌倦了低效的冷邮件工具吗？来看看这个改变游戏规则的解决方案，它不仅保证了更高的邮件送达率，还内置了潜在客户信息丰富功能，并且支持人工智能驱动的个性化服务。</p>
+            <p class="keywords">pipl.ai 2.0, 人工智能, 冷邮件, 销售工具, 提高成交率, 潜在客户, 个性化营销, 高效推广, 交付率, prospect enrichments</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺176</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/64007d82-d680-40de-bb06-bdd301f31eb2.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AI Workflows by Coverr" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ai-workflows-by-coverr?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">AI Workflows by Coverr</a></h2>
+            <p class="tagline">探索最佳AI生成视频背后的工作流程</p>
+            <p class="description">通过Coverr的工作流程，释放AI视频和艺术的潜力。跟随专家的逐步指导，掌握Luma、Runway、Pika、Sora和Midjourney等工具。现在就开始吧！</p>
+            <p class="keywords">AI工作流程, Coverr, AI生成视频, 视频制作, 艺术创作, Luma, Runway, Pika, Sora, Midjourney, 专家指导, 工具学习, 视频编辑, 创意工作流程, AI视频, 学习步骤</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺172</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/090d9513-1d27-4533-a967-379643c59a89.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Greip: Dashboard Revamp" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/greip-dashboard-revamp?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Greip: Dashboard Revamp</a></h2>
+            <p class="tagline">全新仪表盘功能和特性</p>
+            <p class="description">全新的Greip仪表盘从零开始设计，旨在为您提供更直观、功能丰富且视觉效果出色的体验。无论您是在管理安全事件还是监控实时数据，这次升级都为您带来了所需的一切。</p>
+            <p class="keywords">Greip, 仪表盘, 全新功能, 用户体验, 安全事件管理, 实时数据监控, 视觉效果, 功能丰富, 升级, 直观设计</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺152</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/b64b4df0-fd43-4a49-9530-2e4d53b77b9c.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Markdown To Poster Editor" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/markdown-to-poster-editor?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Markdown To Poster Editor</a></h2>
+            <p class="tagline">将Markdown转换为适合社交媒体的海报图片。</p>
+            <p class="description">这是一个免费的在线编辑器。通过使用Markdown语言，你可以实时创建令人惊艳的海报图片，方便分享到社交媒体上。它非常适合制作每日新闻更新、视觉吸引力强的文章，以及更多内容。</p>
+            <p class="keywords">Markdown, 海报编辑器, 在线编辑, 免费工具, 社交媒体, 实时生成, 海报图片, 新闻更新, 视觉文章, 分享工具</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺151</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/fedc4cae-f9eb-4efe-abf7-1e4f129b3f16.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Dezbor Beta" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/dezbor-beta?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Dezbor Beta</a></h2>
+            <p class="tagline">轻松使用人工智能创建仪表板或管理面板</p>
+            <p class="description">无需编写代码，轻松创建属于自己的仪表盘或管理面板，借助人工智能实时更新和分析数据。非常适合希望快速获取洞察的初创公司和企业。专注于你的产品，让我们来处理你的数据。</p>
+            <p class="keywords">Dezbor Beta, 仪表板, 管理面板, 无代码, 人工智能, 实时数据更新, 数据分析, 初创企业, 商业洞察, 数据处理, 快速见解, 产品聚焦</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺188</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/2914e533-3a9d-49fe-a2be-88bbb2b92f48.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AnonAI" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/anonai?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">AnonAI</a></h2>
+            <p class="tagline">私人AI助手</p>
+            <p class="description">像ChatGPT，但默认保护隐私。无需注册、登录或追踪。所有对话都保存在你的设备上。由最优秀的开源AI模型驱动，如Llama 3.1 405B、Llama 3.2 Vision和FLUX。</p>
+            <p class="keywords">AnonAI, 私人AI助手, 隐私优先, 无需账户, 无需登录, 无追踪, 本地存储, 开源AI模型, Llama 3.1 405B, Llama 3.2 Vision, FLUX</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺186</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/a70cfef2-aaee-457f-903b-29ef4e28021a.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="pipl.ai 2.0" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/pipl-ai-2-0?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">pipl.ai 2.0</a></h2>
+            <p class="tagline">利用人工智能驱动的冷邮件推广，成交量提升5倍！</p>
+            <p class="description">厌倦了低效的冷邮件工具吗？来看看这个改变游戏规则的解决方案，它不仅保证了更高的邮件送达率，还内置了潜在客户信息丰富功能，并且支持人工智能驱动的个性化服务。</p>
+            <p class="keywords">pipl.ai 2.0, 人工智能, 冷邮件, 销售工具, 提高成交率, 潜在客户, 个性化营销, 高效推广, 交付率, prospect enrichments</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺176</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/64007d82-d680-40de-bb06-bdd301f31eb2.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AI Workflows by Coverr" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ai-workflows-by-coverr?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">AI Workflows by Coverr</a></h2>
+            <p class="tagline">探索最佳AI生成视频背后的工作流程</p>
+            <p class="description">通过Coverr的工作流程，释放AI视频和艺术的潜力。跟随专家的逐步指导，掌握Luma、Runway、Pika、Sora和Midjourney等工具。现在就开始吧！</p>
+            <p class="keywords">AI工作流程, Coverr, AI生成视频, 视频制作, 艺术创作, Luma, Runway, Pika, Sora, Midjourney, 专家指导, 工具学习, 视频编辑, 创意工作流程, AI视频, 学习步骤</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺172</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/090d9513-1d27-4533-a967-379643c59a89.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Greip: Dashboard Revamp" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/greip-dashboard-revamp?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Greip: Dashboard Revamp</a></h2>
+            <p class="tagline">全新仪表盘功能和特性</p>
+            <p class="description">全新的Greip仪表盘从零开始设计，旨在为您提供更直观、功能丰富且视觉效果出色的体验。无论您是在管理安全事件还是监控实时数据，这次升级都为您带来了所需的一切。</p>
+            <p class="keywords">Greip, 仪表盘, 全新功能, 用户体验, 安全事件管理, 实时数据监控, 视觉效果, 功能丰富, 升级, 直观设计</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺152</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/b64b4df0-fd43-4a49-9530-2e4d53b77b9c.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Markdown To Poster Editor" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/markdown-to-poster-editor?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Markdown To Poster Editor</a></h2>
+            <p class="tagline">将Markdown转换为适合社交媒体的海报图片。</p>
+            <p class="description">这是一个免费的在线编辑器。通过使用Markdown语言，你可以实时创建令人惊艳的海报图片，方便分享到社交媒体上。它非常适合制作每日新闻更新、视觉吸引力强的文章，以及更多内容。</p>
+            <p class="keywords">Markdown, 海报编辑器, 在线编辑, 免费工具, 社交媒体, 实时生成, 海报图片, 新闻更新, 视觉文章, 分享工具</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺151</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/fedc4cae-f9eb-4efe-abf7-1e4f129b3f16.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Dezbor Beta" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/dezbor-beta?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Dezbor Beta</a></h2>
+            <p class="tagline">轻松使用人工智能创建仪表板或管理面板</p>
+            <p class="description">无需编写代码，轻松创建属于自己的仪表盘或管理面板，借助人工智能实时更新和分析数据。非常适合希望快速获取洞察的初创公司和企业。专注于你的产品，让我们来处理你的数据。</p>
+            <p class="keywords">Dezbor Beta, 仪表板, 管理面板, 无代码, 人工智能, 实时数据更新, 数据分析, 初创企业, 商业洞察, 数据处理, 快速见解, 产品聚焦</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="scroll-container">
+            <div class="scroll-row" style="animation-direction: normal;">
+                
+    <div class="card">
+        <div class="votes-badge">🔺124</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/cb4043f9-e90c-47a0-ae0e-5ffa5358365a.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Echo" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/echo-76b8e6a3-3f29-4842-9927-6d0f0b08f0fa?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Echo</a></h2>
+            <p class="tagline">用AI语音和文本笔记，轻松记录，思维更清晰。</p>
+            <p class="description">Echo是一款以移动为主的语音和文本笔记应用，利用人工智能帮助你整理思绪，让它们变得生动有趣。</p>
+            <p class="keywords">Echo, 语音笔记, 文本笔记, AI笔记应用, 思维整理, 移动优先, 便捷记录, 智能助手, 思维导图, 生活助手</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺111</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/d32a6739-3132-4083-931a-9e18b4fc2d77.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Pinggy App" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/pinggy-app?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Pinggy App</a></h2>
+            <p class="tagline">从本地服务器分享你的网站和应用的最简单方法！</p>
+            <p class="description">Pinggy应用程序提供了一个简单的图形用户界面，可以将你的本地应用、网站和物联网设备在线化。它支持Windows、Mac和Linux系统。使用Pinggy，你可以最快速地为本地服务创建安全的隧道，并生成一个公共网址。</p>
+            <p class="keywords">Pinggy App, 本地应用分享, 网站分享, IoT设备, 在线工具, 安全隧道, 公共URL, Windows, Mac, Linux, 简单界面, 本地服务器, 快速创建, 应用程序, 网络工具</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺105</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/8fbd78e0-5d51-4237-9947-7ce812d899f9.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Angel Squad" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/angel-squad?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Angel Squad</a></h2>
+            <p class="tagline">学习如何从顶级风险投资基金投资初创公司</p>
+            <p class="description">Angel Squad是全球最优秀的初创企业投资学习项目。你将向Hustle Fund的投资团队学习，并与来自Stripe、特斯拉、谷歌等公司的2000多名经过筛选的同行建立联系。还有机会投资于Hustle Fund表现最好的公司。</p>
+            <p class="keywords">Angel Squad, 投资初创企业, 风投基金, 学习投资, Hustle Fund, 网络交流, 2000+同行, Stripe, Tesla, Google, 投资表现优异的公司</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺103</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7090a279-5c9f-4c8f-9328-9f1b4b8b8214.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="RunsOn" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/runson?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">RunsOn</a></h2>
+            <p class="tagline">在AWS上自托管的GitHub Actions运行器，成本降低至原来的十分之一。</p>
+            <p class="description">GitHub Actions 工作流的跑步机价格便宜十倍。完全自托管在 AWS 上。速度比官方 GitHub 跑步机快 30% 到 50%。支持 Linux、Windows 和 GPU。提供无限缓存、静态 IP 和私有网络。每周启动超过 60 万个跑步机。</p>
+            <p class="keywords">RunsOn, GitHub Actions, 自托管, AWS, 便宜的运行器, 速度更快, Linux, Windows, GPU, 无限缓存, 静态IP, 私有网络, 每周600k运行器</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺101</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/c4b03b02-7537-4f2b-b826-9dce629d45d0.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Conversa" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/conversa-1?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Conversa</a></h2>
+            <p class="tagline">最精准的人才筛选引擎</p>
+            <p class="description">今天就用Conversa开始招聘，职位费用仅需99美元。我们帮助您快速找到顶尖的1%候选人，让您可以专注于团队建设，而不必花时间筛选简历。简单、实惠且高效。立即开始吧！</p>
+            <p class="keywords">Conversa, 人才筛选引擎, 招聘, 顶尖候选人, 简单, 经济实惠, 高效, 团队建设, 简历筛选, 快速招聘</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺91</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/c2929f63-2a1c-42ad-8a64-6aced9c4d56c.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Emploio" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/emploio?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Emploio</a></h2>
+            <p class="tagline">员工增长受益于人工智能</p>
+            <p class="description">了解Emploio的人工智能驱动解决方案如何提升您的员工能力。通过我们的创新平台，简化人力资源流程，提高生产力，让您在当今竞争激烈的市场中保持领先。</p>
+            <p class="keywords">Emploio, 人工智能, 员工成长, 人力资源, 提高生产力, 创新平台, HR流程优化, 竞争优势, 劳动力赋能</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺124</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/cb4043f9-e90c-47a0-ae0e-5ffa5358365a.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Echo" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/echo-76b8e6a3-3f29-4842-9927-6d0f0b08f0fa?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Echo</a></h2>
+            <p class="tagline">用AI语音和文本笔记，轻松记录，思维更清晰。</p>
+            <p class="description">Echo是一款以移动为主的语音和文本笔记应用，利用人工智能帮助你整理思绪，让它们变得生动有趣。</p>
+            <p class="keywords">Echo, 语音笔记, 文本笔记, AI笔记应用, 思维整理, 移动优先, 便捷记录, 智能助手, 思维导图, 生活助手</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺111</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/d32a6739-3132-4083-931a-9e18b4fc2d77.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Pinggy App" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/pinggy-app?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Pinggy App</a></h2>
+            <p class="tagline">从本地服务器分享你的网站和应用的最简单方法！</p>
+            <p class="description">Pinggy应用程序提供了一个简单的图形用户界面，可以将你的本地应用、网站和物联网设备在线化。它支持Windows、Mac和Linux系统。使用Pinggy，你可以最快速地为本地服务创建安全的隧道，并生成一个公共网址。</p>
+            <p class="keywords">Pinggy App, 本地应用分享, 网站分享, IoT设备, 在线工具, 安全隧道, 公共URL, Windows, Mac, Linux, 简单界面, 本地服务器, 快速创建, 应用程序, 网络工具</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺105</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/8fbd78e0-5d51-4237-9947-7ce812d899f9.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Angel Squad" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/angel-squad?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Angel Squad</a></h2>
+            <p class="tagline">学习如何从顶级风险投资基金投资初创公司</p>
+            <p class="description">Angel Squad是全球最优秀的初创企业投资学习项目。你将向Hustle Fund的投资团队学习，并与来自Stripe、特斯拉、谷歌等公司的2000多名经过筛选的同行建立联系。还有机会投资于Hustle Fund表现最好的公司。</p>
+            <p class="keywords">Angel Squad, 投资初创企业, 风投基金, 学习投资, Hustle Fund, 网络交流, 2000+同行, Stripe, Tesla, Google, 投资表现优异的公司</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺103</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7090a279-5c9f-4c8f-9328-9f1b4b8b8214.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="RunsOn" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/runson?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">RunsOn</a></h2>
+            <p class="tagline">在AWS上自托管的GitHub Actions运行器，成本降低至原来的十分之一。</p>
+            <p class="description">GitHub Actions 工作流的跑步机价格便宜十倍。完全自托管在 AWS 上。速度比官方 GitHub 跑步机快 30% 到 50%。支持 Linux、Windows 和 GPU。提供无限缓存、静态 IP 和私有网络。每周启动超过 60 万个跑步机。</p>
+            <p class="keywords">RunsOn, GitHub Actions, 自托管, AWS, 便宜的运行器, 速度更快, Linux, Windows, GPU, 无限缓存, 静态IP, 私有网络, 每周600k运行器</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺101</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/c4b03b02-7537-4f2b-b826-9dce629d45d0.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Conversa" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/conversa-1?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Conversa</a></h2>
+            <p class="tagline">最精准的人才筛选引擎</p>
+            <p class="description">今天就用Conversa开始招聘，职位费用仅需99美元。我们帮助您快速找到顶尖的1%候选人，让您可以专注于团队建设，而不必花时间筛选简历。简单、实惠且高效。立即开始吧！</p>
+            <p class="keywords">Conversa, 人才筛选引擎, 招聘, 顶尖候选人, 简单, 经济实惠, 高效, 团队建设, 简历筛选, 快速招聘</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺91</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/c2929f63-2a1c-42ad-8a64-6aced9c4d56c.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Emploio" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/emploio?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Emploio</a></h2>
+            <p class="tagline">员工增长受益于人工智能</p>
+            <p class="description">了解Emploio的人工智能驱动解决方案如何提升您的员工能力。通过我们的创新平台，简化人力资源流程，提高生产力，让您在当今竞争激烈的市场中保持领先。</p>
+            <p class="keywords">Emploio, 人工智能, 员工成长, 人力资源, 提高生产力, 创新平台, HR流程优化, 竞争优势, 劳动力赋能</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="scroll-container">
+            <div class="scroll-row" style="animation-direction: reverse;">
+                
+    <div class="card">
+        <div class="votes-badge">🔺90</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/d8f009cf-6217-4cb8-a4fa-13b00be4fe26.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Demand-Genius" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/demand-genius?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Demand-Genius</a></h2>
+            <p class="tagline">告别重复的潜在客户表单！</p>
+            <p class="description">告别重复的潜在客户表单！我们帮助B2B营销人员根据用户在销售流程中的不同阶段，灵活调整内容体验。只需几次点击，就能将我们与Hubspot同步，针对每位买家定制内容访问、信息传递和数据收集。</p>
+            <p class="keywords">需求天才, B2B营销, 内容体验, 潜在客户, Hubspot集成, 内容定制, 消息传递, 数据捕获, 销售漏斗, 营销自动化</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺81</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/691b7cf3-71c5-484f-bff0-91a9a139f3cc.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Podcastworld.io- Perplexity for Podcasts" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/podcastworld-io-perplexity-for-podcasts?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Podcastworld.io- Perplexity for Podcasts</a></h2>
+            <p class="tagline">提问、获取答案并播放片段，与播客主持人聊天</p>
+            <p class="description">我们会扫描数百万条对话来寻找答案，并让你收听那些回答你问题的音频片段。你可以与你最喜欢的播客及播客主持人的AI克隆进行聊天，阅读摘要以快速获取见解，还可以访问文字稿。</p>
+            <p class="keywords">播客世界, Podcastworld.io, 播客, 问答, 可播放片段, 与播客主持人聊天, 音频片段, AI克隆, 摘要, 快速洞察, 文字记录, 对话扫描, 播客互动</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺80</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/e0c8c698-0be0-4b18-be9f-f9ef38a6ad5e.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Larafast 2.0" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/larafast-2-0?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Larafast 2.0</a></h2>
+            <p class="tagline">Laravel SaaS 启动套件 | Larafast</p>
+            <p class="description">一套适合生产环境的SaaS启动工具包，包含了启动你的SaaS应用、AI包装器或其他任何网络应用所需的一切。</p>
+            <p class="keywords">Larafast 2.0, Laravel, SaaS启动工具包, SaaS应用, AI包装器, 网络应用, 生产就绪, 开发工具, 软件开发, 应用程序开发</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺62</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/a98386ca-4b0b-48fc-8a14-d273fbd7099b.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Guess Where You Are" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/guess-where-you-are?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Guess Where You Are</a></h2>
+            <p class="tagline">看一个地方的图片，然后试着在地图上猜出它在哪里。</p>
+            <p class="description">开始一场全球冒险吧！《你在哪里？》是一款免费的GeoGuessr替代游戏。来测试你的地理技能，像从未有过的方式探索世界！</p>
+            <p class="keywords">猜测你的位置, 地理游戏, 全球冒险, 免费游戏, 地图猜测, GeoGuessr替代品, 地理技能, 探索世界, 互动游戏, 位置猜测</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺61</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/4fd4319b-392a-483c-a815-f106c49eb649.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Tendery.ai" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/tendery-ai?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Tendery.ai</a></h2>
+            <p class="tagline">用人工智能自动化招标发现。</p>
+            <p class="description">利用人工智能自动发现欧洲的公共招标信息。Tendery会定期生成一份详细报告，列出您最相关的招标机会。我们的报告完全根据您的业务需求量身定制，提供个性化的招标摘要。</p>
+            <p class="keywords">Tendery.ai, 招标自动化, 人工智能, 欧洲公共招标, 招标发现, 定制报告, 招标机会, 个性化招标摘要, 商业定制, 招标管理</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺61</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/0e952fec-f5b0-45eb-8c8e-9b1be706e539.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Ember Education" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ember-education?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Ember Education</a></h2>
+            <p class="tagline">在你的网站上嵌入课程</p>
+            <p class="description">一个无代码工具，帮助创作者将他们的课程放到自己的网站上。目标是：吸引用户访问付费内容，提高转化率；让用户在网站上停留更长时间，增加访问时长，降低跳出率；同时提升网站的广告收入。</p>
+            <p class="keywords">Ember Education, 嵌入课程, 无代码工具, 创作者, 网站课程, 提高转化率, 用户留存, 增加会话时长, 降低跳出率, 提升广告收入</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺90</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/d8f009cf-6217-4cb8-a4fa-13b00be4fe26.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Demand-Genius" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/demand-genius?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Demand-Genius</a></h2>
+            <p class="tagline">告别重复的潜在客户表单！</p>
+            <p class="description">告别重复的潜在客户表单！我们帮助B2B营销人员根据用户在销售流程中的不同阶段，灵活调整内容体验。只需几次点击，就能将我们与Hubspot同步，针对每位买家定制内容访问、信息传递和数据收集。</p>
+            <p class="keywords">需求天才, B2B营销, 内容体验, 潜在客户, Hubspot集成, 内容定制, 消息传递, 数据捕获, 销售漏斗, 营销自动化</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺81</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/691b7cf3-71c5-484f-bff0-91a9a139f3cc.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Podcastworld.io- Perplexity for Podcasts" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/podcastworld-io-perplexity-for-podcasts?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Podcastworld.io- Perplexity for Podcasts</a></h2>
+            <p class="tagline">提问、获取答案并播放片段，与播客主持人聊天</p>
+            <p class="description">我们会扫描数百万条对话来寻找答案，并让你收听那些回答你问题的音频片段。你可以与你最喜欢的播客及播客主持人的AI克隆进行聊天，阅读摘要以快速获取见解，还可以访问文字稿。</p>
+            <p class="keywords">播客世界, Podcastworld.io, 播客, 问答, 可播放片段, 与播客主持人聊天, 音频片段, AI克隆, 摘要, 快速洞察, 文字记录, 对话扫描, 播客互动</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺80</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/e0c8c698-0be0-4b18-be9f-f9ef38a6ad5e.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Larafast 2.0" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/larafast-2-0?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Larafast 2.0</a></h2>
+            <p class="tagline">Laravel SaaS 启动套件 | Larafast</p>
+            <p class="description">一套适合生产环境的SaaS启动工具包，包含了启动你的SaaS应用、AI包装器或其他任何网络应用所需的一切。</p>
+            <p class="keywords">Larafast 2.0, Laravel, SaaS启动工具包, SaaS应用, AI包装器, 网络应用, 生产就绪, 开发工具, 软件开发, 应用程序开发</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺62</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/a98386ca-4b0b-48fc-8a14-d273fbd7099b.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Guess Where You Are" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/guess-where-you-are?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Guess Where You Are</a></h2>
+            <p class="tagline">看一个地方的图片，然后试着在地图上猜出它在哪里。</p>
+            <p class="description">开始一场全球冒险吧！《你在哪里？》是一款免费的GeoGuessr替代游戏。来测试你的地理技能，像从未有过的方式探索世界！</p>
+            <p class="keywords">猜测你的位置, 地理游戏, 全球冒险, 免费游戏, 地图猜测, GeoGuessr替代品, 地理技能, 探索世界, 互动游戏, 位置猜测</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺61</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/4fd4319b-392a-483c-a815-f106c49eb649.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Tendery.ai" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/tendery-ai?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Tendery.ai</a></h2>
+            <p class="tagline">用人工智能自动化招标发现。</p>
+            <p class="description">利用人工智能自动发现欧洲的公共招标信息。Tendery会定期生成一份详细报告，列出您最相关的招标机会。我们的报告完全根据您的业务需求量身定制，提供个性化的招标摘要。</p>
+            <p class="keywords">Tendery.ai, 招标自动化, 人工智能, 欧洲公共招标, 招标发现, 定制报告, 招标机会, 个性化招标摘要, 商业定制, 招标管理</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺61</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/0e952fec-f5b0-45eb-8c8e-9b1be706e539.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Ember Education" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ember-education?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+My_PH_APP+%28ID%3A+138680%29" target="_blank">Ember Education</a></h2>
+            <p class="tagline">在你的网站上嵌入课程</p>
+            <p class="description">一个无代码工具，帮助创作者将他们的课程放到自己的网站上。目标是：吸引用户访问付费内容，提高转化率；让用户在网站上停留更长时间，增加访问时长，降低跳出率；同时提升网站的广告收入。</p>
+            <p class="keywords">Ember Education, 嵌入课程, 无代码工具, 创作者, 网站课程, 提高转化率, 用户留存, 增加会话时长, 降低跳出率, 提升广告收入</p>
+            <p class="time">2024年10月10日 PM03:01 (北京时间)</p>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        </div>
+        <footer>
+            <p>&copy; 2024 Made by Lark. All rights reserved.</p>
+        </footer>
+        <script>
+            const robot = document.getElementById('robot');
+            const container = document.querySelector('.title-container');
+            let direction = 1;
+            let position = -30;
+            let isJumping = false;
+
+            function moveRobot() {
+                if (!isJumping) {
+                    position += direction * 2;
+                    if (position > container.offsetWidth - 30 || position < -30) {
+                        direction *= -1;
+                        robot.style.transform = `scaleX(${direction})`;
+                    }
+                    robot.style.left = `${position}px`;
+                }
+
+                if (Math.random() < 0.005 && !isJumping) {  // 0.5% 概率开始跳跃
+                    isJumping = true;
+                    robot.style.animation = 'float 1s ease-in-out';
+                    setTimeout(() => {
+                        isJumping = false;
+                        robot.style.animation = 'none';
+                    }, 1000);
+                }
+
+                requestAnimationFrame(moveRobot);
+            }
+
+            robot.style.left = '-30px';
+            robot.style.top = '50%';
+            robot.style.transform = 'translateY(-50%)';
+            moveRobot();
+        </script>
+    </body>
+    </html>
+    
