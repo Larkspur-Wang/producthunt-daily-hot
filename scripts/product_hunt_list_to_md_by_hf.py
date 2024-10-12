@@ -6,7 +6,7 @@ import pytz
 from huggingface_hub import InferenceClient
 
 # 全局变量定义模型名称
-MODEL_NAME = "NousResearch/Hermes-3-Llama-3.1-405B"
+MODEL_NAME = "Qwen/Qwen2.5-7B-Instruct"
 
 # 创建InferenceClient实例
 client = InferenceClient(MODEL_NAME, token=os.getenv('HUGGINGFACE_API_TOKEN'))
