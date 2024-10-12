@@ -176,8 +176,8 @@ def fetch_product_hunt_data():
         has_next_page = data['pageInfo']['hasNextPage']
         cursor = data['pageInfo']['endCursor']
 
-    # 只保留前30个产品
-    return [Product(**post) for post in sorted(all_posts, key=lambda x: x['votesCount'], reverse=True)[:30]]
+    # 只保留前24个产品
+    return [Product(**post) for post in sorted(all_posts, key=lambda x: x['votesCount'], reverse=True)[:24]]
 
 def generate_markdown(products, date_str):
     """生成Markdown内容并保存到data目录"""
