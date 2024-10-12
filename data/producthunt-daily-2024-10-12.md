@@ -9,7 +9,7 @@
 ![Octomind QA Agent](https://ph-files.imgix.net/c4673116-82e1-41df-997d-8f62af7f977b.png?auto=format&fit=crop&frame=1&h=512&w=1024)
 
 **关键词**：
-**票数**: 🔺405
+**票数**: 🔺437
 **是否精选**：是
 **发布时间**：2024年10月11日 PM03:01 (北京时间)
 
@@ -24,7 +24,7 @@
 ![Generate Anything ](https://ph-files.imgix.net/0c32facc-87e3-48c5-9c42-1045bd3fad09.png?auto=format&fit=crop&frame=1&h=512&w=1024)
 
 **关键词**：
-**票数**: 🔺267
+**票数**: 🔺308
 **是否精选**：是
 **发布时间**：2024年10月11日 PM03:01 (北京时间)
 
@@ -39,7 +39,7 @@
 ![Flowbite WYSIWYG](https://ph-files.imgix.net/e402b5fc-9dec-4a87-a855-6bb4bb412e95.png?auto=format&fit=crop&frame=1&h=512&w=1024)
 
 **关键词**：
-**票数**: 🔺247
+**票数**: 🔺258
 **是否精选**：是
 **发布时间**：2024年10月11日 PM03:01 (北京时间)
 
@@ -54,7 +54,7 @@
 ![Fillout 2.0](https://ph-files.imgix.net/52bbeb68-fe81-4933-b87d-1b5d0f710212.png?auto=format&fit=crop&frame=1&h=512&w=1024)
 
 **关键词**：
-**票数**: 🔺227
+**票数**: 🔺245
 **是否精选**：是
 **发布时间**：2024年10月11日 PM03:01 (北京时间)
 
@@ -69,7 +69,7 @@
 ![UI Builder for shadcn/ui](https://ph-files.imgix.net/077943d2-871a-41cb-83cf-3e36b5d86cce.png?auto=format&fit=crop&frame=1&h=512&w=1024)
 
 **关键词**：
-**票数**: 🔺181
+**票数**: 🔺195
 **是否精选**：是
 **发布时间**：2024年10月11日 PM03:01 (北京时间)
 
@@ -84,7 +84,7 @@
 ![Planly 2.0](https://ph-files.imgix.net/0c52bfd6-5b0e-4d29-b616-3c98b84939c0.png?auto=format&fit=crop&frame=1&h=512&w=1024)
 
 **关键词**：
-**票数**: 🔺161
+**票数**: 🔺163
 **是否精选**：否
 **发布时间**：2024年10月11日 PM03:01 (北京时间)
 
@@ -99,7 +99,7 @@
 ![Augment UI](https://ph-files.imgix.net/3e87a8ae-dd6a-4287-a156-c079a048393f.png?auto=format&fit=crop&frame=1&h=512&w=1024)
 
 **关键词**：
-**票数**: 🔺135
+**票数**: 🔺140
 **是否精选**：是
 **发布时间**：2024年10月11日 PM03:01 (北京时间)
 
@@ -114,7 +114,7 @@
 ![Fuselio ](https://ph-files.imgix.net/9746975c-b83e-461d-aea7-a8d8ace179ba.png?auto=format&fit=crop&frame=1&h=512&w=1024)
 
 **关键词**：
-**票数**: 🔺121
+**票数**: 🔺127
 **是否精选**：否
 **发布时间**：2024年10月11日 PM03:01 (北京时间)
 
@@ -129,7 +129,7 @@
 ![AskSpot.ai](https://ph-files.imgix.net/88aa1519-8001-4869-a3fb-14817ec919fa.png?auto=format&fit=crop&frame=1&h=512&w=1024)
 
 **关键词**：
-**票数**: 🔺113
+**票数**: 🔺115
 **是否精选**：否
 **发布时间**：2024年10月11日 PM03:01 (北京时间)
 
@@ -144,7 +144,7 @@
 ![GoodsFox Fashion](https://ph-files.imgix.net/f6c72076-0d23-4f51-a300-84ffc8f333c3.png?auto=format&fit=crop&frame=1&h=512&w=1024)
 
 **关键词**：
-**票数**: 🔺100
+**票数**: 🔺104
 **是否精选**：否
 **发布时间**：2024年10月11日 PM03:01 (北京时间)
 
@@ -159,7 +159,7 @@
 ![Video Production Planner](https://ph-files.imgix.net/06a64eeb-a8cb-4c0b-8eec-2ad6bd165d07.png?auto=format&fit=crop&frame=1&h=512&w=1024)
 
 **关键词**：
-**票数**: 🔺95
+**票数**: 🔺100
 **是否精选**：是
 **发布时间**：2024年10月11日 PM03:01 (北京时间)
 
@@ -174,7 +174,7 @@
 ![Talespinner](https://ph-files.imgix.net/d10a2c78-477a-4edf-9bad-92cf1b58dfdc.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024)
 
 **关键词**：
-**票数**: 🔺88
+**票数**: 🔺97
 **是否精选**：是
 **发布时间**：2024年10月11日 PM03:01 (北京时间)
 
@@ -189,7 +189,7 @@
 ![Stride](https://ph-files.imgix.net/f55034d1-5dc1-4607-87e0-e7de34b705b1.png?auto=format&fit=crop&frame=1&h=512&w=1024)
 
 **关键词**：
-**票数**: 🔺87
+**票数**: 🔺96
 **是否精选**：是
 **发布时间**：2024年10月11日 PM03:01 (北京时间)
 
@@ -204,13 +204,28 @@
 ![Reimbursable](https://ph-files.imgix.net/568bc5ab-94c3-4275-b23b-96618de84623.png?auto=format&fit=crop&frame=1&h=512&w=1024)
 
 **关键词**：
-**票数**: 🔺77
+**票数**: 🔺85
 **是否精选**：是
 **发布时间**：2024年10月11日 PM03:01 (北京时间)
 
 ---
 
-## [15. Writers Copilot](https://www.producthunt.com/posts/writers-copilot?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
+## [15. AiQArt by LockChain](https://www.producthunt.com/posts/aiqart-by-lockchain?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
+**标语**：
+**介绍**：
+**产品网站**: [立即访问](https://www.producthunt.com/r/WMYH36MZOSU36I?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
+**Product Hunt**: [View on Product Hunt](https://www.producthunt.com/posts/aiqart-by-lockchain?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
+
+![AiQArt by LockChain](https://ph-files.imgix.net/a648dbb3-8be7-47f8-9a31-7df5927db5bd.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024)
+
+**关键词**：
+**票数**: 🔺74
+**是否精选**：是
+**发布时间**：2024年10月11日 PM03:01 (北京时间)
+
+---
+
+## [16. Writers Copilot](https://www.producthunt.com/posts/writers-copilot?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
 **标语**：
 **介绍**：
 **产品网站**: [立即访问](https://www.producthunt.com/r/7P2ZCQ4FGQCPZ5?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
@@ -225,21 +240,6 @@
 
 ---
 
-## [16. AiQArt by LockChain](https://www.producthunt.com/posts/aiqart-by-lockchain?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
-**标语**：
-**介绍**：
-**产品网站**: [立即访问](https://www.producthunt.com/r/WMYH36MZOSU36I?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
-**Product Hunt**: [View on Product Hunt](https://www.producthunt.com/posts/aiqart-by-lockchain?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
-
-![AiQArt by LockChain](https://ph-files.imgix.net/a648dbb3-8be7-47f8-9a31-7df5927db5bd.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024)
-
-**关键词**：
-**票数**: 🔺69
-**是否精选**：是
-**发布时间**：2024年10月11日 PM03:01 (北京时间)
-
----
-
 ## [17. LockBridge](https://www.producthunt.com/posts/lockbridge?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
 **标语**：
 **介绍**：
@@ -249,7 +249,7 @@
 ![LockBridge](https://ph-files.imgix.net/45c431ce-166a-49d7-8707-a3a5db5318a8.png?auto=format&fit=crop&frame=1&h=512&w=1024)
 
 **关键词**：
-**票数**: 🔺66
+**票数**: 🔺71
 **是否精选**：是
 **发布时间**：2024年10月11日 PM03:01 (北京时间)
 
@@ -279,7 +279,7 @@
 ![Backlink Status Checker](https://ph-files.imgix.net/b157197b-69e6-4159-899c-276f88e62844.gif?auto=format&fit=crop&frame=1&h=512&w=1024)
 
 **关键词**：
-**票数**: 🔺45
+**票数**: 🔺46
 **是否精选**：否
 **发布时间**：2024年10月11日 PM03:01 (北京时间)
 
@@ -345,13 +345,13 @@
 
 ---
 
-## [24. Color Explorer](https://www.producthunt.com/posts/color-explorer?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
+## [24. Paktol App](https://www.producthunt.com/posts/paktol-app?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
 **标语**：
 **介绍**：
-**产品网站**: [立即访问](https://www.producthunt.com/r/JEMEUF3LJ4VTJN?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
-**Product Hunt**: [View on Product Hunt](https://www.producthunt.com/posts/color-explorer?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
+**产品网站**: [立即访问](https://www.producthunt.com/r/RSJI5VSSKYCESK?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
+**Product Hunt**: [View on Product Hunt](https://www.producthunt.com/posts/paktol-app?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
 
-![Color Explorer](https://ph-files.imgix.net/75e14d59-8d06-469a-9b61-44c08f0de0ea.png?auto=format&fit=crop&frame=1&h=512&w=1024)
+![Paktol App](https://ph-files.imgix.net/cb8c2bf5-6f37-4227-9645-7efac60132c9.png?auto=format&fit=crop&frame=1&h=512&w=1024)
 
 **关键词**：
 **票数**: 🔺13
@@ -360,13 +360,13 @@
 
 ---
 
-## [25. Paktol App](https://www.producthunt.com/posts/paktol-app?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
+## [25. Color Explorer](https://www.producthunt.com/posts/color-explorer?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
 **标语**：
 **介绍**：
-**产品网站**: [立即访问](https://www.producthunt.com/r/RSJI5VSSKYCESK?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
-**Product Hunt**: [View on Product Hunt](https://www.producthunt.com/posts/paktol-app?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
+**产品网站**: [立即访问](https://www.producthunt.com/r/JEMEUF3LJ4VTJN?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
+**Product Hunt**: [View on Product Hunt](https://www.producthunt.com/posts/color-explorer?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
 
-![Paktol App](https://ph-files.imgix.net/cb8c2bf5-6f37-4227-9645-7efac60132c9.png?auto=format&fit=crop&frame=1&h=512&w=1024)
+![Color Explorer](https://ph-files.imgix.net/75e14d59-8d06-469a-9b61-44c08f0de0ea.png?auto=format&fit=crop&frame=1&h=512&w=1024)
 
 **关键词**：
 **票数**: 🔺13
@@ -405,43 +405,43 @@
 
 ---
 
-## [28. signaturegenerator](https://www.producthunt.com/posts/signaturegenerator?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
+## [28. Gene](https://www.producthunt.com/posts/gene-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
+**标语**：
+**介绍**：
+**产品网站**: [立即访问](https://www.producthunt.com/r/KIYN6YCWUB24CD?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
+**Product Hunt**: [View on Product Hunt](https://www.producthunt.com/posts/gene-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
+
+![Gene](https://ph-files.imgix.net/691eddd9-6c4b-4c8d-a4e4-331459ff1579.png?auto=format&fit=crop&frame=1&h=512&w=1024)
+
+**关键词**：
+**票数**: 🔺10
+**是否精选**：否
+**发布时间**：2024年10月11日 PM03:01 (北京时间)
+
+---
+
+## [29. LeadNest](https://www.producthunt.com/posts/leadnest?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
+**标语**：
+**介绍**：
+**产品网站**: [立即访问](https://www.producthunt.com/r/24JEQL5RXQUIQX?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
+**Product Hunt**: [View on Product Hunt](https://www.producthunt.com/posts/leadnest?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
+
+![LeadNest](https://ph-files.imgix.net/9a459138-01f1-496f-ac44-39c234a101f1.png?auto=format&fit=crop&frame=1&h=512&w=1024)
+
+**关键词**：
+**票数**: 🔺10
+**是否精选**：否
+**发布时间**：2024年10月11日 PM03:01 (北京时间)
+
+---
+
+## [30. signaturegenerator](https://www.producthunt.com/posts/signaturegenerator?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
 **标语**：
 **介绍**：
 **产品网站**: [立即访问](https://www.producthunt.com/r/DHBDDGS6LKCQGT?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
 **Product Hunt**: [View on Product Hunt](https://www.producthunt.com/posts/signaturegenerator?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
 
 ![signaturegenerator](https://ph-files.imgix.net/ab789c69-9b20-4d99-b202-854b11e2bce0.png?auto=format&fit=crop&frame=1&h=512&w=1024)
-
-**关键词**：
-**票数**: 🔺10
-**是否精选**：否
-**发布时间**：2024年10月11日 PM03:01 (北京时间)
-
----
-
-## [29. Spun It](https://www.producthunt.com/posts/spun-it?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
-**标语**：
-**介绍**：
-**产品网站**: [立即访问](https://www.producthunt.com/r/VFYMIXNVHDX6IQ?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
-**Product Hunt**: [View on Product Hunt](https://www.producthunt.com/posts/spun-it?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
-
-![Spun It](https://ph-files.imgix.net/e03e2d29-5e00-4a2a-afff-a42087192508.png?auto=format&fit=crop&frame=1&h=512&w=1024)
-
-**关键词**：
-**票数**: 🔺10
-**是否精选**：否
-**发布时间**：2024年10月11日 PM03:01 (北京时间)
-
----
-
-## [30. BlogBud AI](https://www.producthunt.com/posts/blogbud-ai?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
-**标语**：
-**介绍**：
-**产品网站**: [立即访问](https://www.producthunt.com/r/ENYGHDOPZXZM5Y?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
-**Product Hunt**: [View on Product Hunt](https://www.producthunt.com/posts/blogbud-ai?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)
-
-![BlogBud AI](https://ph-files.imgix.net/b964ae66-ab68-4fd5-b7fd-b6f832285761.png?auto=format&fit=crop&frame=1&h=512&w=1024)
 
 **关键词**：
 **票数**: 🔺10
