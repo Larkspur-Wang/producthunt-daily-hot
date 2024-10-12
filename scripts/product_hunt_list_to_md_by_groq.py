@@ -113,7 +113,7 @@ async def send_chat_message_async(base_url: str, api_key: str, query: str, user:
         "messages": [
             {
                 "role": 'system',
-                "content": inputs
+                "content": inputs[0]
             },
             {
                 "role": 'user',
