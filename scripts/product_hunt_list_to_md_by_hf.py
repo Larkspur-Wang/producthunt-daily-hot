@@ -41,7 +41,7 @@ class Product:
 
     def generate_keywords(self) -> str:
         """生成产品的关键词，显示在一行，用逗号分隔"""
-        prompt = f"根据以下内容生成适合的中文关键词，用英文逗号分隔开：\n\n产品名称：{self.name}\n\n标语：{self.tagline}\n\n描述：{self.description}"
+        prompt = f"根据以下内容生成4个适合的中文关键词，用英文逗号分隔开：\n\n产品名称：{self.name}\n\n标语：{self.tagline}\n\n描述：{self.description}"
         
         try:
             response = client.text_generation(prompt, max_new_tokens=50, temperature=0.7)
@@ -75,16 +75,16 @@ class Product:
         """返回产品数据的Markdown格式"""
         og_image_markdown = f"![{self.name}]({self.og_image_url})"
         return (
-            f"## [{rank}. {self.name}]({self.url})\n"
-            f"**标语**：{self.translated_tagline}\n"
-            f"**介绍**：{self.translated_description}\n"
-            f"**产品网站**: [立即访问]({self.website})\n"
-            f"**Product Hunt**: [View on Product Hunt]({self.url})\n\n"
-            f"{og_image_markdown}\n\n"
-            f"**关键词**：{self.keyword}\n"
-            f"**票数**: 🔺{self.votes_count}\n"
-            f"**是否精选**：{self.featured}\n"
-            f"**发布时间**：{self.created_at}\n\n"
+            f"## [{rank}. {self.name}]({self.url})  \n"
+            f"{og_image_markdown}  \n\n"
+            f"**标语**：{self.translated_tagline}  \n"
+            f"**介绍**：{self.translated_description}  \n"
+            f"**票数**: 🔺{self.votes_count}  \n"
+            f"**关键词**：{self.keyword}  \n"
+            f"**发布时间**：{self.created_at}  \n\n"
+            #f"**产品网站**: [立即访问]({self.website})  \n"
+            #f"**Product Hunt**: [View on Product Hunt]({self.url})\n\n"                                  
+            #f"**是否精选**：{self.featured} \n"           
             f"---\n\n"
         )
 
@@ -110,7 +110,7 @@ def get_producthunt_token():
     return token
 
 def fetch_product_hunt_data():
-    """从Product Hunt获取前一天的Top 30数据"""
+    """从Product Hunt获取前一天的Top 5数据"""
     token = get_producthunt_token()
     yesterday = datetime.now(timezone.utc) - timedelta(days=1)
     date_str = yesterday.strftime('%Y-%m-%d')
@@ -143,7 +143,7 @@ def fetch_product_hunt_data():
     has_next_page = True
     cursor = ""
 
-    while has_next_page and len(all_posts) < 30:
+    while has_next_page and len(all_posts) < 5:
         query = base_query % (date_str, date_str, cursor)
         response = requests.post(url, headers=headers, json={"query": query})
 
