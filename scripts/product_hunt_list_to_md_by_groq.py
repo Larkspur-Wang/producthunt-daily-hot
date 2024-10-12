@@ -44,7 +44,8 @@ class Product:
         prompt = f"根据以下内容生成适合的中文关键词，用英文逗号分隔开：\n\n产品名称：{self.name}\n\n标语：{self.tagline}\n\n描述：{self.description}"
         
         try:
-            inputs = json.dumps({"system_prompt": "Generate suitable Chinese keywords based on the product information provided. The keywords should be separated by commas."})
+            system_prompt = "Generate suitable Chinese keywords based on the product information provided. The keywords should be separated by commas."
+            inputs = json.dumps([{"role": "system", "content": system_prompt}])
             response, _ = await call_groq_async(GROQ_API_KEY, prompt, "", inputs, "", "blocking")
             keywords = response.strip()
             if ',' not in keywords:
@@ -57,7 +58,8 @@ class Product:
     async def translate_text(self, text: str) -> str:
         """使用Groq翻译文本内容"""
         try:
-            inputs = json.dumps({"system_prompt": "你是世界上最专业的翻译工具，擅长英文和中文互译。你是一位精通英文和中文的专业翻译，尤其擅长将IT公司黑话和专业词汇翻译成简洁易懂的地道表达。你的任务是将以下内容翻译成地道的中文，风格与科普杂志或日常对话相似。"})
+            system_prompt = "你是世界上最专业的翻译工具，擅长英文和中文互译。你是一位精通英文和中文的专业翻译，尤其擅长将IT公司黑话和专业词汇翻译成简洁易懂的地道表达。你的任务是将以下内容翻译成地道的中文，风格与科普杂志或日常对话相似。"
+            inputs = json.dumps([{"role": "system", "content": system_prompt}])
             response, _ = await call_groq_async(GROQ_API_KEY, text, "", inputs, "", "blocking")
             return response.strip()
         except Exception as e:
@@ -102,7 +104,7 @@ class Product:
             f"---\n\n"
         )
 
-async def send_chat_message_async(base_url: str, api_key: str, query: str, user: str, conversation_id: str, inputs={}, files: List[dict] = [], response_mode="streaming") -> Tuple[str, str]:
+async def send_chat_message_async(base_url: str, api_key: str, query: str, user: str, conversation_id: str, inputs: List[dict] = [], files: List[dict] = [], response_mode="streaming") -> Tuple[str, str]:
     url = f"{base_url}/chat/completions"
     headers = {
         "Authorization": f"Bearer {api_key}",
@@ -111,10 +113,7 @@ async def send_chat_message_async(base_url: str, api_key: str, query: str, user:
     payload = {
         "model": 'llama3-70b-8192',
         "messages": [
-            {
-                "role": 'system',
-                "content": inputs[0]
-            },
+            *inputs,
             {
                 "role": 'user',
                 "content": query
@@ -135,7 +134,7 @@ async def send_chat_message_async(base_url: str, api_key: str, query: str, user:
 
         except Exception as e:
             print(f"Error in send_chat_message_async: {e}")
-            return "", conversation_id
+            raise
 
 async def handle_blocking_response_async(response: aiohttp.ClientResponse, conversation_id: str) -> Tuple[str, str]:
     try:
@@ -171,8 +170,12 @@ async def call_groq_async(api_key, content, conversation_id, inputs, files, resp
     if not conversation_id: conversation_id = ""
     inputs = json.loads(inputs)
     files = json.loads(files)
-    result, conversation_id = await send_chat_message_async(base_url, api_key, content, user=user, conversation_id=conversation_id, inputs=inputs, files=files, response_mode=response_mode)
-    return result, conversation_id
+    try:
+        result, conversation_id = await send_chat_message_async(base_url, api_key, content, user=user, conversation_id=conversation_id, inputs=inputs, files=files, response_mode=response_mode)
+        return result, conversation_id
+    except Exception as e:
+        print(f"Error in call_groq_async: {e}")
+        raise
 
 def get_producthunt_token():
     """通过 client_id 和 client_secret 获取 Product Hunt 的 access_token"""
