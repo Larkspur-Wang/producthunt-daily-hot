@@ -3,3 +3,4 @@ beautifulsoup4
 openai>=1.0.0
 pytz
 huggingface_hub 
+markdown

@@ -1,8 +1,9 @@
-name: Generate Daily Markdown
+name: Generate Daily HTML
 
 on:
-  schedule:
-    - cron: '01 7 * * *'  # 每天UTC时间早上7:01（北京时间下午3:01自动运行）
+  workflow_run:
+    workflows: ["Generate Daily Markdown"]
+    types: [completed]
   workflow_dispatch:  # 手动触发
 
 jobs:
@@ -23,16 +24,9 @@ jobs:
         pip install -r requirements.txt
         pip install aiohttp
 
-    - name: Generate Markdown
-      env:
-        GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-        GROQ_API_BASE_URL: ${{ secrets.GROQ_API_BASE_URL }}
-        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        PRODUCTHUNT_CLIENT_ID: ${{ secrets.PRODUCTHUNT_CLIENT_ID }}
-        PRODUCTHUNT_CLIENT_SECRET: ${{ secrets.PRODUCTHUNT_CLIENT_SECRET }}
-        HUGGINGFACE_API_TOKEN: ${{ secrets.HUGGINGFACE_API_TOKEN }}
+    - name: Generate HTML
       run: |
-        python scripts/product_hunt_list_to_md_by_open_router.py
+        python scripts/markdown_to_png_card.py
 
     - name: Commit files
       run: |
