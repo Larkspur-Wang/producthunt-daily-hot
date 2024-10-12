@@ -8,8 +8,8 @@ from datetime import datetime, timedelta, timezone
 from bs4 import BeautifulSoup
 import pytz
 
-DIFY_API_BASE_URL = os.getenv('GROQ_API_BASE_URL')
-DIFY_API_KEY = os.getenv('GROQ_API_KEY')
+GROQ_API_BASE_URL = os.getenv('GROQ_API_BASE_URL')
+GROQ_API_KEY = os.getenv('GROQ_API_KEY')
 
 producthunt_client_id = os.getenv('PRODUCTHUNT_CLIENT_ID')
 producthunt_client_secret = os.getenv('PRODUCTHUNT_CLIENT_SECRET')
@@ -45,7 +45,7 @@ class Product:
         
         try:
             inputs = json.dumps({"system_prompt": "Generate suitable Chinese keywords based on the product information provided. The keywords should be separated by commas."})
-            response, _ = await call_dify_app_async(DIFY_API_KEY, prompt, "", inputs, "", "blocking")
+            response, _ = await call_groq_async(GROQ_API_KEY, prompt, "", inputs, "", "blocking")
             keywords = response.strip()
             if ',' not in keywords:
                 keywords = ', '.join(keywords.split())
@@ -55,10 +55,10 @@ class Product:
             self.keyword = "无关键词"
 
     async def translate_text(self, text: str) -> str:
-        """使用OpenAI翻译文本内容"""
+        """使用Groq翻译文本内容"""
         try:
             inputs = json.dumps({"system_prompt": "你是世界上最专业的翻译工具，擅长英文和中文互译。你是一位精通英文和中文的专业翻译，尤其擅长将IT公司黑话和专业词汇翻译成简洁易懂的地道表达。你的任务是将以下内容翻译成地道的中文，风格与科普杂志或日常对话相似。"})
-            response, _ = await call_dify_app_async(DIFY_API_KEY, text, "", inputs, "", "blocking")
+            response, _ = await call_groq_async(GROQ_API_KEY, text, "", inputs, "", "blocking")
             return response.strip()
         except Exception as e:
             print(f"Error occurred during translation: {e}")
@@ -103,18 +103,23 @@ class Product:
         )
 
 async def send_chat_message_async(base_url: str, api_key: str, query: str, user: str, conversation_id: str, inputs={}, files: List[dict] = [], response_mode="streaming") -> Tuple[str, str]:
-    url = f"{base_url}/chat-messages"
+    url = f"{base_url}/chat/completions"
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json"
     }
     payload = {
-        "query": query,
-        "response_mode": response_mode,
-        "user": user,
-        "conversation_id": conversation_id or "",
-        "inputs": inputs,
-        "files": files
+        "model": 'llama3-70b-8192',
+        "messages": [
+            {
+                "role": 'system',
+                "content": inputs
+            },
+            {
+                "role": 'user',
+                "content": query
+            }
+        ]
     }
 
     async with aiohttp.ClientSession() as session:
@@ -156,9 +161,9 @@ async def handle_streaming_response_async(response: aiohttp.ClientResponse, conv
                 continue
     return result, conversation_id
 
-async def call_dify_app_async(api_key, content, conversation_id, inputs, files, response_mode="blocking"):
-    base_url = DIFY_API_BASE_URL
-    user = "dify_api"
+async def call_groq_async(api_key, content, conversation_id, inputs, files, response_mode="blocking"):
+    base_url = GROQ_API_BASE_URL
+    user = "user"
     if not inputs:
         inputs = "[]"
     if not files:
