@@ -1,0 +1,2493 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Daily Hot | 2024-10-13</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+        <style>
+            :root {
+                --background-color: #f7f7f7;
+                --text-color: #333333;
+                --accent-color: #0066cc;
+                --card-background: #ffffff;
+                --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            body {
+                font-family: 'Poppins', sans-serif;
+                background-color: var(--background-color);
+                color: var(--text-color);
+                margin: 0;
+                padding: 0;
+                line-height: 1.4;
+                overflow-x: hidden;
+            }
+            header {
+                background-color: #ffffff;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+                padding: 0.5rem 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .brand h1 {
+                font-size: 24px;
+                font-weight: 600;
+                color: #333;
+                margin: 0;
+            }
+            nav ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+            }
+            nav ul li {
+                margin-left: 1.5rem;
+            }
+            nav ul li a {
+                text-decoration: none;
+                color: var(--text-color);
+                font-size: 16px;
+                font-weight: 400;
+            }
+            .main-content {
+                padding: 1rem 2rem;  /* 减少上下padding */
+            }
+            .title-container {
+                text-align: center;
+                position: relative;
+                padding: 10px 0;  /* 减少上下padding */
+                margin-bottom: 1rem;  /* 减少底部margin */
+            }
+            .title-container h1 {
+                font-size: 48px;  /* 增加页面标题的字体大小 */
+                margin: 0 0 10px 0;
+                font-weight: 700;  /* 加粗字体 */
+                color: #333;  /* 深色字体，提高可读性 */
+            }
+            .blue-line {
+                width: 50px;
+                height: 3px;
+                background-color: #0066cc;
+                margin: 10px auto;
+                animation: pulse 2s infinite;
+            }
+            @keyframes pulse {
+                0% { transform: scaleX(1); }
+                50% { transform: scaleX(1.5); }
+                100% { transform: scaleX(1); }
+            }
+            .date {
+                font-size: 18px;
+                color: #666;
+                text-align: center;
+                margin-bottom: 1rem;  /* 减少底部margin */
+            }
+            .robot {
+                position: absolute;
+                font-size: 36px;
+                transition: all 0.2s ease;
+                user-select: none;
+            }
+            .scroll-container {
+                overflow: hidden;
+                margin-bottom: 2rem;
+                width: 100%;
+            }
+            .scroll-row {
+                display: flex;
+                animation: scroll 180s linear infinite;  /* 增加动画时间以减慢速度 */
+                width: 800%;
+            }
+            .card {
+                flex: 0 0 4.166%;  /* 100% / 24, 使卡片宽度约为4% */
+                max-width: 4.166%;
+                padding: 0.5rem;
+                box-sizing: border-box;
+                position: relative;
+                margin-top: 1rem;  /* 为票数标签留出空间 */
+            }
+            .card-inner {
+                background-color: var(--card-background);
+                border-radius: 12px;
+                box-shadow: var(--card-shadow);
+                overflow: hidden;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                position: relative;  /* 确保内容不会被票数标签遮挡 */
+            }
+            .product-image {
+                width: 100%;
+                height: 180px;
+                object-fit: cover;
+            }
+            h2 {
+                font-size: 16px;  /* 调整标题字体大小 */
+                font-weight: 600;
+                margin: 0.5rem 0;
+                padding: 0 1rem;
+            }
+            a {
+                color: var(--text-color);
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+            a:hover {
+                color: var(--accent-color);
+            }
+            p {
+                margin: 0.25rem 0;
+                font-size: 14px;
+                padding: 0 1rem;
+            }
+            .tagline {
+                text-decoration: underline wavy red;
+                text-decoration-thickness: 1px;
+                text-underline-offset: 3px;
+                margin-bottom: 10px;
+                font-weight: 500;
+                color: #333;
+            }
+            .description {
+                flex-grow: 1;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                font-size: 12px;  /* 调整文字大小 */
+            }
+            .votes {
+                font-weight: 600;
+                color: var(--accent-color);
+            }
+            .keywords, .time {
+                font-size: 10px;  /* 调整关键词字体大小 */
+                color: #888;
+            }
+            @keyframes scroll {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-87.5%); }  /* -7/8 of the total width */
+            }
+            @keyframes float {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+            }
+            footer {
+                text-align: center;
+                padding: 20px 0;
+                background-color: #f0f0f0;
+                color: #666;
+                font-size: 14px;
+                margin-top: 2rem;
+            }
+            footer p {
+                margin: 0;
+            }
+            .votes-badge {
+                position: absolute;
+                top: -0.5rem;  /* 调整位置，使其与卡片有约1/3重叠 */
+                left: 0.5rem;
+                background-color: rgba(0, 0, 0, 0.7);
+                color: white;
+                padding: 4px 8px;
+                border-radius: 12px;
+                font-size: 14px;
+                font-weight: bold;
+                z-index: 2;  /* 确保票数标签在最上层 */
+            }
+            .scroll-container:hover .scroll-row {
+                animation-play-state: paused;
+            }
+            
+            .keywords {
+                margin-top: 10px;
+                padding-right: 10px;  /* 添加左侧内边距 */
+                text-align: right;  /* 将标签靠右对齐 */
+            }
+            .keyword {
+                display: inline-block;
+                background-color: #f0f0f0;
+                color: #333;
+                padding: 2px 8px;
+                margin-left: 10px;  /* 改为左距，使标签之间有间隔 */
+                margin-bottom: 10px;
+                border-radius: 12px;
+                font-size: 12px;
+            }
+            
+            .scroll-container, .card, .card-inner, .card-inner * {
+                user-select: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="brand">
+                <h1>Daily Hot</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">关于我</a></li>
+                    <li><a href="#contact">联系</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="container">
+            <div class="main-content">
+                <div class="title-container">
+                    <h1>Product Hunt 每日热榜 <span id="robot" class="robot">🤖</span></h1>
+                    <div class="blue-line"></div>
+                    <div class="date">2024-10-13</div>
+                </div>
+                
+        <div class="scroll-container" data-row="0">
+            <div class="scroll-row" style="animation-direction: normal;">
+                
+    <div class="card">
+        <div class="votes-badge">🔺416</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/f2828f67-7907-4f0b-aa48-a38d9584ee28.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Instant SEO Audit" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/instant-seo-audit?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Instant SEO Audit</a></h2>
+            <p class="tagline">Check your website's SEO score instantly & boost traffic</p>
+            <p class="description">Instant SEO Audit is a Chrome extension that allows you to check your website's SEO score instantly & boost traffic. It provides a detailed audit with all the action steps you need to boost your SEO score.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺365</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/836fe6f8-ac51-413d-a9cf-348ecbcd8fd2.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="WPS Office" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/wps-office-3?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">WPS Office</a></h2>
+            <p class="tagline">AI-Powered Office Suite for Everyone</p>
+            <p class="description">WPS Office is an AI-powered office suite that makes AI easily accessible in everyday work for everyone, without expensive costs. Reshape your office workflow with AI copilot for writing, creating PPTs, spell check, translation, chatting with PDFs, and more.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺349</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7ec7fe3c-c961-4283-b3d3-7dca639f56f4.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Ente Auth" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ente-auth?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Ente Auth</a></h2>
+            <p class="tagline">Free, Secure, Open Source 2FA</p>
+            <p class="description">Ente Auth is an open source, cross platform 2FA app designed to offer a great experience for your two factor codes. With features like encrypted backups, next code, multi-device sync, sharing, notes, Ente Auth is recommended by CERN, LinusTechTips and more!</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺288</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3e43b794-1330-4bca-9a77-973f5e054e17.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Sparrow" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/sparrow-7?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Sparrow</a></h2>
+            <p class="tagline">The Open Source API Testing Tool For All Developers</p>
+            <p class="description">Sparrow is a powerful API dev tool designed to simplify API testing and documentation. With features like powerful AI assistant, Automated API test flows and seamless document generation, it streamlines your dev workflow and enhances your team productivity.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺178</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/80971630-198d-40e2-bf16-4182c363371b.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Google Illuminate" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/google-illuminate-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Google Illuminate</a></h2>
+            <p class="tagline">Transform research papers into AI-generated audio summaries</p>
+            <p class="description">Transform research papers into AI-generated audio summaries with Illuminate, your Gen AI tool for understanding complex content faster.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺96</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/9e507d6e-8093-48ae-8119-1041c94b984e.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Gitfyel" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/gitfyel?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Gitfyel</a></h2>
+            <p class="tagline">Craft stunning GitHub profiles effortlessly.</p>
+            <p class="description">The GitHub Readme Generator simplifies creating your GitHub profile. You can easily format your content, add stats, and showcase badges that highlight your skills and achievements. This tool helps you create a standout profile with minimal effort.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺416</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/f2828f67-7907-4f0b-aa48-a38d9584ee28.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Instant SEO Audit" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/instant-seo-audit?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Instant SEO Audit</a></h2>
+            <p class="tagline">Check your website's SEO score instantly & boost traffic</p>
+            <p class="description">Instant SEO Audit is a Chrome extension that allows you to check your website's SEO score instantly & boost traffic. It provides a detailed audit with all the action steps you need to boost your SEO score.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺365</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/836fe6f8-ac51-413d-a9cf-348ecbcd8fd2.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="WPS Office" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/wps-office-3?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">WPS Office</a></h2>
+            <p class="tagline">AI-Powered Office Suite for Everyone</p>
+            <p class="description">WPS Office is an AI-powered office suite that makes AI easily accessible in everyday work for everyone, without expensive costs. Reshape your office workflow with AI copilot for writing, creating PPTs, spell check, translation, chatting with PDFs, and more.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺349</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7ec7fe3c-c961-4283-b3d3-7dca639f56f4.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Ente Auth" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ente-auth?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Ente Auth</a></h2>
+            <p class="tagline">Free, Secure, Open Source 2FA</p>
+            <p class="description">Ente Auth is an open source, cross platform 2FA app designed to offer a great experience for your two factor codes. With features like encrypted backups, next code, multi-device sync, sharing, notes, Ente Auth is recommended by CERN, LinusTechTips and more!</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺288</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3e43b794-1330-4bca-9a77-973f5e054e17.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Sparrow" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/sparrow-7?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Sparrow</a></h2>
+            <p class="tagline">The Open Source API Testing Tool For All Developers</p>
+            <p class="description">Sparrow is a powerful API dev tool designed to simplify API testing and documentation. With features like powerful AI assistant, Automated API test flows and seamless document generation, it streamlines your dev workflow and enhances your team productivity.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺178</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/80971630-198d-40e2-bf16-4182c363371b.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Google Illuminate" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/google-illuminate-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Google Illuminate</a></h2>
+            <p class="tagline">Transform research papers into AI-generated audio summaries</p>
+            <p class="description">Transform research papers into AI-generated audio summaries with Illuminate, your Gen AI tool for understanding complex content faster.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺96</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/9e507d6e-8093-48ae-8119-1041c94b984e.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Gitfyel" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/gitfyel?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Gitfyel</a></h2>
+            <p class="tagline">Craft stunning GitHub profiles effortlessly.</p>
+            <p class="description">The GitHub Readme Generator simplifies creating your GitHub profile. You can easily format your content, add stats, and showcase badges that highlight your skills and achievements. This tool helps you create a standout profile with minimal effort.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺416</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/f2828f67-7907-4f0b-aa48-a38d9584ee28.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Instant SEO Audit" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/instant-seo-audit?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Instant SEO Audit</a></h2>
+            <p class="tagline">Check your website's SEO score instantly & boost traffic</p>
+            <p class="description">Instant SEO Audit is a Chrome extension that allows you to check your website's SEO score instantly & boost traffic. It provides a detailed audit with all the action steps you need to boost your SEO score.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺365</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/836fe6f8-ac51-413d-a9cf-348ecbcd8fd2.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="WPS Office" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/wps-office-3?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">WPS Office</a></h2>
+            <p class="tagline">AI-Powered Office Suite for Everyone</p>
+            <p class="description">WPS Office is an AI-powered office suite that makes AI easily accessible in everyday work for everyone, without expensive costs. Reshape your office workflow with AI copilot for writing, creating PPTs, spell check, translation, chatting with PDFs, and more.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺349</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7ec7fe3c-c961-4283-b3d3-7dca639f56f4.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Ente Auth" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ente-auth?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Ente Auth</a></h2>
+            <p class="tagline">Free, Secure, Open Source 2FA</p>
+            <p class="description">Ente Auth is an open source, cross platform 2FA app designed to offer a great experience for your two factor codes. With features like encrypted backups, next code, multi-device sync, sharing, notes, Ente Auth is recommended by CERN, LinusTechTips and more!</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺288</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3e43b794-1330-4bca-9a77-973f5e054e17.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Sparrow" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/sparrow-7?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Sparrow</a></h2>
+            <p class="tagline">The Open Source API Testing Tool For All Developers</p>
+            <p class="description">Sparrow is a powerful API dev tool designed to simplify API testing and documentation. With features like powerful AI assistant, Automated API test flows and seamless document generation, it streamlines your dev workflow and enhances your team productivity.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺178</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/80971630-198d-40e2-bf16-4182c363371b.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Google Illuminate" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/google-illuminate-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Google Illuminate</a></h2>
+            <p class="tagline">Transform research papers into AI-generated audio summaries</p>
+            <p class="description">Transform research papers into AI-generated audio summaries with Illuminate, your Gen AI tool for understanding complex content faster.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺96</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/9e507d6e-8093-48ae-8119-1041c94b984e.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Gitfyel" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/gitfyel?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Gitfyel</a></h2>
+            <p class="tagline">Craft stunning GitHub profiles effortlessly.</p>
+            <p class="description">The GitHub Readme Generator simplifies creating your GitHub profile. You can easily format your content, add stats, and showcase badges that highlight your skills and achievements. This tool helps you create a standout profile with minimal effort.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺416</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/f2828f67-7907-4f0b-aa48-a38d9584ee28.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Instant SEO Audit" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/instant-seo-audit?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Instant SEO Audit</a></h2>
+            <p class="tagline">Check your website's SEO score instantly & boost traffic</p>
+            <p class="description">Instant SEO Audit is a Chrome extension that allows you to check your website's SEO score instantly & boost traffic. It provides a detailed audit with all the action steps you need to boost your SEO score.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺365</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/836fe6f8-ac51-413d-a9cf-348ecbcd8fd2.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="WPS Office" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/wps-office-3?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">WPS Office</a></h2>
+            <p class="tagline">AI-Powered Office Suite for Everyone</p>
+            <p class="description">WPS Office is an AI-powered office suite that makes AI easily accessible in everyday work for everyone, without expensive costs. Reshape your office workflow with AI copilot for writing, creating PPTs, spell check, translation, chatting with PDFs, and more.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺349</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7ec7fe3c-c961-4283-b3d3-7dca639f56f4.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Ente Auth" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ente-auth?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Ente Auth</a></h2>
+            <p class="tagline">Free, Secure, Open Source 2FA</p>
+            <p class="description">Ente Auth is an open source, cross platform 2FA app designed to offer a great experience for your two factor codes. With features like encrypted backups, next code, multi-device sync, sharing, notes, Ente Auth is recommended by CERN, LinusTechTips and more!</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺288</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3e43b794-1330-4bca-9a77-973f5e054e17.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Sparrow" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/sparrow-7?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Sparrow</a></h2>
+            <p class="tagline">The Open Source API Testing Tool For All Developers</p>
+            <p class="description">Sparrow is a powerful API dev tool designed to simplify API testing and documentation. With features like powerful AI assistant, Automated API test flows and seamless document generation, it streamlines your dev workflow and enhances your team productivity.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺178</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/80971630-198d-40e2-bf16-4182c363371b.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Google Illuminate" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/google-illuminate-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Google Illuminate</a></h2>
+            <p class="tagline">Transform research papers into AI-generated audio summaries</p>
+            <p class="description">Transform research papers into AI-generated audio summaries with Illuminate, your Gen AI tool for understanding complex content faster.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺96</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/9e507d6e-8093-48ae-8119-1041c94b984e.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Gitfyel" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/gitfyel?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Gitfyel</a></h2>
+            <p class="tagline">Craft stunning GitHub profiles effortlessly.</p>
+            <p class="description">The GitHub Readme Generator simplifies creating your GitHub profile. You can easily format your content, add stats, and showcase badges that highlight your skills and achievements. This tool helps you create a standout profile with minimal effort.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺416</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/f2828f67-7907-4f0b-aa48-a38d9584ee28.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Instant SEO Audit" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/instant-seo-audit?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Instant SEO Audit</a></h2>
+            <p class="tagline">Check your website's SEO score instantly & boost traffic</p>
+            <p class="description">Instant SEO Audit is a Chrome extension that allows you to check your website's SEO score instantly & boost traffic. It provides a detailed audit with all the action steps you need to boost your SEO score.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺365</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/836fe6f8-ac51-413d-a9cf-348ecbcd8fd2.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="WPS Office" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/wps-office-3?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">WPS Office</a></h2>
+            <p class="tagline">AI-Powered Office Suite for Everyone</p>
+            <p class="description">WPS Office is an AI-powered office suite that makes AI easily accessible in everyday work for everyone, without expensive costs. Reshape your office workflow with AI copilot for writing, creating PPTs, spell check, translation, chatting with PDFs, and more.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺349</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7ec7fe3c-c961-4283-b3d3-7dca639f56f4.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Ente Auth" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ente-auth?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Ente Auth</a></h2>
+            <p class="tagline">Free, Secure, Open Source 2FA</p>
+            <p class="description">Ente Auth is an open source, cross platform 2FA app designed to offer a great experience for your two factor codes. With features like encrypted backups, next code, multi-device sync, sharing, notes, Ente Auth is recommended by CERN, LinusTechTips and more!</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺288</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3e43b794-1330-4bca-9a77-973f5e054e17.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Sparrow" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/sparrow-7?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Sparrow</a></h2>
+            <p class="tagline">The Open Source API Testing Tool For All Developers</p>
+            <p class="description">Sparrow is a powerful API dev tool designed to simplify API testing and documentation. With features like powerful AI assistant, Automated API test flows and seamless document generation, it streamlines your dev workflow and enhances your team productivity.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺178</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/80971630-198d-40e2-bf16-4182c363371b.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Google Illuminate" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/google-illuminate-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Google Illuminate</a></h2>
+            <p class="tagline">Transform research papers into AI-generated audio summaries</p>
+            <p class="description">Transform research papers into AI-generated audio summaries with Illuminate, your Gen AI tool for understanding complex content faster.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺96</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/9e507d6e-8093-48ae-8119-1041c94b984e.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Gitfyel" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/gitfyel?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Gitfyel</a></h2>
+            <p class="tagline">Craft stunning GitHub profiles effortlessly.</p>
+            <p class="description">The GitHub Readme Generator simplifies creating your GitHub profile. You can easily format your content, add stats, and showcase badges that highlight your skills and achievements. This tool helps you create a standout profile with minimal effort.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺416</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/f2828f67-7907-4f0b-aa48-a38d9584ee28.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Instant SEO Audit" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/instant-seo-audit?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Instant SEO Audit</a></h2>
+            <p class="tagline">Check your website's SEO score instantly & boost traffic</p>
+            <p class="description">Instant SEO Audit is a Chrome extension that allows you to check your website's SEO score instantly & boost traffic. It provides a detailed audit with all the action steps you need to boost your SEO score.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺365</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/836fe6f8-ac51-413d-a9cf-348ecbcd8fd2.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="WPS Office" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/wps-office-3?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">WPS Office</a></h2>
+            <p class="tagline">AI-Powered Office Suite for Everyone</p>
+            <p class="description">WPS Office is an AI-powered office suite that makes AI easily accessible in everyday work for everyone, without expensive costs. Reshape your office workflow with AI copilot for writing, creating PPTs, spell check, translation, chatting with PDFs, and more.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺349</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7ec7fe3c-c961-4283-b3d3-7dca639f56f4.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Ente Auth" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ente-auth?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Ente Auth</a></h2>
+            <p class="tagline">Free, Secure, Open Source 2FA</p>
+            <p class="description">Ente Auth is an open source, cross platform 2FA app designed to offer a great experience for your two factor codes. With features like encrypted backups, next code, multi-device sync, sharing, notes, Ente Auth is recommended by CERN, LinusTechTips and more!</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺288</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3e43b794-1330-4bca-9a77-973f5e054e17.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Sparrow" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/sparrow-7?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Sparrow</a></h2>
+            <p class="tagline">The Open Source API Testing Tool For All Developers</p>
+            <p class="description">Sparrow is a powerful API dev tool designed to simplify API testing and documentation. With features like powerful AI assistant, Automated API test flows and seamless document generation, it streamlines your dev workflow and enhances your team productivity.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺178</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/80971630-198d-40e2-bf16-4182c363371b.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Google Illuminate" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/google-illuminate-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Google Illuminate</a></h2>
+            <p class="tagline">Transform research papers into AI-generated audio summaries</p>
+            <p class="description">Transform research papers into AI-generated audio summaries with Illuminate, your Gen AI tool for understanding complex content faster.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺96</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/9e507d6e-8093-48ae-8119-1041c94b984e.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Gitfyel" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/gitfyel?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Gitfyel</a></h2>
+            <p class="tagline">Craft stunning GitHub profiles effortlessly.</p>
+            <p class="description">The GitHub Readme Generator simplifies creating your GitHub profile. You can easily format your content, add stats, and showcase badges that highlight your skills and achievements. This tool helps you create a standout profile with minimal effort.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺416</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/f2828f67-7907-4f0b-aa48-a38d9584ee28.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Instant SEO Audit" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/instant-seo-audit?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Instant SEO Audit</a></h2>
+            <p class="tagline">Check your website's SEO score instantly & boost traffic</p>
+            <p class="description">Instant SEO Audit is a Chrome extension that allows you to check your website's SEO score instantly & boost traffic. It provides a detailed audit with all the action steps you need to boost your SEO score.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺365</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/836fe6f8-ac51-413d-a9cf-348ecbcd8fd2.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="WPS Office" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/wps-office-3?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">WPS Office</a></h2>
+            <p class="tagline">AI-Powered Office Suite for Everyone</p>
+            <p class="description">WPS Office is an AI-powered office suite that makes AI easily accessible in everyday work for everyone, without expensive costs. Reshape your office workflow with AI copilot for writing, creating PPTs, spell check, translation, chatting with PDFs, and more.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺349</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7ec7fe3c-c961-4283-b3d3-7dca639f56f4.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Ente Auth" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ente-auth?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Ente Auth</a></h2>
+            <p class="tagline">Free, Secure, Open Source 2FA</p>
+            <p class="description">Ente Auth is an open source, cross platform 2FA app designed to offer a great experience for your two factor codes. With features like encrypted backups, next code, multi-device sync, sharing, notes, Ente Auth is recommended by CERN, LinusTechTips and more!</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺288</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3e43b794-1330-4bca-9a77-973f5e054e17.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Sparrow" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/sparrow-7?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Sparrow</a></h2>
+            <p class="tagline">The Open Source API Testing Tool For All Developers</p>
+            <p class="description">Sparrow is a powerful API dev tool designed to simplify API testing and documentation. With features like powerful AI assistant, Automated API test flows and seamless document generation, it streamlines your dev workflow and enhances your team productivity.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺178</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/80971630-198d-40e2-bf16-4182c363371b.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Google Illuminate" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/google-illuminate-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Google Illuminate</a></h2>
+            <p class="tagline">Transform research papers into AI-generated audio summaries</p>
+            <p class="description">Transform research papers into AI-generated audio summaries with Illuminate, your Gen AI tool for understanding complex content faster.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺96</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/9e507d6e-8093-48ae-8119-1041c94b984e.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Gitfyel" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/gitfyel?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Gitfyel</a></h2>
+            <p class="tagline">Craft stunning GitHub profiles effortlessly.</p>
+            <p class="description">The GitHub Readme Generator simplifies creating your GitHub profile. You can easily format your content, add stats, and showcase badges that highlight your skills and achievements. This tool helps you create a standout profile with minimal effort.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺416</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/f2828f67-7907-4f0b-aa48-a38d9584ee28.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Instant SEO Audit" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/instant-seo-audit?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Instant SEO Audit</a></h2>
+            <p class="tagline">Check your website's SEO score instantly & boost traffic</p>
+            <p class="description">Instant SEO Audit is a Chrome extension that allows you to check your website's SEO score instantly & boost traffic. It provides a detailed audit with all the action steps you need to boost your SEO score.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺365</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/836fe6f8-ac51-413d-a9cf-348ecbcd8fd2.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="WPS Office" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/wps-office-3?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">WPS Office</a></h2>
+            <p class="tagline">AI-Powered Office Suite for Everyone</p>
+            <p class="description">WPS Office is an AI-powered office suite that makes AI easily accessible in everyday work for everyone, without expensive costs. Reshape your office workflow with AI copilot for writing, creating PPTs, spell check, translation, chatting with PDFs, and more.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺349</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7ec7fe3c-c961-4283-b3d3-7dca639f56f4.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Ente Auth" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ente-auth?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Ente Auth</a></h2>
+            <p class="tagline">Free, Secure, Open Source 2FA</p>
+            <p class="description">Ente Auth is an open source, cross platform 2FA app designed to offer a great experience for your two factor codes. With features like encrypted backups, next code, multi-device sync, sharing, notes, Ente Auth is recommended by CERN, LinusTechTips and more!</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺288</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3e43b794-1330-4bca-9a77-973f5e054e17.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Sparrow" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/sparrow-7?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Sparrow</a></h2>
+            <p class="tagline">The Open Source API Testing Tool For All Developers</p>
+            <p class="description">Sparrow is a powerful API dev tool designed to simplify API testing and documentation. With features like powerful AI assistant, Automated API test flows and seamless document generation, it streamlines your dev workflow and enhances your team productivity.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺178</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/80971630-198d-40e2-bf16-4182c363371b.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Google Illuminate" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/google-illuminate-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Google Illuminate</a></h2>
+            <p class="tagline">Transform research papers into AI-generated audio summaries</p>
+            <p class="description">Transform research papers into AI-generated audio summaries with Illuminate, your Gen AI tool for understanding complex content faster.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺96</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/9e507d6e-8093-48ae-8119-1041c94b984e.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Gitfyel" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/gitfyel?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Gitfyel</a></h2>
+            <p class="tagline">Craft stunning GitHub profiles effortlessly.</p>
+            <p class="description">The GitHub Readme Generator simplifies creating your GitHub profile. You can easily format your content, add stats, and showcase badges that highlight your skills and achievements. This tool helps you create a standout profile with minimal effort.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="scroll-container" data-row="1">
+            <div class="scroll-row" style="animation-direction: reverse;">
+                
+    <div class="card">
+        <div class="votes-badge">🔺94</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/72c97f16-e886-413d-a66f-216c47c9ad6a.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Ant Browser for Apple Watch" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ant-browser-for-apple-watch?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Ant Browser for Apple Watch</a></h2>
+            <p class="tagline">The web, wrist-sized. Helping you go phone-free.</p>
+            <p class="description">Search the web on your Watch - Look up movie times, compare prices, or get the latest sports results—all without needing to pull out your phone.&nbsp;</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺87</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/57f0c2e3-074b-4332-912c-8cbf551d4b6e.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Temporal" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/temporal-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Temporal</a></h2>
+            <p class="tagline">Intelligent capacity planner for teams</p>
+            <p class="description">Track vacations, sick leaves, birthdays, anniversaries and other notable events for your team members. Manage team schedules, project assignments, plan headcounts and allocate resources efficiently. Never be caught off-guard by staffing bottlenecks again.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺86</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/a619ac2f-330c-4694-b052-4c0ebcb16b26.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="NPM Chart" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/npm-chart?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">NPM Chart</a></h2>
+            <p class="tagline">Search for a npm package to see its download stats over time</p>
+            <p class="description">Visualize npm downloads in a beautiful chart, ready to be shared with your community.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺79</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/b0b1e936-7213-4cb3-9869-b267cf281797.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="The Ultimate Ebook about Design Systems" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/the-ultimate-ebook-about-design-systems?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">The Ultimate Ebook about Design Systems</a></h2>
+            <p class="tagline">World-Class Ebook and Design System to Supercharge Design!</p>
+            <p class="description">This e-book is your complete guide to creating and managing Design Systems in Figma, with best practices, tools, and hands-on tasks. Save time with all the resources you need in one place, crafted from years of experience. I’ll guide you every step of the way!</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺72</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/40f1d087-9176-4101-824c-a4d69197900f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Fast-Music-Remover" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/fast-music-remover?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Fast-Music-Remover</a></h2>
+            <p class="tagline">A lightweight audio enhancer for internet media</p>
+            <p class="description">A free and open-source, lightweight music and noise remover for internet media, powered by DeepFilterNet for audio enhancement. A minute-long video is processed in less than 5 seconds! Watch the demo at: https://github.com/omeryusufyagci/fast-music-remover</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺71</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/c5f7f844-61bb-4c92-8d4c-c97dd0016b6f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Attend QR" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/attend-qr?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Attend QR</a></h2>
+            <p class="tagline">An attendance management system</p>
+            <p class="description">Attend QR is an Attendance Management System where users scan Attend QR code to mark attendance in real time. Admins get detailed insights and reports. Automations and customizations can be made as per requirements.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺94</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/72c97f16-e886-413d-a66f-216c47c9ad6a.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Ant Browser for Apple Watch" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ant-browser-for-apple-watch?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Ant Browser for Apple Watch</a></h2>
+            <p class="tagline">The web, wrist-sized. Helping you go phone-free.</p>
+            <p class="description">Search the web on your Watch - Look up movie times, compare prices, or get the latest sports results—all without needing to pull out your phone.&nbsp;</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺87</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/57f0c2e3-074b-4332-912c-8cbf551d4b6e.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Temporal" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/temporal-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Temporal</a></h2>
+            <p class="tagline">Intelligent capacity planner for teams</p>
+            <p class="description">Track vacations, sick leaves, birthdays, anniversaries and other notable events for your team members. Manage team schedules, project assignments, plan headcounts and allocate resources efficiently. Never be caught off-guard by staffing bottlenecks again.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺86</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/a619ac2f-330c-4694-b052-4c0ebcb16b26.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="NPM Chart" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/npm-chart?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">NPM Chart</a></h2>
+            <p class="tagline">Search for a npm package to see its download stats over time</p>
+            <p class="description">Visualize npm downloads in a beautiful chart, ready to be shared with your community.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺79</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/b0b1e936-7213-4cb3-9869-b267cf281797.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="The Ultimate Ebook about Design Systems" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/the-ultimate-ebook-about-design-systems?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">The Ultimate Ebook about Design Systems</a></h2>
+            <p class="tagline">World-Class Ebook and Design System to Supercharge Design!</p>
+            <p class="description">This e-book is your complete guide to creating and managing Design Systems in Figma, with best practices, tools, and hands-on tasks. Save time with all the resources you need in one place, crafted from years of experience. I’ll guide you every step of the way!</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺72</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/40f1d087-9176-4101-824c-a4d69197900f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Fast-Music-Remover" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/fast-music-remover?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Fast-Music-Remover</a></h2>
+            <p class="tagline">A lightweight audio enhancer for internet media</p>
+            <p class="description">A free and open-source, lightweight music and noise remover for internet media, powered by DeepFilterNet for audio enhancement. A minute-long video is processed in less than 5 seconds! Watch the demo at: https://github.com/omeryusufyagci/fast-music-remover</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺71</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/c5f7f844-61bb-4c92-8d4c-c97dd0016b6f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Attend QR" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/attend-qr?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Attend QR</a></h2>
+            <p class="tagline">An attendance management system</p>
+            <p class="description">Attend QR is an Attendance Management System where users scan Attend QR code to mark attendance in real time. Admins get detailed insights and reports. Automations and customizations can be made as per requirements.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺94</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/72c97f16-e886-413d-a66f-216c47c9ad6a.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Ant Browser for Apple Watch" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ant-browser-for-apple-watch?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Ant Browser for Apple Watch</a></h2>
+            <p class="tagline">The web, wrist-sized. Helping you go phone-free.</p>
+            <p class="description">Search the web on your Watch - Look up movie times, compare prices, or get the latest sports results—all without needing to pull out your phone.&nbsp;</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺87</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/57f0c2e3-074b-4332-912c-8cbf551d4b6e.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Temporal" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/temporal-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Temporal</a></h2>
+            <p class="tagline">Intelligent capacity planner for teams</p>
+            <p class="description">Track vacations, sick leaves, birthdays, anniversaries and other notable events for your team members. Manage team schedules, project assignments, plan headcounts and allocate resources efficiently. Never be caught off-guard by staffing bottlenecks again.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺86</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/a619ac2f-330c-4694-b052-4c0ebcb16b26.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="NPM Chart" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/npm-chart?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">NPM Chart</a></h2>
+            <p class="tagline">Search for a npm package to see its download stats over time</p>
+            <p class="description">Visualize npm downloads in a beautiful chart, ready to be shared with your community.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺79</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/b0b1e936-7213-4cb3-9869-b267cf281797.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="The Ultimate Ebook about Design Systems" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/the-ultimate-ebook-about-design-systems?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">The Ultimate Ebook about Design Systems</a></h2>
+            <p class="tagline">World-Class Ebook and Design System to Supercharge Design!</p>
+            <p class="description">This e-book is your complete guide to creating and managing Design Systems in Figma, with best practices, tools, and hands-on tasks. Save time with all the resources you need in one place, crafted from years of experience. I’ll guide you every step of the way!</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺72</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/40f1d087-9176-4101-824c-a4d69197900f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Fast-Music-Remover" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/fast-music-remover?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Fast-Music-Remover</a></h2>
+            <p class="tagline">A lightweight audio enhancer for internet media</p>
+            <p class="description">A free and open-source, lightweight music and noise remover for internet media, powered by DeepFilterNet for audio enhancement. A minute-long video is processed in less than 5 seconds! Watch the demo at: https://github.com/omeryusufyagci/fast-music-remover</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺71</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/c5f7f844-61bb-4c92-8d4c-c97dd0016b6f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Attend QR" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/attend-qr?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Attend QR</a></h2>
+            <p class="tagline">An attendance management system</p>
+            <p class="description">Attend QR is an Attendance Management System where users scan Attend QR code to mark attendance in real time. Admins get detailed insights and reports. Automations and customizations can be made as per requirements.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺94</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/72c97f16-e886-413d-a66f-216c47c9ad6a.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Ant Browser for Apple Watch" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ant-browser-for-apple-watch?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Ant Browser for Apple Watch</a></h2>
+            <p class="tagline">The web, wrist-sized. Helping you go phone-free.</p>
+            <p class="description">Search the web on your Watch - Look up movie times, compare prices, or get the latest sports results—all without needing to pull out your phone.&nbsp;</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺87</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/57f0c2e3-074b-4332-912c-8cbf551d4b6e.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Temporal" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/temporal-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Temporal</a></h2>
+            <p class="tagline">Intelligent capacity planner for teams</p>
+            <p class="description">Track vacations, sick leaves, birthdays, anniversaries and other notable events for your team members. Manage team schedules, project assignments, plan headcounts and allocate resources efficiently. Never be caught off-guard by staffing bottlenecks again.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺86</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/a619ac2f-330c-4694-b052-4c0ebcb16b26.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="NPM Chart" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/npm-chart?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">NPM Chart</a></h2>
+            <p class="tagline">Search for a npm package to see its download stats over time</p>
+            <p class="description">Visualize npm downloads in a beautiful chart, ready to be shared with your community.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺79</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/b0b1e936-7213-4cb3-9869-b267cf281797.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="The Ultimate Ebook about Design Systems" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/the-ultimate-ebook-about-design-systems?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">The Ultimate Ebook about Design Systems</a></h2>
+            <p class="tagline">World-Class Ebook and Design System to Supercharge Design!</p>
+            <p class="description">This e-book is your complete guide to creating and managing Design Systems in Figma, with best practices, tools, and hands-on tasks. Save time with all the resources you need in one place, crafted from years of experience. I’ll guide you every step of the way!</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺72</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/40f1d087-9176-4101-824c-a4d69197900f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Fast-Music-Remover" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/fast-music-remover?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Fast-Music-Remover</a></h2>
+            <p class="tagline">A lightweight audio enhancer for internet media</p>
+            <p class="description">A free and open-source, lightweight music and noise remover for internet media, powered by DeepFilterNet for audio enhancement. A minute-long video is processed in less than 5 seconds! Watch the demo at: https://github.com/omeryusufyagci/fast-music-remover</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺71</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/c5f7f844-61bb-4c92-8d4c-c97dd0016b6f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Attend QR" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/attend-qr?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Attend QR</a></h2>
+            <p class="tagline">An attendance management system</p>
+            <p class="description">Attend QR is an Attendance Management System where users scan Attend QR code to mark attendance in real time. Admins get detailed insights and reports. Automations and customizations can be made as per requirements.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺94</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/72c97f16-e886-413d-a66f-216c47c9ad6a.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Ant Browser for Apple Watch" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ant-browser-for-apple-watch?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Ant Browser for Apple Watch</a></h2>
+            <p class="tagline">The web, wrist-sized. Helping you go phone-free.</p>
+            <p class="description">Search the web on your Watch - Look up movie times, compare prices, or get the latest sports results—all without needing to pull out your phone.&nbsp;</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺87</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/57f0c2e3-074b-4332-912c-8cbf551d4b6e.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Temporal" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/temporal-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Temporal</a></h2>
+            <p class="tagline">Intelligent capacity planner for teams</p>
+            <p class="description">Track vacations, sick leaves, birthdays, anniversaries and other notable events for your team members. Manage team schedules, project assignments, plan headcounts and allocate resources efficiently. Never be caught off-guard by staffing bottlenecks again.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺86</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/a619ac2f-330c-4694-b052-4c0ebcb16b26.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="NPM Chart" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/npm-chart?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">NPM Chart</a></h2>
+            <p class="tagline">Search for a npm package to see its download stats over time</p>
+            <p class="description">Visualize npm downloads in a beautiful chart, ready to be shared with your community.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺79</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/b0b1e936-7213-4cb3-9869-b267cf281797.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="The Ultimate Ebook about Design Systems" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/the-ultimate-ebook-about-design-systems?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">The Ultimate Ebook about Design Systems</a></h2>
+            <p class="tagline">World-Class Ebook and Design System to Supercharge Design!</p>
+            <p class="description">This e-book is your complete guide to creating and managing Design Systems in Figma, with best practices, tools, and hands-on tasks. Save time with all the resources you need in one place, crafted from years of experience. I’ll guide you every step of the way!</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺72</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/40f1d087-9176-4101-824c-a4d69197900f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Fast-Music-Remover" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/fast-music-remover?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Fast-Music-Remover</a></h2>
+            <p class="tagline">A lightweight audio enhancer for internet media</p>
+            <p class="description">A free and open-source, lightweight music and noise remover for internet media, powered by DeepFilterNet for audio enhancement. A minute-long video is processed in less than 5 seconds! Watch the demo at: https://github.com/omeryusufyagci/fast-music-remover</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺71</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/c5f7f844-61bb-4c92-8d4c-c97dd0016b6f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Attend QR" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/attend-qr?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Attend QR</a></h2>
+            <p class="tagline">An attendance management system</p>
+            <p class="description">Attend QR is an Attendance Management System where users scan Attend QR code to mark attendance in real time. Admins get detailed insights and reports. Automations and customizations can be made as per requirements.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺94</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/72c97f16-e886-413d-a66f-216c47c9ad6a.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Ant Browser for Apple Watch" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ant-browser-for-apple-watch?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Ant Browser for Apple Watch</a></h2>
+            <p class="tagline">The web, wrist-sized. Helping you go phone-free.</p>
+            <p class="description">Search the web on your Watch - Look up movie times, compare prices, or get the latest sports results—all without needing to pull out your phone.&nbsp;</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺87</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/57f0c2e3-074b-4332-912c-8cbf551d4b6e.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Temporal" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/temporal-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Temporal</a></h2>
+            <p class="tagline">Intelligent capacity planner for teams</p>
+            <p class="description">Track vacations, sick leaves, birthdays, anniversaries and other notable events for your team members. Manage team schedules, project assignments, plan headcounts and allocate resources efficiently. Never be caught off-guard by staffing bottlenecks again.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺86</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/a619ac2f-330c-4694-b052-4c0ebcb16b26.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="NPM Chart" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/npm-chart?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">NPM Chart</a></h2>
+            <p class="tagline">Search for a npm package to see its download stats over time</p>
+            <p class="description">Visualize npm downloads in a beautiful chart, ready to be shared with your community.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺79</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/b0b1e936-7213-4cb3-9869-b267cf281797.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="The Ultimate Ebook about Design Systems" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/the-ultimate-ebook-about-design-systems?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">The Ultimate Ebook about Design Systems</a></h2>
+            <p class="tagline">World-Class Ebook and Design System to Supercharge Design!</p>
+            <p class="description">This e-book is your complete guide to creating and managing Design Systems in Figma, with best practices, tools, and hands-on tasks. Save time with all the resources you need in one place, crafted from years of experience. I’ll guide you every step of the way!</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺72</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/40f1d087-9176-4101-824c-a4d69197900f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Fast-Music-Remover" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/fast-music-remover?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Fast-Music-Remover</a></h2>
+            <p class="tagline">A lightweight audio enhancer for internet media</p>
+            <p class="description">A free and open-source, lightweight music and noise remover for internet media, powered by DeepFilterNet for audio enhancement. A minute-long video is processed in less than 5 seconds! Watch the demo at: https://github.com/omeryusufyagci/fast-music-remover</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺71</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/c5f7f844-61bb-4c92-8d4c-c97dd0016b6f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Attend QR" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/attend-qr?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Attend QR</a></h2>
+            <p class="tagline">An attendance management system</p>
+            <p class="description">Attend QR is an Attendance Management System where users scan Attend QR code to mark attendance in real time. Admins get detailed insights and reports. Automations and customizations can be made as per requirements.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺94</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/72c97f16-e886-413d-a66f-216c47c9ad6a.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Ant Browser for Apple Watch" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ant-browser-for-apple-watch?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Ant Browser for Apple Watch</a></h2>
+            <p class="tagline">The web, wrist-sized. Helping you go phone-free.</p>
+            <p class="description">Search the web on your Watch - Look up movie times, compare prices, or get the latest sports results—all without needing to pull out your phone.&nbsp;</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺87</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/57f0c2e3-074b-4332-912c-8cbf551d4b6e.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Temporal" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/temporal-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Temporal</a></h2>
+            <p class="tagline">Intelligent capacity planner for teams</p>
+            <p class="description">Track vacations, sick leaves, birthdays, anniversaries and other notable events for your team members. Manage team schedules, project assignments, plan headcounts and allocate resources efficiently. Never be caught off-guard by staffing bottlenecks again.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺86</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/a619ac2f-330c-4694-b052-4c0ebcb16b26.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="NPM Chart" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/npm-chart?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">NPM Chart</a></h2>
+            <p class="tagline">Search for a npm package to see its download stats over time</p>
+            <p class="description">Visualize npm downloads in a beautiful chart, ready to be shared with your community.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺79</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/b0b1e936-7213-4cb3-9869-b267cf281797.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="The Ultimate Ebook about Design Systems" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/the-ultimate-ebook-about-design-systems?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">The Ultimate Ebook about Design Systems</a></h2>
+            <p class="tagline">World-Class Ebook and Design System to Supercharge Design!</p>
+            <p class="description">This e-book is your complete guide to creating and managing Design Systems in Figma, with best practices, tools, and hands-on tasks. Save time with all the resources you need in one place, crafted from years of experience. I’ll guide you every step of the way!</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺72</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/40f1d087-9176-4101-824c-a4d69197900f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Fast-Music-Remover" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/fast-music-remover?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Fast-Music-Remover</a></h2>
+            <p class="tagline">A lightweight audio enhancer for internet media</p>
+            <p class="description">A free and open-source, lightweight music and noise remover for internet media, powered by DeepFilterNet for audio enhancement. A minute-long video is processed in less than 5 seconds! Watch the demo at: https://github.com/omeryusufyagci/fast-music-remover</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺71</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/c5f7f844-61bb-4c92-8d4c-c97dd0016b6f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Attend QR" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/attend-qr?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Attend QR</a></h2>
+            <p class="tagline">An attendance management system</p>
+            <p class="description">Attend QR is an Attendance Management System where users scan Attend QR code to mark attendance in real time. Admins get detailed insights and reports. Automations and customizations can be made as per requirements.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺94</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/72c97f16-e886-413d-a66f-216c47c9ad6a.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Ant Browser for Apple Watch" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ant-browser-for-apple-watch?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Ant Browser for Apple Watch</a></h2>
+            <p class="tagline">The web, wrist-sized. Helping you go phone-free.</p>
+            <p class="description">Search the web on your Watch - Look up movie times, compare prices, or get the latest sports results—all without needing to pull out your phone.&nbsp;</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺87</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/57f0c2e3-074b-4332-912c-8cbf551d4b6e.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Temporal" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/temporal-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Temporal</a></h2>
+            <p class="tagline">Intelligent capacity planner for teams</p>
+            <p class="description">Track vacations, sick leaves, birthdays, anniversaries and other notable events for your team members. Manage team schedules, project assignments, plan headcounts and allocate resources efficiently. Never be caught off-guard by staffing bottlenecks again.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺86</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/a619ac2f-330c-4694-b052-4c0ebcb16b26.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="NPM Chart" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/npm-chart?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">NPM Chart</a></h2>
+            <p class="tagline">Search for a npm package to see its download stats over time</p>
+            <p class="description">Visualize npm downloads in a beautiful chart, ready to be shared with your community.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺79</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/b0b1e936-7213-4cb3-9869-b267cf281797.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="The Ultimate Ebook about Design Systems" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/the-ultimate-ebook-about-design-systems?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">The Ultimate Ebook about Design Systems</a></h2>
+            <p class="tagline">World-Class Ebook and Design System to Supercharge Design!</p>
+            <p class="description">This e-book is your complete guide to creating and managing Design Systems in Figma, with best practices, tools, and hands-on tasks. Save time with all the resources you need in one place, crafted from years of experience. I’ll guide you every step of the way!</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺72</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/40f1d087-9176-4101-824c-a4d69197900f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Fast-Music-Remover" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/fast-music-remover?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Fast-Music-Remover</a></h2>
+            <p class="tagline">A lightweight audio enhancer for internet media</p>
+            <p class="description">A free and open-source, lightweight music and noise remover for internet media, powered by DeepFilterNet for audio enhancement. A minute-long video is processed in less than 5 seconds! Watch the demo at: https://github.com/omeryusufyagci/fast-music-remover</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺71</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/c5f7f844-61bb-4c92-8d4c-c97dd0016b6f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Attend QR" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/attend-qr?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Attend QR</a></h2>
+            <p class="tagline">An attendance management system</p>
+            <p class="description">Attend QR is an Attendance Management System where users scan Attend QR code to mark attendance in real time. Admins get detailed insights and reports. Automations and customizations can be made as per requirements.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="scroll-container" data-row="2">
+            <div class="scroll-row" style="animation-direction: normal;">
+                
+    <div class="card">
+        <div class="votes-badge">🔺67</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/2340f160-0d53-4199-b0f7-39f5458fc3a0.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="GoodWay Sprite Generator" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/goodway-sprite-generator?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">GoodWay Sprite Generator</a></h2>
+            <p class="tagline">Magically transform Figma icons into sprite sheets with JSON</p>
+            <p class="description">GoodWay Sprite Generator plugin turns selected icons into sprite sheets with JSON metadata. It generates a PNG sprite and a JSON file with icon sizes and coordinates, ideal for developers and designers working on web projects or UI libraries.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺66</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/84168013-919c-4668-ac77-e5e7aff752f4.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="guilds.me" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/guilds-me?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">guilds.me</a></h2>
+            <p class="tagline">Find Your Dream Discord Server With A Simple Search</p>
+            <p class="description">Discover and join the perfect Discord communities with guilds.me. Explore a vast selection of servers and grow your own community effortlessly with our advanced tools.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺55</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3cde89d2-904e-4722-94fd-28912b7a302f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="featureNest" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/featurenest?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">featureNest</a></h2>
+            <p class="tagline">Easily capture, organize, and prioritize feature requests</p>
+            <p class="description">FeatureNest is a cost-effective tool that helps teams centralize, categorize, and manage feature requests across multiple projects. Streamline collaboration, stay organized, and scale effortlessly with ease.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺43</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/acce1839-1353-4178-b574-2b0a4c886469.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Bitcoin Price Live - Never miss a dip" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/bitcoin-price-live-never-miss-a-dip?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Bitcoin Price Live - Never miss a dip</a></h2>
+            <p class="tagline">Want to buy bitcoin cheaply? Get bitcoin drop alert!</p>
+            <p class="description">Bitcoin Price Live browser extension shows the current Bitcoin price and alerts you to significant drops - great for buying opportunities. Customize alerts by setting drop size and time frame to monitor major changes and skip minor fluctuations.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺33</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7fda8f3d-d6de-4973-9849-6b1d7e014700.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="MindR" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/mindr-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">MindR</a></h2>
+            <p class="tagline">Your AI powered second brain on Telegram.</p>
+            <p class="description">Ever stumbled upon a great idea, thought or some random musings only to forget it later? MindR remembers everything for you. Just send it anything you want to keep, then chat with it naturally whenever you need to recall.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺20</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/68229fff-f342-4585-8fb0-357d85904520.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Turbo Generate" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/turbo-generate?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Turbo Generate</a></h2>
+            <p class="tagline">Generate Text, Audio and Images in 1 Click with AI</p>
+            <p class="description">Generate text, audio and images in 1 click with artificial intelligence tools. Start your Free Trial!</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺67</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/2340f160-0d53-4199-b0f7-39f5458fc3a0.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="GoodWay Sprite Generator" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/goodway-sprite-generator?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">GoodWay Sprite Generator</a></h2>
+            <p class="tagline">Magically transform Figma icons into sprite sheets with JSON</p>
+            <p class="description">GoodWay Sprite Generator plugin turns selected icons into sprite sheets with JSON metadata. It generates a PNG sprite and a JSON file with icon sizes and coordinates, ideal for developers and designers working on web projects or UI libraries.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺66</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/84168013-919c-4668-ac77-e5e7aff752f4.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="guilds.me" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/guilds-me?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">guilds.me</a></h2>
+            <p class="tagline">Find Your Dream Discord Server With A Simple Search</p>
+            <p class="description">Discover and join the perfect Discord communities with guilds.me. Explore a vast selection of servers and grow your own community effortlessly with our advanced tools.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺55</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3cde89d2-904e-4722-94fd-28912b7a302f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="featureNest" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/featurenest?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">featureNest</a></h2>
+            <p class="tagline">Easily capture, organize, and prioritize feature requests</p>
+            <p class="description">FeatureNest is a cost-effective tool that helps teams centralize, categorize, and manage feature requests across multiple projects. Streamline collaboration, stay organized, and scale effortlessly with ease.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺43</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/acce1839-1353-4178-b574-2b0a4c886469.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Bitcoin Price Live - Never miss a dip" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/bitcoin-price-live-never-miss-a-dip?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Bitcoin Price Live - Never miss a dip</a></h2>
+            <p class="tagline">Want to buy bitcoin cheaply? Get bitcoin drop alert!</p>
+            <p class="description">Bitcoin Price Live browser extension shows the current Bitcoin price and alerts you to significant drops - great for buying opportunities. Customize alerts by setting drop size and time frame to monitor major changes and skip minor fluctuations.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺33</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7fda8f3d-d6de-4973-9849-6b1d7e014700.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="MindR" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/mindr-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">MindR</a></h2>
+            <p class="tagline">Your AI powered second brain on Telegram.</p>
+            <p class="description">Ever stumbled upon a great idea, thought or some random musings only to forget it later? MindR remembers everything for you. Just send it anything you want to keep, then chat with it naturally whenever you need to recall.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺20</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/68229fff-f342-4585-8fb0-357d85904520.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Turbo Generate" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/turbo-generate?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Turbo Generate</a></h2>
+            <p class="tagline">Generate Text, Audio and Images in 1 Click with AI</p>
+            <p class="description">Generate text, audio and images in 1 click with artificial intelligence tools. Start your Free Trial!</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺67</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/2340f160-0d53-4199-b0f7-39f5458fc3a0.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="GoodWay Sprite Generator" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/goodway-sprite-generator?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">GoodWay Sprite Generator</a></h2>
+            <p class="tagline">Magically transform Figma icons into sprite sheets with JSON</p>
+            <p class="description">GoodWay Sprite Generator plugin turns selected icons into sprite sheets with JSON metadata. It generates a PNG sprite and a JSON file with icon sizes and coordinates, ideal for developers and designers working on web projects or UI libraries.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺66</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/84168013-919c-4668-ac77-e5e7aff752f4.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="guilds.me" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/guilds-me?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">guilds.me</a></h2>
+            <p class="tagline">Find Your Dream Discord Server With A Simple Search</p>
+            <p class="description">Discover and join the perfect Discord communities with guilds.me. Explore a vast selection of servers and grow your own community effortlessly with our advanced tools.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺55</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3cde89d2-904e-4722-94fd-28912b7a302f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="featureNest" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/featurenest?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">featureNest</a></h2>
+            <p class="tagline">Easily capture, organize, and prioritize feature requests</p>
+            <p class="description">FeatureNest is a cost-effective tool that helps teams centralize, categorize, and manage feature requests across multiple projects. Streamline collaboration, stay organized, and scale effortlessly with ease.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺43</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/acce1839-1353-4178-b574-2b0a4c886469.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Bitcoin Price Live - Never miss a dip" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/bitcoin-price-live-never-miss-a-dip?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Bitcoin Price Live - Never miss a dip</a></h2>
+            <p class="tagline">Want to buy bitcoin cheaply? Get bitcoin drop alert!</p>
+            <p class="description">Bitcoin Price Live browser extension shows the current Bitcoin price and alerts you to significant drops - great for buying opportunities. Customize alerts by setting drop size and time frame to monitor major changes and skip minor fluctuations.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺33</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7fda8f3d-d6de-4973-9849-6b1d7e014700.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="MindR" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/mindr-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">MindR</a></h2>
+            <p class="tagline">Your AI powered second brain on Telegram.</p>
+            <p class="description">Ever stumbled upon a great idea, thought or some random musings only to forget it later? MindR remembers everything for you. Just send it anything you want to keep, then chat with it naturally whenever you need to recall.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺20</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/68229fff-f342-4585-8fb0-357d85904520.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Turbo Generate" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/turbo-generate?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Turbo Generate</a></h2>
+            <p class="tagline">Generate Text, Audio and Images in 1 Click with AI</p>
+            <p class="description">Generate text, audio and images in 1 click with artificial intelligence tools. Start your Free Trial!</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺67</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/2340f160-0d53-4199-b0f7-39f5458fc3a0.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="GoodWay Sprite Generator" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/goodway-sprite-generator?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">GoodWay Sprite Generator</a></h2>
+            <p class="tagline">Magically transform Figma icons into sprite sheets with JSON</p>
+            <p class="description">GoodWay Sprite Generator plugin turns selected icons into sprite sheets with JSON metadata. It generates a PNG sprite and a JSON file with icon sizes and coordinates, ideal for developers and designers working on web projects or UI libraries.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺66</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/84168013-919c-4668-ac77-e5e7aff752f4.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="guilds.me" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/guilds-me?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">guilds.me</a></h2>
+            <p class="tagline">Find Your Dream Discord Server With A Simple Search</p>
+            <p class="description">Discover and join the perfect Discord communities with guilds.me. Explore a vast selection of servers and grow your own community effortlessly with our advanced tools.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺55</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3cde89d2-904e-4722-94fd-28912b7a302f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="featureNest" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/featurenest?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">featureNest</a></h2>
+            <p class="tagline">Easily capture, organize, and prioritize feature requests</p>
+            <p class="description">FeatureNest is a cost-effective tool that helps teams centralize, categorize, and manage feature requests across multiple projects. Streamline collaboration, stay organized, and scale effortlessly with ease.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺43</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/acce1839-1353-4178-b574-2b0a4c886469.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Bitcoin Price Live - Never miss a dip" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/bitcoin-price-live-never-miss-a-dip?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Bitcoin Price Live - Never miss a dip</a></h2>
+            <p class="tagline">Want to buy bitcoin cheaply? Get bitcoin drop alert!</p>
+            <p class="description">Bitcoin Price Live browser extension shows the current Bitcoin price and alerts you to significant drops - great for buying opportunities. Customize alerts by setting drop size and time frame to monitor major changes and skip minor fluctuations.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺33</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7fda8f3d-d6de-4973-9849-6b1d7e014700.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="MindR" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/mindr-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">MindR</a></h2>
+            <p class="tagline">Your AI powered second brain on Telegram.</p>
+            <p class="description">Ever stumbled upon a great idea, thought or some random musings only to forget it later? MindR remembers everything for you. Just send it anything you want to keep, then chat with it naturally whenever you need to recall.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺20</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/68229fff-f342-4585-8fb0-357d85904520.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Turbo Generate" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/turbo-generate?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Turbo Generate</a></h2>
+            <p class="tagline">Generate Text, Audio and Images in 1 Click with AI</p>
+            <p class="description">Generate text, audio and images in 1 click with artificial intelligence tools. Start your Free Trial!</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺67</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/2340f160-0d53-4199-b0f7-39f5458fc3a0.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="GoodWay Sprite Generator" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/goodway-sprite-generator?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">GoodWay Sprite Generator</a></h2>
+            <p class="tagline">Magically transform Figma icons into sprite sheets with JSON</p>
+            <p class="description">GoodWay Sprite Generator plugin turns selected icons into sprite sheets with JSON metadata. It generates a PNG sprite and a JSON file with icon sizes and coordinates, ideal for developers and designers working on web projects or UI libraries.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺66</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/84168013-919c-4668-ac77-e5e7aff752f4.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="guilds.me" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/guilds-me?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">guilds.me</a></h2>
+            <p class="tagline">Find Your Dream Discord Server With A Simple Search</p>
+            <p class="description">Discover and join the perfect Discord communities with guilds.me. Explore a vast selection of servers and grow your own community effortlessly with our advanced tools.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺55</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3cde89d2-904e-4722-94fd-28912b7a302f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="featureNest" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/featurenest?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">featureNest</a></h2>
+            <p class="tagline">Easily capture, organize, and prioritize feature requests</p>
+            <p class="description">FeatureNest is a cost-effective tool that helps teams centralize, categorize, and manage feature requests across multiple projects. Streamline collaboration, stay organized, and scale effortlessly with ease.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺43</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/acce1839-1353-4178-b574-2b0a4c886469.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Bitcoin Price Live - Never miss a dip" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/bitcoin-price-live-never-miss-a-dip?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Bitcoin Price Live - Never miss a dip</a></h2>
+            <p class="tagline">Want to buy bitcoin cheaply? Get bitcoin drop alert!</p>
+            <p class="description">Bitcoin Price Live browser extension shows the current Bitcoin price and alerts you to significant drops - great for buying opportunities. Customize alerts by setting drop size and time frame to monitor major changes and skip minor fluctuations.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺33</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7fda8f3d-d6de-4973-9849-6b1d7e014700.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="MindR" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/mindr-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">MindR</a></h2>
+            <p class="tagline">Your AI powered second brain on Telegram.</p>
+            <p class="description">Ever stumbled upon a great idea, thought or some random musings only to forget it later? MindR remembers everything for you. Just send it anything you want to keep, then chat with it naturally whenever you need to recall.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺20</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/68229fff-f342-4585-8fb0-357d85904520.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Turbo Generate" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/turbo-generate?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Turbo Generate</a></h2>
+            <p class="tagline">Generate Text, Audio and Images in 1 Click with AI</p>
+            <p class="description">Generate text, audio and images in 1 click with artificial intelligence tools. Start your Free Trial!</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺67</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/2340f160-0d53-4199-b0f7-39f5458fc3a0.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="GoodWay Sprite Generator" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/goodway-sprite-generator?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">GoodWay Sprite Generator</a></h2>
+            <p class="tagline">Magically transform Figma icons into sprite sheets with JSON</p>
+            <p class="description">GoodWay Sprite Generator plugin turns selected icons into sprite sheets with JSON metadata. It generates a PNG sprite and a JSON file with icon sizes and coordinates, ideal for developers and designers working on web projects or UI libraries.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺66</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/84168013-919c-4668-ac77-e5e7aff752f4.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="guilds.me" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/guilds-me?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">guilds.me</a></h2>
+            <p class="tagline">Find Your Dream Discord Server With A Simple Search</p>
+            <p class="description">Discover and join the perfect Discord communities with guilds.me. Explore a vast selection of servers and grow your own community effortlessly with our advanced tools.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺55</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3cde89d2-904e-4722-94fd-28912b7a302f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="featureNest" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/featurenest?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">featureNest</a></h2>
+            <p class="tagline">Easily capture, organize, and prioritize feature requests</p>
+            <p class="description">FeatureNest is a cost-effective tool that helps teams centralize, categorize, and manage feature requests across multiple projects. Streamline collaboration, stay organized, and scale effortlessly with ease.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺43</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/acce1839-1353-4178-b574-2b0a4c886469.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Bitcoin Price Live - Never miss a dip" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/bitcoin-price-live-never-miss-a-dip?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Bitcoin Price Live - Never miss a dip</a></h2>
+            <p class="tagline">Want to buy bitcoin cheaply? Get bitcoin drop alert!</p>
+            <p class="description">Bitcoin Price Live browser extension shows the current Bitcoin price and alerts you to significant drops - great for buying opportunities. Customize alerts by setting drop size and time frame to monitor major changes and skip minor fluctuations.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺33</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7fda8f3d-d6de-4973-9849-6b1d7e014700.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="MindR" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/mindr-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">MindR</a></h2>
+            <p class="tagline">Your AI powered second brain on Telegram.</p>
+            <p class="description">Ever stumbled upon a great idea, thought or some random musings only to forget it later? MindR remembers everything for you. Just send it anything you want to keep, then chat with it naturally whenever you need to recall.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺20</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/68229fff-f342-4585-8fb0-357d85904520.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Turbo Generate" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/turbo-generate?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Turbo Generate</a></h2>
+            <p class="tagline">Generate Text, Audio and Images in 1 Click with AI</p>
+            <p class="description">Generate text, audio and images in 1 click with artificial intelligence tools. Start your Free Trial!</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺67</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/2340f160-0d53-4199-b0f7-39f5458fc3a0.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="GoodWay Sprite Generator" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/goodway-sprite-generator?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">GoodWay Sprite Generator</a></h2>
+            <p class="tagline">Magically transform Figma icons into sprite sheets with JSON</p>
+            <p class="description">GoodWay Sprite Generator plugin turns selected icons into sprite sheets with JSON metadata. It generates a PNG sprite and a JSON file with icon sizes and coordinates, ideal for developers and designers working on web projects or UI libraries.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺66</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/84168013-919c-4668-ac77-e5e7aff752f4.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="guilds.me" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/guilds-me?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">guilds.me</a></h2>
+            <p class="tagline">Find Your Dream Discord Server With A Simple Search</p>
+            <p class="description">Discover and join the perfect Discord communities with guilds.me. Explore a vast selection of servers and grow your own community effortlessly with our advanced tools.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺55</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3cde89d2-904e-4722-94fd-28912b7a302f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="featureNest" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/featurenest?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">featureNest</a></h2>
+            <p class="tagline">Easily capture, organize, and prioritize feature requests</p>
+            <p class="description">FeatureNest is a cost-effective tool that helps teams centralize, categorize, and manage feature requests across multiple projects. Streamline collaboration, stay organized, and scale effortlessly with ease.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺43</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/acce1839-1353-4178-b574-2b0a4c886469.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Bitcoin Price Live - Never miss a dip" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/bitcoin-price-live-never-miss-a-dip?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Bitcoin Price Live - Never miss a dip</a></h2>
+            <p class="tagline">Want to buy bitcoin cheaply? Get bitcoin drop alert!</p>
+            <p class="description">Bitcoin Price Live browser extension shows the current Bitcoin price and alerts you to significant drops - great for buying opportunities. Customize alerts by setting drop size and time frame to monitor major changes and skip minor fluctuations.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺33</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7fda8f3d-d6de-4973-9849-6b1d7e014700.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="MindR" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/mindr-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">MindR</a></h2>
+            <p class="tagline">Your AI powered second brain on Telegram.</p>
+            <p class="description">Ever stumbled upon a great idea, thought or some random musings only to forget it later? MindR remembers everything for you. Just send it anything you want to keep, then chat with it naturally whenever you need to recall.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺20</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/68229fff-f342-4585-8fb0-357d85904520.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Turbo Generate" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/turbo-generate?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Turbo Generate</a></h2>
+            <p class="tagline">Generate Text, Audio and Images in 1 Click with AI</p>
+            <p class="description">Generate text, audio and images in 1 click with artificial intelligence tools. Start your Free Trial!</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺67</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/2340f160-0d53-4199-b0f7-39f5458fc3a0.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="GoodWay Sprite Generator" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/goodway-sprite-generator?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">GoodWay Sprite Generator</a></h2>
+            <p class="tagline">Magically transform Figma icons into sprite sheets with JSON</p>
+            <p class="description">GoodWay Sprite Generator plugin turns selected icons into sprite sheets with JSON metadata. It generates a PNG sprite and a JSON file with icon sizes and coordinates, ideal for developers and designers working on web projects or UI libraries.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺66</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/84168013-919c-4668-ac77-e5e7aff752f4.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="guilds.me" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/guilds-me?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">guilds.me</a></h2>
+            <p class="tagline">Find Your Dream Discord Server With A Simple Search</p>
+            <p class="description">Discover and join the perfect Discord communities with guilds.me. Explore a vast selection of servers and grow your own community effortlessly with our advanced tools.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺55</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3cde89d2-904e-4722-94fd-28912b7a302f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="featureNest" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/featurenest?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">featureNest</a></h2>
+            <p class="tagline">Easily capture, organize, and prioritize feature requests</p>
+            <p class="description">FeatureNest is a cost-effective tool that helps teams centralize, categorize, and manage feature requests across multiple projects. Streamline collaboration, stay organized, and scale effortlessly with ease.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺43</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/acce1839-1353-4178-b574-2b0a4c886469.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Bitcoin Price Live - Never miss a dip" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/bitcoin-price-live-never-miss-a-dip?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Bitcoin Price Live - Never miss a dip</a></h2>
+            <p class="tagline">Want to buy bitcoin cheaply? Get bitcoin drop alert!</p>
+            <p class="description">Bitcoin Price Live browser extension shows the current Bitcoin price and alerts you to significant drops - great for buying opportunities. Customize alerts by setting drop size and time frame to monitor major changes and skip minor fluctuations.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺33</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7fda8f3d-d6de-4973-9849-6b1d7e014700.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="MindR" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/mindr-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">MindR</a></h2>
+            <p class="tagline">Your AI powered second brain on Telegram.</p>
+            <p class="description">Ever stumbled upon a great idea, thought or some random musings only to forget it later? MindR remembers everything for you. Just send it anything you want to keep, then chat with it naturally whenever you need to recall.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺20</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/68229fff-f342-4585-8fb0-357d85904520.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Turbo Generate" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/turbo-generate?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Turbo Generate</a></h2>
+            <p class="tagline">Generate Text, Audio and Images in 1 Click with AI</p>
+            <p class="description">Generate text, audio and images in 1 click with artificial intelligence tools. Start your Free Trial!</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="scroll-container" data-row="3">
+            <div class="scroll-row" style="animation-direction: reverse;">
+                
+    <div class="card">
+        <div class="votes-badge">🔺18</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/0ec51dbd-45bc-46fa-9872-e4d5321143f8.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Optimal Health System" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/optimal-health-system?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Optimal Health System</a></h2>
+            <p class="tagline">Manage your entire health.</p>
+            <p class="description">The Notion Optimal Health System provides all the essential tools to take control of your health, manage it, and make it a priority in your life.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺16</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/ecbc91f5-b0e7-416b-9492-ed572d680fe3.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AutoBacklink" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/autobacklink?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">AutoBacklink</a></h2>
+            <p class="tagline">Pr*ductHunt is sucks, let's promote each other's products!🤘</p>
+            <p class="description">Automatically embed backlinks to your landing page and effortlessly market your product on other people's landing pages.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺15</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/809ff4cf-a3ab-4357-8e1a-26270d4a6616.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Startup Levels" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/startup-levels?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Startup Levels</a></h2>
+            <p class="tagline">A competitive startup leaderboard to get traffic + backlink</p>
+            <p class="description">Boost traffic to your SaaS app by securing a spot on Startup Leaderboard. Get a do-follow backlink to pump SEO rankings.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺15</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/5bd77ab1-8460-4814-81fb-48bdee81c429.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Let's Focus" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/let-s-focus?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Let's Focus</a></h2>
+            <p class="tagline">Simple and powerful todo list that helps you get more done</p>
+            <p class="description">A simple and powerful to-do list designed to help you get more done with ease. Whether you're managing daily tasks or tackling complex projects, it offers the tools you need to stay organized and productive. Optimized for individual who want to thrive.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺13</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7b626f76-a26d-4c37-9196-ed562f8057e3.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Gift.xyz" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/gift-xyz?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Gift.xyz</a></h2>
+            <p class="tagline">Celebrate special moments forever.</p>
+            <p class="description">Celebrate special moments forever. Collect your first! https://app.gift.xyz/giftxyz-live-on-product-hunt Why use Gift? - Can send to anyone anywhere instantly. - Can crowdfund from people all over the world to gift. - It’s immutable + yours forever.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺10</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/6d5e5912-6e79-4d6a-9e82-41385334ac54.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Job Title Generator" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/job-title-generator?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Job Title Generator</a></h2>
+            <p class="tagline">Need to Define a Job? Generate One in 10 seconds. 100% Free.</p>
+            <p class="description">Create professional, tailored job titles in seconds with our Free Job Title Generator. Perfect for recruiters looking to attract top talent with clear, relevant titles. Easy to use and customizable for any industry or role.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺18</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/0ec51dbd-45bc-46fa-9872-e4d5321143f8.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Optimal Health System" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/optimal-health-system?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Optimal Health System</a></h2>
+            <p class="tagline">Manage your entire health.</p>
+            <p class="description">The Notion Optimal Health System provides all the essential tools to take control of your health, manage it, and make it a priority in your life.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺16</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/ecbc91f5-b0e7-416b-9492-ed572d680fe3.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AutoBacklink" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/autobacklink?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">AutoBacklink</a></h2>
+            <p class="tagline">Pr*ductHunt is sucks, let's promote each other's products!🤘</p>
+            <p class="description">Automatically embed backlinks to your landing page and effortlessly market your product on other people's landing pages.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺15</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/809ff4cf-a3ab-4357-8e1a-26270d4a6616.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Startup Levels" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/startup-levels?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Startup Levels</a></h2>
+            <p class="tagline">A competitive startup leaderboard to get traffic + backlink</p>
+            <p class="description">Boost traffic to your SaaS app by securing a spot on Startup Leaderboard. Get a do-follow backlink to pump SEO rankings.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺15</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/5bd77ab1-8460-4814-81fb-48bdee81c429.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Let's Focus" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/let-s-focus?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Let's Focus</a></h2>
+            <p class="tagline">Simple and powerful todo list that helps you get more done</p>
+            <p class="description">A simple and powerful to-do list designed to help you get more done with ease. Whether you're managing daily tasks or tackling complex projects, it offers the tools you need to stay organized and productive. Optimized for individual who want to thrive.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺13</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7b626f76-a26d-4c37-9196-ed562f8057e3.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Gift.xyz" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/gift-xyz?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Gift.xyz</a></h2>
+            <p class="tagline">Celebrate special moments forever.</p>
+            <p class="description">Celebrate special moments forever. Collect your first! https://app.gift.xyz/giftxyz-live-on-product-hunt Why use Gift? - Can send to anyone anywhere instantly. - Can crowdfund from people all over the world to gift. - It’s immutable + yours forever.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺10</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/6d5e5912-6e79-4d6a-9e82-41385334ac54.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Job Title Generator" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/job-title-generator?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Job Title Generator</a></h2>
+            <p class="tagline">Need to Define a Job? Generate One in 10 seconds. 100% Free.</p>
+            <p class="description">Create professional, tailored job titles in seconds with our Free Job Title Generator. Perfect for recruiters looking to attract top talent with clear, relevant titles. Easy to use and customizable for any industry or role.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺18</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/0ec51dbd-45bc-46fa-9872-e4d5321143f8.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Optimal Health System" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/optimal-health-system?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Optimal Health System</a></h2>
+            <p class="tagline">Manage your entire health.</p>
+            <p class="description">The Notion Optimal Health System provides all the essential tools to take control of your health, manage it, and make it a priority in your life.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺16</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/ecbc91f5-b0e7-416b-9492-ed572d680fe3.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AutoBacklink" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/autobacklink?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">AutoBacklink</a></h2>
+            <p class="tagline">Pr*ductHunt is sucks, let's promote each other's products!🤘</p>
+            <p class="description">Automatically embed backlinks to your landing page and effortlessly market your product on other people's landing pages.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺15</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/809ff4cf-a3ab-4357-8e1a-26270d4a6616.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Startup Levels" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/startup-levels?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Startup Levels</a></h2>
+            <p class="tagline">A competitive startup leaderboard to get traffic + backlink</p>
+            <p class="description">Boost traffic to your SaaS app by securing a spot on Startup Leaderboard. Get a do-follow backlink to pump SEO rankings.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺15</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/5bd77ab1-8460-4814-81fb-48bdee81c429.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Let's Focus" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/let-s-focus?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Let's Focus</a></h2>
+            <p class="tagline">Simple and powerful todo list that helps you get more done</p>
+            <p class="description">A simple and powerful to-do list designed to help you get more done with ease. Whether you're managing daily tasks or tackling complex projects, it offers the tools you need to stay organized and productive. Optimized for individual who want to thrive.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺13</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7b626f76-a26d-4c37-9196-ed562f8057e3.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Gift.xyz" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/gift-xyz?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Gift.xyz</a></h2>
+            <p class="tagline">Celebrate special moments forever.</p>
+            <p class="description">Celebrate special moments forever. Collect your first! https://app.gift.xyz/giftxyz-live-on-product-hunt Why use Gift? - Can send to anyone anywhere instantly. - Can crowdfund from people all over the world to gift. - It’s immutable + yours forever.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺10</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/6d5e5912-6e79-4d6a-9e82-41385334ac54.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Job Title Generator" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/job-title-generator?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Job Title Generator</a></h2>
+            <p class="tagline">Need to Define a Job? Generate One in 10 seconds. 100% Free.</p>
+            <p class="description">Create professional, tailored job titles in seconds with our Free Job Title Generator. Perfect for recruiters looking to attract top talent with clear, relevant titles. Easy to use and customizable for any industry or role.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺18</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/0ec51dbd-45bc-46fa-9872-e4d5321143f8.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Optimal Health System" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/optimal-health-system?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Optimal Health System</a></h2>
+            <p class="tagline">Manage your entire health.</p>
+            <p class="description">The Notion Optimal Health System provides all the essential tools to take control of your health, manage it, and make it a priority in your life.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺16</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/ecbc91f5-b0e7-416b-9492-ed572d680fe3.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AutoBacklink" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/autobacklink?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">AutoBacklink</a></h2>
+            <p class="tagline">Pr*ductHunt is sucks, let's promote each other's products!🤘</p>
+            <p class="description">Automatically embed backlinks to your landing page and effortlessly market your product on other people's landing pages.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺15</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/809ff4cf-a3ab-4357-8e1a-26270d4a6616.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Startup Levels" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/startup-levels?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Startup Levels</a></h2>
+            <p class="tagline">A competitive startup leaderboard to get traffic + backlink</p>
+            <p class="description">Boost traffic to your SaaS app by securing a spot on Startup Leaderboard. Get a do-follow backlink to pump SEO rankings.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺15</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/5bd77ab1-8460-4814-81fb-48bdee81c429.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Let's Focus" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/let-s-focus?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Let's Focus</a></h2>
+            <p class="tagline">Simple and powerful todo list that helps you get more done</p>
+            <p class="description">A simple and powerful to-do list designed to help you get more done with ease. Whether you're managing daily tasks or tackling complex projects, it offers the tools you need to stay organized and productive. Optimized for individual who want to thrive.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺13</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7b626f76-a26d-4c37-9196-ed562f8057e3.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Gift.xyz" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/gift-xyz?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Gift.xyz</a></h2>
+            <p class="tagline">Celebrate special moments forever.</p>
+            <p class="description">Celebrate special moments forever. Collect your first! https://app.gift.xyz/giftxyz-live-on-product-hunt Why use Gift? - Can send to anyone anywhere instantly. - Can crowdfund from people all over the world to gift. - It’s immutable + yours forever.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺10</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/6d5e5912-6e79-4d6a-9e82-41385334ac54.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Job Title Generator" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/job-title-generator?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Job Title Generator</a></h2>
+            <p class="tagline">Need to Define a Job? Generate One in 10 seconds. 100% Free.</p>
+            <p class="description">Create professional, tailored job titles in seconds with our Free Job Title Generator. Perfect for recruiters looking to attract top talent with clear, relevant titles. Easy to use and customizable for any industry or role.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺18</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/0ec51dbd-45bc-46fa-9872-e4d5321143f8.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Optimal Health System" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/optimal-health-system?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Optimal Health System</a></h2>
+            <p class="tagline">Manage your entire health.</p>
+            <p class="description">The Notion Optimal Health System provides all the essential tools to take control of your health, manage it, and make it a priority in your life.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺16</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/ecbc91f5-b0e7-416b-9492-ed572d680fe3.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AutoBacklink" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/autobacklink?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">AutoBacklink</a></h2>
+            <p class="tagline">Pr*ductHunt is sucks, let's promote each other's products!🤘</p>
+            <p class="description">Automatically embed backlinks to your landing page and effortlessly market your product on other people's landing pages.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺15</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/809ff4cf-a3ab-4357-8e1a-26270d4a6616.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Startup Levels" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/startup-levels?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Startup Levels</a></h2>
+            <p class="tagline">A competitive startup leaderboard to get traffic + backlink</p>
+            <p class="description">Boost traffic to your SaaS app by securing a spot on Startup Leaderboard. Get a do-follow backlink to pump SEO rankings.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺15</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/5bd77ab1-8460-4814-81fb-48bdee81c429.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Let's Focus" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/let-s-focus?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Let's Focus</a></h2>
+            <p class="tagline">Simple and powerful todo list that helps you get more done</p>
+            <p class="description">A simple and powerful to-do list designed to help you get more done with ease. Whether you're managing daily tasks or tackling complex projects, it offers the tools you need to stay organized and productive. Optimized for individual who want to thrive.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺13</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7b626f76-a26d-4c37-9196-ed562f8057e3.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Gift.xyz" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/gift-xyz?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Gift.xyz</a></h2>
+            <p class="tagline">Celebrate special moments forever.</p>
+            <p class="description">Celebrate special moments forever. Collect your first! https://app.gift.xyz/giftxyz-live-on-product-hunt Why use Gift? - Can send to anyone anywhere instantly. - Can crowdfund from people all over the world to gift. - It’s immutable + yours forever.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺10</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/6d5e5912-6e79-4d6a-9e82-41385334ac54.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Job Title Generator" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/job-title-generator?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Job Title Generator</a></h2>
+            <p class="tagline">Need to Define a Job? Generate One in 10 seconds. 100% Free.</p>
+            <p class="description">Create professional, tailored job titles in seconds with our Free Job Title Generator. Perfect for recruiters looking to attract top talent with clear, relevant titles. Easy to use and customizable for any industry or role.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺18</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/0ec51dbd-45bc-46fa-9872-e4d5321143f8.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Optimal Health System" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/optimal-health-system?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Optimal Health System</a></h2>
+            <p class="tagline">Manage your entire health.</p>
+            <p class="description">The Notion Optimal Health System provides all the essential tools to take control of your health, manage it, and make it a priority in your life.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺16</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/ecbc91f5-b0e7-416b-9492-ed572d680fe3.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AutoBacklink" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/autobacklink?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">AutoBacklink</a></h2>
+            <p class="tagline">Pr*ductHunt is sucks, let's promote each other's products!🤘</p>
+            <p class="description">Automatically embed backlinks to your landing page and effortlessly market your product on other people's landing pages.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺15</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/809ff4cf-a3ab-4357-8e1a-26270d4a6616.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Startup Levels" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/startup-levels?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Startup Levels</a></h2>
+            <p class="tagline">A competitive startup leaderboard to get traffic + backlink</p>
+            <p class="description">Boost traffic to your SaaS app by securing a spot on Startup Leaderboard. Get a do-follow backlink to pump SEO rankings.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺15</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/5bd77ab1-8460-4814-81fb-48bdee81c429.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Let's Focus" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/let-s-focus?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Let's Focus</a></h2>
+            <p class="tagline">Simple and powerful todo list that helps you get more done</p>
+            <p class="description">A simple and powerful to-do list designed to help you get more done with ease. Whether you're managing daily tasks or tackling complex projects, it offers the tools you need to stay organized and productive. Optimized for individual who want to thrive.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺13</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7b626f76-a26d-4c37-9196-ed562f8057e3.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Gift.xyz" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/gift-xyz?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Gift.xyz</a></h2>
+            <p class="tagline">Celebrate special moments forever.</p>
+            <p class="description">Celebrate special moments forever. Collect your first! https://app.gift.xyz/giftxyz-live-on-product-hunt Why use Gift? - Can send to anyone anywhere instantly. - Can crowdfund from people all over the world to gift. - It’s immutable + yours forever.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺10</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/6d5e5912-6e79-4d6a-9e82-41385334ac54.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Job Title Generator" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/job-title-generator?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Job Title Generator</a></h2>
+            <p class="tagline">Need to Define a Job? Generate One in 10 seconds. 100% Free.</p>
+            <p class="description">Create professional, tailored job titles in seconds with our Free Job Title Generator. Perfect for recruiters looking to attract top talent with clear, relevant titles. Easy to use and customizable for any industry or role.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺18</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/0ec51dbd-45bc-46fa-9872-e4d5321143f8.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Optimal Health System" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/optimal-health-system?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Optimal Health System</a></h2>
+            <p class="tagline">Manage your entire health.</p>
+            <p class="description">The Notion Optimal Health System provides all the essential tools to take control of your health, manage it, and make it a priority in your life.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺16</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/ecbc91f5-b0e7-416b-9492-ed572d680fe3.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AutoBacklink" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/autobacklink?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">AutoBacklink</a></h2>
+            <p class="tagline">Pr*ductHunt is sucks, let's promote each other's products!🤘</p>
+            <p class="description">Automatically embed backlinks to your landing page and effortlessly market your product on other people's landing pages.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺15</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/809ff4cf-a3ab-4357-8e1a-26270d4a6616.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Startup Levels" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/startup-levels?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Startup Levels</a></h2>
+            <p class="tagline">A competitive startup leaderboard to get traffic + backlink</p>
+            <p class="description">Boost traffic to your SaaS app by securing a spot on Startup Leaderboard. Get a do-follow backlink to pump SEO rankings.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺15</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/5bd77ab1-8460-4814-81fb-48bdee81c429.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Let's Focus" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/let-s-focus?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Let's Focus</a></h2>
+            <p class="tagline">Simple and powerful todo list that helps you get more done</p>
+            <p class="description">A simple and powerful to-do list designed to help you get more done with ease. Whether you're managing daily tasks or tackling complex projects, it offers the tools you need to stay organized and productive. Optimized for individual who want to thrive.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺13</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7b626f76-a26d-4c37-9196-ed562f8057e3.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Gift.xyz" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/gift-xyz?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Gift.xyz</a></h2>
+            <p class="tagline">Celebrate special moments forever.</p>
+            <p class="description">Celebrate special moments forever. Collect your first! https://app.gift.xyz/giftxyz-live-on-product-hunt Why use Gift? - Can send to anyone anywhere instantly. - Can crowdfund from people all over the world to gift. - It’s immutable + yours forever.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺10</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/6d5e5912-6e79-4d6a-9e82-41385334ac54.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Job Title Generator" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/job-title-generator?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Job Title Generator</a></h2>
+            <p class="tagline">Need to Define a Job? Generate One in 10 seconds. 100% Free.</p>
+            <p class="description">Create professional, tailored job titles in seconds with our Free Job Title Generator. Perfect for recruiters looking to attract top talent with clear, relevant titles. Easy to use and customizable for any industry or role.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺18</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/0ec51dbd-45bc-46fa-9872-e4d5321143f8.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Optimal Health System" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/optimal-health-system?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Optimal Health System</a></h2>
+            <p class="tagline">Manage your entire health.</p>
+            <p class="description">The Notion Optimal Health System provides all the essential tools to take control of your health, manage it, and make it a priority in your life.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺16</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/ecbc91f5-b0e7-416b-9492-ed572d680fe3.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AutoBacklink" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/autobacklink?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">AutoBacklink</a></h2>
+            <p class="tagline">Pr*ductHunt is sucks, let's promote each other's products!🤘</p>
+            <p class="description">Automatically embed backlinks to your landing page and effortlessly market your product on other people's landing pages.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺15</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/809ff4cf-a3ab-4357-8e1a-26270d4a6616.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Startup Levels" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/startup-levels?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Startup Levels</a></h2>
+            <p class="tagline">A competitive startup leaderboard to get traffic + backlink</p>
+            <p class="description">Boost traffic to your SaaS app by securing a spot on Startup Leaderboard. Get a do-follow backlink to pump SEO rankings.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺15</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/5bd77ab1-8460-4814-81fb-48bdee81c429.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Let's Focus" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/let-s-focus?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Let's Focus</a></h2>
+            <p class="tagline">Simple and powerful todo list that helps you get more done</p>
+            <p class="description">A simple and powerful to-do list designed to help you get more done with ease. Whether you're managing daily tasks or tackling complex projects, it offers the tools you need to stay organized and productive. Optimized for individual who want to thrive.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺13</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/7b626f76-a26d-4c37-9196-ed562f8057e3.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Gift.xyz" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/gift-xyz?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Gift.xyz</a></h2>
+            <p class="tagline">Celebrate special moments forever.</p>
+            <p class="description">Celebrate special moments forever. Collect your first! https://app.gift.xyz/giftxyz-live-on-product-hunt Why use Gift? - Can send to anyone anywhere instantly. - Can crowdfund from people all over the world to gift. - It’s immutable + yours forever.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺10</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/6d5e5912-6e79-4d6a-9e82-41385334ac54.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Job Title Generator" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/job-title-generator?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Job Title Generator</a></h2>
+            <p class="tagline">Need to Define a Job? Generate One in 10 seconds. 100% Free.</p>
+            <p class="description">Create professional, tailored job titles in seconds with our Free Job Title Generator. Perfect for recruiters looking to attract top talent with clear, relevant titles. Easy to use and customizable for any industry or role.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+            </div>
+        </div>
+        <footer>
+            <p>&copy; 2024 Daily Hot. All rights reserved. Made by Larkspur</p>
+        </footer>
+        <script>
+            const robot = document.getElementById('robot');
+            const container = document.querySelector('.title-container');
+            let x = 0;
+            let y = 0;
+            let vx = 0;
+            let vy = 0;
+            const maxSpeed = 8;  // 增加最大速度
+            const acceleration = 0.8;  // 增加加速度
+            const deceleration = 0.98;
+            const avoidanceDistance = 100;
+
+            function updateRobotPosition() {
+                const rect = container.getBoundingClientRect();
+                
+                // 随机运动
+                if (Math.random() < 0.05) {  // 增加改变方向的概率
+                    vx += (Math.random() - 0.5) * acceleration * 2;  // 增加随机运动的力度
+                    vy += (Math.random() - 0.5) * acceleration * 2;
+                }
+
+                x += vx;
+                y += vy;
+
+                // 边界检查
+                if (x < 0) { x = 0; vx = -vx * 0.8; }
+                if (x > rect.width - 60) { x = rect.width - 60; vx = -vx * 0.8; }
+                if (y < 0) { y = 0; vy = -vy * 0.8; }
+                if (y > rect.height - 60) { y = rect.height - 60; vy = -vy * 0.8; }
+
+                // 应用减速
+                vx *= deceleration;
+                vy *= deceleration;
+
+                // 限制最大速度
+                const speed = Math.sqrt(vx * vx + vy * vy);
+                if (speed > maxSpeed) {
+                    vx = (vx / speed) * maxSpeed;
+                    vy = (vy / speed) * maxSpeed;
+                }
+
+                robot.style.left = `${x}px`;
+                robot.style.top = `${y}px`;
+
+                requestAnimationFrame(updateRobotPosition);
+            }
+
+            function avoidMouse(e) {
+                const rect = container.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+
+                const dx = x + 30 - mouseX;
+                const dy = y + 30 - mouseY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < avoidanceDistance) {
+                    const angle = Math.atan2(dy, dx);
+                    const force = (avoidanceDistance - distance) / avoidanceDistance;
+
+                    vx += Math.cos(angle) * force * acceleration * 3;  // 增加躲避力度
+                    vy += Math.sin(angle) * force * acceleration * 3;
+                }
+            }
+
+            container.addEventListener('mousemove', avoidMouse);
+            updateRobotPosition();
+
+            // 修改卡片交互脚本
+            document.querySelectorAll('.scroll-container').forEach(container => {
+                let isDragging = false;
+                let startX;
+                let scrollLeft;
+
+                container.addEventListener('mousedown', (e) => {
+                    isDragging = true;
+                    startX = e.pageX - container.offsetLeft;
+                    scrollLeft = container.scrollLeft;
+                    container.style.cursor = 'grabbing';
+                });
+
+                container.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();  // 防止默认的拖动行为
+                    const x = e.pageX - container.offsetLeft;
+                    const walk = (x - startX) * 2;
+                    container.scrollLeft = scrollLeft - walk;
+                });
+
+                container.addEventListener('mouseup', () => {
+                    isDragging = false;
+                    container.style.cursor = 'grab';
+                });
+
+                container.addEventListener('mouseleave', () => {
+                    isDragging = false;
+                    container.style.cursor = 'grab';
+                });
+            });
+        </script>
+    </body>
+    </html>
+    
