@@ -4,8 +4,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Product Hunt 每日热榜 | 2024-10-12</title>
-        <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600&display=swap" rel="stylesheet">
+        <title>PH每日热榜 | 2024-10-12</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
         <style>
             :root {
                 --background-color: #f7f7f7;
@@ -15,7 +15,7 @@
                 --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             }
             body {
-                font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+                font-family: 'Poppins', sans-serif;
                 background-color: var(--background-color);
                 color: var(--text-color);
                 margin: 0;
@@ -23,38 +23,89 @@
                 line-height: 1.4;
                 overflow-x: hidden;
             }
-            .container {
-                max-width: 100%;
-                margin: 0 auto;
-                padding: 2rem 0;
-            }
             header {
-                text-align: center;
-                margin-bottom: 2rem;
+                background-color: #ffffff;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+                padding: 0.5rem 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
             }
-            h1 {
-                font-size: 48px;
+            .brand h1 {
+                font-size: 18px;
+                margin: 0;
                 font-weight: 600;
-                margin-bottom: 0.5rem;
+            }
+            nav ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+            }
+            nav ul li {
+                margin-left: 1.5rem;
+            }
+            nav ul li a {
+                text-decoration: none;
+                color: var(--text-color);
+                font-size: 16px;
+                font-weight: 400;
+            }
+            .main-content {
+                padding: 1rem 2rem;  /* 减少上下padding */
+            }
+            .title-container {
+                text-align: center;
+                position: relative;
+                padding: 10px 0;  /* 减少上下padding */
+                margin-bottom: 1rem;  /* 减少底部margin */
+            }
+            .title-container h1 {
+                font-size: 36px;
+                margin: 0 0 10px 0;  /* 减少底部margin */
+            }
+            .blue-line {
+                width: 50px;
+                height: 3px;
+                background-color: #0066cc;
+                margin: 10px auto;
+                animation: pulse 2s infinite;
+            }
+            @keyframes pulse {
+                0% { transform: scaleX(1); }
+                50% { transform: scaleX(1.5); }
+                100% { transform: scaleX(1); }
             }
             .date {
                 font-size: 18px;
                 color: #666;
+                text-align: center;
+                margin-bottom: 1rem;  /* 减少底部margin */
+            }
+            .robot {
+                position: absolute;
+                font-size: 36px;
+                transition: all 0.2s ease;
+                user-select: none;
             }
             .scroll-container {
                 overflow: hidden;
                 margin-bottom: 2rem;
+                cursor: grab;
+                user-select: none;
             }
             .scroll-row {
                 display: flex;
                 animation: scroll 30s linear infinite;
-                width: 200%; /* 显示8个卡片的宽度 */
+                width: 200%;
+                user-select: none;
             }
             .card {
-                flex: 0 0 12.5%;
-                max-width: 12.5%;
-                padding: 1rem;
+                flex: 0 0 16.666%;
+                max-width: 16.666%;
+                padding: 0.5rem;
                 box-sizing: border-box;
+                user-select: none;
                 position: relative;
             }
             .card-inner {
@@ -118,17 +169,6 @@
                     transform: translateX(-50%);
                 }
             }
-            .title-container {
-                position: relative;
-                display: inline-block;
-                overflow: hidden;
-                padding: 0 30px;
-            }
-            .robot {
-                position: absolute;
-                font-size: 24px;
-                transition: all 0.5s ease;
-            }
             @keyframes float {
                 0%, 100% { transform: translateY(0); }
                 50% { transform: translateY(-10px); }
@@ -143,8 +183,8 @@
             }
             .votes-badge {
                 position: absolute;
-                top: 0.5rem;
-                left: 0.5rem;
+                top: 1rem;
+                left: 1rem;
                 background-color: rgba(0, 0, 0, 0.6);
                 color: white;
                 padding: 0.25rem 0.5rem;
@@ -153,24 +193,37 @@
                 font-weight: bold;
                 z-index: 1;
             }
+            .scroll-container:hover .scroll-row {
+                animation-play-state: paused;
+            }
         </style>
     </head>
     <body>
+        <header>
+            <div class="brand">
+                <h1>Product Hunt Daily Hot</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">关于我</a></li>
+                    <li><a href="#contact">联系</a></li>
+                </ul>
+            </nav>
+        </header>
         <div class="container">
-            <header>
+            <div class="main-content">
                 <div class="title-container">
-                    <h1>Product Hunt 每日热榜</h1>
-                    <span class="robot" id="robot">🤖</span>
+                    <h1>Product Hunt 每日热榜 <span id="robot" class="robot">🤖</span></h1>
+                    <div class="blue-line"></div>
+                    <div class="date">2024-10-12</div>
                 </div>
-                <div class="date">2024-10-12</div>
-            </header>
-            
-        <div class="scroll-container">
+                
+        <div class="scroll-container" data-row="0">
             <div class="scroll-row" style="animation-direction: normal;">
                 
     <div class="card">
-        <div class="votes-badge">🔺461</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺461</div>
             <img src="https://ph-files.imgix.net/c4673116-82e1-41df-997d-8f62af7f977b.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Octomind QA Agent" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/octomind-qa-agent?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Octomind QA Agent</a></h2>
             <p class="tagline">AI驱动的端到端测试</p>
@@ -181,8 +234,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺348</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺348</div>
             <img src="https://ph-files.imgix.net/0c32facc-87e3-48c5-9c42-1045bd3fad09.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Generate Anything " class="product-image">
             <h2><a href="https://www.producthunt.com/posts/generate-anything?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Generate Anything </a></h2>
             <p class="tagline"></p>
@@ -193,8 +246,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺275</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺275</div>
             <img src="https://ph-files.imgix.net/e402b5fc-9dec-4a87-a855-6bb4bb412e95.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Flowbite WYSIWYG" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/flowbite-wysiwyg?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Flowbite WYSIWYG</a></h2>
             <p class="tagline">使用Tailwind CSS的开源文本编辑器</p>
@@ -205,8 +258,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺261</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺261</div>
             <img src="https://ph-files.imgix.net/52bbeb68-fe81-4933-b87d-1b5d0f710212.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Fillout 2.0" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/fillout-2-0?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Fillout 2.0</a></h2>
             <p class="tagline">一体化表单、日程安排、支付和工作流程</p>
@@ -217,8 +270,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺208</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺208</div>
             <img src="https://ph-files.imgix.net/077943d2-871a-41cb-83cf-3e36b5d86cce.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="UI Builder for shadcn/ui" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/ui-builder-for-shadcn-ui?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">UI Builder for shadcn/ui</a></h2>
             <p class="tagline">用于通过视觉方式创建用户界面的 React 组件</p>
@@ -229,8 +282,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺170</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺170</div>
             <img src="https://ph-files.imgix.net/0c52bfd6-5b0e-4d29-b616-3c98b84939c0.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Planly 2.0" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/planly-2-0?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Planly 2.0</a></h2>
             <p class="tagline">社交媒体管理工具</p>
@@ -241,8 +294,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺461</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺461</div>
             <img src="https://ph-files.imgix.net/c4673116-82e1-41df-997d-8f62af7f977b.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Octomind QA Agent" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/octomind-qa-agent?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Octomind QA Agent</a></h2>
             <p class="tagline">AI驱动的端到端测试</p>
@@ -253,8 +306,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺348</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺348</div>
             <img src="https://ph-files.imgix.net/0c32facc-87e3-48c5-9c42-1045bd3fad09.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Generate Anything " class="product-image">
             <h2><a href="https://www.producthunt.com/posts/generate-anything?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Generate Anything </a></h2>
             <p class="tagline"></p>
@@ -265,8 +318,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺275</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺275</div>
             <img src="https://ph-files.imgix.net/e402b5fc-9dec-4a87-a855-6bb4bb412e95.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Flowbite WYSIWYG" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/flowbite-wysiwyg?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Flowbite WYSIWYG</a></h2>
             <p class="tagline">使用Tailwind CSS的开源文本编辑器</p>
@@ -277,8 +330,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺261</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺261</div>
             <img src="https://ph-files.imgix.net/52bbeb68-fe81-4933-b87d-1b5d0f710212.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Fillout 2.0" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/fillout-2-0?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Fillout 2.0</a></h2>
             <p class="tagline">一体化表单、日程安排、支付和工作流程</p>
@@ -289,8 +342,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺208</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺208</div>
             <img src="https://ph-files.imgix.net/077943d2-871a-41cb-83cf-3e36b5d86cce.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="UI Builder for shadcn/ui" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/ui-builder-for-shadcn-ui?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">UI Builder for shadcn/ui</a></h2>
             <p class="tagline">用于通过视觉方式创建用户界面的 React 组件</p>
@@ -301,8 +354,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺170</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺170</div>
             <img src="https://ph-files.imgix.net/0c52bfd6-5b0e-4d29-b616-3c98b84939c0.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Planly 2.0" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/planly-2-0?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Planly 2.0</a></h2>
             <p class="tagline">社交媒体管理工具</p>
@@ -315,12 +368,12 @@
             </div>
         </div>
         
-        <div class="scroll-container">
+        <div class="scroll-container" data-row="1">
             <div class="scroll-row" style="animation-direction: reverse;">
                 
     <div class="card">
-        <div class="votes-badge">🔺145</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺145</div>
             <img src="https://ph-files.imgix.net/3e87a8ae-dd6a-4287-a156-c079a048393f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Augment UI" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/augment-ui?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Augment UI</a></h2>
             <p class="tagline">使用人工智能来原型化前端设计</p>
@@ -331,8 +384,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺122</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺122</div>
             <img src="https://ph-files.imgix.net/9746975c-b83e-461d-aea7-a8d8ace179ba.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Fuselio " class="product-image">
             <h2><a href="https://www.producthunt.com/posts/fuselio?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Fuselio </a></h2>
             <p class="tagline">在6周内打造你的最简可行产品（MVP）</p>
@@ -343,8 +396,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺120</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺120</div>
             <img src="https://ph-files.imgix.net/88aa1519-8001-4869-a3fb-14817ec919fa.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AskSpot.ai" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/askspot-ai?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">AskSpot.ai</a></h2>
             <p class="tagline">创建自定义人工智能助手——无需编程。</p>
@@ -355,8 +408,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺107</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺107</div>
             <img src="https://ph-files.imgix.net/f6c72076-0d23-4f51-a300-84ffc8f333c3.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="GoodsFox Fashion" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/goodsfox-fashion?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">GoodsFox Fashion</a></h2>
             <p class="tagline"></p>
@@ -367,8 +420,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺101</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺101</div>
             <img src="https://ph-files.imgix.net/06a64eeb-a8cb-4c0b-8eec-2ad6bd165d07.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Video Production Planner" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/video-production-planner?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Video Production Planner</a></h2>
             <p class="tagline"></p>
@@ -379,8 +432,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺100</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺100</div>
             <img src="https://ph-files.imgix.net/f55034d1-5dc1-4607-87e0-e7de34b705b1.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Stride" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/stride-6?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Stride</a></h2>
             <p class="tagline">Easy engineering calculations</p>
@@ -391,8 +444,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺145</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺145</div>
             <img src="https://ph-files.imgix.net/3e87a8ae-dd6a-4287-a156-c079a048393f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Augment UI" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/augment-ui?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Augment UI</a></h2>
             <p class="tagline">使用人工智能来原型化前端设计</p>
@@ -403,8 +456,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺122</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺122</div>
             <img src="https://ph-files.imgix.net/9746975c-b83e-461d-aea7-a8d8ace179ba.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Fuselio " class="product-image">
             <h2><a href="https://www.producthunt.com/posts/fuselio?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Fuselio </a></h2>
             <p class="tagline">在6周内打造你的最简可行产品（MVP）</p>
@@ -415,8 +468,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺120</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺120</div>
             <img src="https://ph-files.imgix.net/88aa1519-8001-4869-a3fb-14817ec919fa.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AskSpot.ai" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/askspot-ai?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">AskSpot.ai</a></h2>
             <p class="tagline">创建自定义人工智能助手——无需编程。</p>
@@ -427,8 +480,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺107</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺107</div>
             <img src="https://ph-files.imgix.net/f6c72076-0d23-4f51-a300-84ffc8f333c3.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="GoodsFox Fashion" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/goodsfox-fashion?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">GoodsFox Fashion</a></h2>
             <p class="tagline"></p>
@@ -439,8 +492,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺101</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺101</div>
             <img src="https://ph-files.imgix.net/06a64eeb-a8cb-4c0b-8eec-2ad6bd165d07.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Video Production Planner" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/video-production-planner?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Video Production Planner</a></h2>
             <p class="tagline"></p>
@@ -451,8 +504,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺100</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺100</div>
             <img src="https://ph-files.imgix.net/f55034d1-5dc1-4607-87e0-e7de34b705b1.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Stride" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/stride-6?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Stride</a></h2>
             <p class="tagline">Easy engineering calculations</p>
@@ -465,12 +518,12 @@
             </div>
         </div>
         
-        <div class="scroll-container">
+        <div class="scroll-container" data-row="2">
             <div class="scroll-row" style="animation-direction: normal;">
                 
     <div class="card">
-        <div class="votes-badge">🔺99</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺99</div>
             <img src="https://ph-files.imgix.net/d10a2c78-477a-4edf-9bad-92cf1b58dfdc.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Talespinner" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/talespinner?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Talespinner</a></h2>
             <p class="tagline">AI assisted story writing with complete control</p>
@@ -481,8 +534,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺88</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺88</div>
             <img src="https://ph-files.imgix.net/568bc5ab-94c3-4275-b23b-96618de84623.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Reimbursable" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/reimbursable?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Reimbursable</a></h2>
             <p class="tagline">Effortless HSA reimbursement tracking</p>
@@ -493,8 +546,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺78</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺78</div>
             <img src="https://ph-files.imgix.net/a648dbb3-8be7-47f8-9a31-7df5927db5bd.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AiQArt by LockChain" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/aiqart-by-lockchain?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">AiQArt by LockChain</a></h2>
             <p class="tagline">Generate AI art QR codes</p>
@@ -505,8 +558,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺72</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺72</div>
             <img src="https://ph-files.imgix.net/a02cb4ad-0af3-4665-aac8-3a41c6fc269f.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Writers Copilot" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/writers-copilot?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Writers Copilot</a></h2>
             <p class="tagline">Transform your writing with smart, instant edits</p>
@@ -517,8 +570,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺72</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺72</div>
             <img src="https://ph-files.imgix.net/45c431ce-166a-49d7-8707-a3a5db5318a8.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="LockBridge" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/lockbridge?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">LockBridge</a></h2>
             <p class="tagline">Secure and seamless file transfer with zero-trust encryption</p>
@@ -529,8 +582,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺69</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺69</div>
             <img src="https://ph-files.imgix.net/25b816bc-3844-4e25-810c-0f527c9f4864.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Invoice Matchpoint by .dodocs.AI" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/invoice-matchpoint-by-dodocs-ai?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Invoice Matchpoint by .dodocs.AI</a></h2>
             <p class="tagline">80/20 - focus on added value tasks, keep the rest for dodocs</p>
@@ -541,8 +594,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺99</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺99</div>
             <img src="https://ph-files.imgix.net/d10a2c78-477a-4edf-9bad-92cf1b58dfdc.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Talespinner" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/talespinner?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Talespinner</a></h2>
             <p class="tagline">AI assisted story writing with complete control</p>
@@ -553,8 +606,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺88</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺88</div>
             <img src="https://ph-files.imgix.net/568bc5ab-94c3-4275-b23b-96618de84623.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Reimbursable" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/reimbursable?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Reimbursable</a></h2>
             <p class="tagline">Effortless HSA reimbursement tracking</p>
@@ -565,8 +618,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺78</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺78</div>
             <img src="https://ph-files.imgix.net/a648dbb3-8be7-47f8-9a31-7df5927db5bd.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AiQArt by LockChain" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/aiqart-by-lockchain?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">AiQArt by LockChain</a></h2>
             <p class="tagline">Generate AI art QR codes</p>
@@ -577,8 +630,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺72</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺72</div>
             <img src="https://ph-files.imgix.net/a02cb4ad-0af3-4665-aac8-3a41c6fc269f.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Writers Copilot" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/writers-copilot?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Writers Copilot</a></h2>
             <p class="tagline">Transform your writing with smart, instant edits</p>
@@ -589,8 +642,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺72</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺72</div>
             <img src="https://ph-files.imgix.net/45c431ce-166a-49d7-8707-a3a5db5318a8.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="LockBridge" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/lockbridge?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">LockBridge</a></h2>
             <p class="tagline">Secure and seamless file transfer with zero-trust encryption</p>
@@ -601,8 +654,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺69</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺69</div>
             <img src="https://ph-files.imgix.net/25b816bc-3844-4e25-810c-0f527c9f4864.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Invoice Matchpoint by .dodocs.AI" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/invoice-matchpoint-by-dodocs-ai?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Invoice Matchpoint by .dodocs.AI</a></h2>
             <p class="tagline">80/20 - focus on added value tasks, keep the rest for dodocs</p>
@@ -615,12 +668,12 @@
             </div>
         </div>
         
-        <div class="scroll-container">
+        <div class="scroll-container" data-row="3">
             <div class="scroll-row" style="animation-direction: reverse;">
                 
     <div class="card">
-        <div class="votes-badge">🔺49</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺49</div>
             <img src="https://ph-files.imgix.net/b157197b-69e6-4159-899c-276f88e62844.gif?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Backlink Status Checker" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/backlink-status-checker?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Backlink Status Checker</a></h2>
             <p class="tagline">One-Click Backlink Status Check – Fast and Easy</p>
@@ -631,8 +684,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺44</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺44</div>
             <img src="https://ph-files.imgix.net/e9a2d8ba-3f9c-4ac0-a12e-9de9e5a5499e.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="sphere" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/sphere-cda81d65-aab8-476c-bcf0-e1f0840b1efd?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">sphere</a></h2>
             <p class="tagline">AI-powered knowledge management platform for colleges.</p>
@@ -643,8 +696,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺35</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺35</div>
             <img src="https://ph-files.imgix.net/187546eb-9798-4fd9-ac58-862eb229fc2e.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="WbizTool - Personal Whatsapp API" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/wbiztool-personal-whatsapp-api?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">WbizTool - Personal Whatsapp API</a></h2>
             <p class="tagline">Automate your whatsapp messages</p>
@@ -655,8 +708,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺17</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺17</div>
             <img src="https://ph-files.imgix.net/3d06d8c1-db9e-4fc6-9057-5c3fa12cdc03.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Doc Insight" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/doc-insight?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Doc Insight</a></h2>
             <p class="tagline">Empower ChatGPT: Enhanced Doc Q&A and Academic Reading</p>
@@ -667,8 +720,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺16</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺16</div>
             <img src="https://ph-files.imgix.net/acabf374-8bcc-489e-bd28-cbf7daecd622.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="X Bot Remover" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/x-bot-remover?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">X Bot Remover</a></h2>
             <p class="tagline">Remove suspected bots from your X account.</p>
@@ -679,8 +732,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺13</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺13</div>
             <img src="https://ph-files.imgix.net/75e14d59-8d06-469a-9b61-44c08f0de0ea.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Color Explorer" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/color-explorer?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Color Explorer</a></h2>
             <p class="tagline">Tap into unlimited inspiration!</p>
@@ -691,8 +744,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺49</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺49</div>
             <img src="https://ph-files.imgix.net/b157197b-69e6-4159-899c-276f88e62844.gif?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Backlink Status Checker" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/backlink-status-checker?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Backlink Status Checker</a></h2>
             <p class="tagline">One-Click Backlink Status Check – Fast and Easy</p>
@@ -703,8 +756,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺44</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺44</div>
             <img src="https://ph-files.imgix.net/e9a2d8ba-3f9c-4ac0-a12e-9de9e5a5499e.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="sphere" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/sphere-cda81d65-aab8-476c-bcf0-e1f0840b1efd?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">sphere</a></h2>
             <p class="tagline">AI-powered knowledge management platform for colleges.</p>
@@ -715,8 +768,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺35</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺35</div>
             <img src="https://ph-files.imgix.net/187546eb-9798-4fd9-ac58-862eb229fc2e.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="WbizTool - Personal Whatsapp API" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/wbiztool-personal-whatsapp-api?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">WbizTool - Personal Whatsapp API</a></h2>
             <p class="tagline">Automate your whatsapp messages</p>
@@ -727,8 +780,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺17</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺17</div>
             <img src="https://ph-files.imgix.net/3d06d8c1-db9e-4fc6-9057-5c3fa12cdc03.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Doc Insight" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/doc-insight?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Doc Insight</a></h2>
             <p class="tagline">Empower ChatGPT: Enhanced Doc Q&A and Academic Reading</p>
@@ -739,8 +792,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺16</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺16</div>
             <img src="https://ph-files.imgix.net/acabf374-8bcc-489e-bd28-cbf7daecd622.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="X Bot Remover" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/x-bot-remover?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">X Bot Remover</a></h2>
             <p class="tagline">Remove suspected bots from your X account.</p>
@@ -751,8 +804,8 @@
     </div>
     
     <div class="card">
-        <div class="votes-badge">🔺13</div>
         <div class="card-inner">
+            <div class="votes-badge">🔺13</div>
             <img src="https://ph-files.imgix.net/75e14d59-8d06-469a-9b61-44c08f0de0ea.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Color Explorer" class="product-image">
             <h2><a href="https://www.producthunt.com/posts/color-explorer?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Color Explorer</a></h2>
             <p class="tagline">Tap into unlimited inspiration!</p>
@@ -765,43 +818,110 @@
             </div>
         </div>
         
+            </div>
         </div>
         <footer>
-            <p>&copy; 2024 Made by Lark. All rights reserved.</p>
+            <p>&copy; 2024 Product Hunt Daily Hot. All rights reserved.</p>
         </footer>
         <script>
             const robot = document.getElementById('robot');
             const container = document.querySelector('.title-container');
-            let direction = 1;
-            let position = -30;
-            let isJumping = false;
+            let x = 0;
+            let y = 0;
+            let vx = 0;
+            let vy = 0;
+            const maxSpeed = 8;  // 增加最大速度
+            const acceleration = 0.8;  // 增加加速度
+            const deceleration = 0.98;
+            const avoidanceDistance = 100;
 
-            function moveRobot() {
-                if (!isJumping) {
-                    position += direction * 2;
-                    if (position > container.offsetWidth - 30 || position < -30) {
-                        direction *= -1;
-                        robot.style.transform = `scaleX(${direction})`;
-                    }
-                    robot.style.left = `${position}px`;
+            function updateRobotPosition() {
+                const rect = container.getBoundingClientRect();
+                
+                // 随机运动
+                if (Math.random() < 0.05) {  // 增加改变方向的概率
+                    vx += (Math.random() - 0.5) * acceleration * 2;  // 增加随机运动的力度
+                    vy += (Math.random() - 0.5) * acceleration * 2;
                 }
 
-                if (Math.random() < 0.005 && !isJumping) {  // 0.5% 概率开始跳跃
-                    isJumping = true;
-                    robot.style.animation = 'float 1s ease-in-out';
-                    setTimeout(() => {
-                        isJumping = false;
-                        robot.style.animation = 'none';
-                    }, 1000);
+                x += vx;
+                y += vy;
+
+                // 边界检查
+                if (x < 0) { x = 0; vx = -vx * 0.8; }
+                if (x > rect.width - 60) { x = rect.width - 60; vx = -vx * 0.8; }
+                if (y < 0) { y = 0; vy = -vy * 0.8; }
+                if (y > rect.height - 60) { y = rect.height - 60; vy = -vy * 0.8; }
+
+                // 应用减速
+                vx *= deceleration;
+                vy *= deceleration;
+
+                // 限制最大速度
+                const speed = Math.sqrt(vx * vx + vy * vy);
+                if (speed > maxSpeed) {
+                    vx = (vx / speed) * maxSpeed;
+                    vy = (vy / speed) * maxSpeed;
                 }
 
-                requestAnimationFrame(moveRobot);
+                robot.style.left = `${x}px`;
+                robot.style.top = `${y}px`;
+
+                requestAnimationFrame(updateRobotPosition);
             }
 
-            robot.style.left = '-30px';
-            robot.style.top = '50%';
-            robot.style.transform = 'translateY(-50%)';
-            moveRobot();
+            function avoidMouse(e) {
+                const rect = container.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+
+                const dx = x + 30 - mouseX;
+                const dy = y + 30 - mouseY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < avoidanceDistance) {
+                    const angle = Math.atan2(dy, dx);
+                    const force = (avoidanceDistance - distance) / avoidanceDistance;
+
+                    vx += Math.cos(angle) * force * acceleration * 3;  // 增加躲避力度
+                    vy += Math.sin(angle) * force * acceleration * 3;
+                }
+            }
+
+            container.addEventListener('mousemove', avoidMouse);
+            updateRobotPosition();
+
+            // 修改卡片交互脚本
+            document.querySelectorAll('.scroll-container').forEach(container => {
+                let isDragging = false;
+                let startX;
+                let scrollLeft;
+
+                container.addEventListener('mousedown', (e) => {
+                    isDragging = true;
+                    startX = e.pageX - container.offsetLeft;
+                    scrollLeft = container.scrollLeft;
+                    container.style.cursor = 'grabbing';
+                });
+
+                container.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();  // 防止默认的拖动行为
+                    const x = e.pageX - container.offsetLeft;
+                    const walk = (x - startX) * 2;
+                    container.scrollLeft = scrollLeft - walk;
+                });
+
+                container.addEventListener('mouseup', () => {
+                    isDragging = false;
+                    container.style.cursor = 'grab';
+                });
+
+                container.addEventListener('mouseleave', () => {
+                    isDragging = false;
+                    container.style.cursor = 'grab';
+                });
+            });
         </script>
     </body>
     </html>

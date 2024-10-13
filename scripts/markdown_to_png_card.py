@@ -2,6 +2,7 @@ import re
 from bs4 import BeautifulSoup
 import markdown
 import os
+import sys
 from datetime import datetime
 import random
 
@@ -54,8 +55,8 @@ def parse_product_hunt_items(markdown_content):
 def create_html_card(product):
     card_html = f"""
     <div class="card">
-        <div class="votes-badge">{product['votes']}</div>
         <div class="card-inner">
+            <div class="votes-badge">{product['votes']}</div>
             <img src="{product['image']}" alt="{product['name']}" class="product-image">
             <h2><a href="{product['url']}" target="_blank">{product['name']}</a></h2>
             <p class="tagline">{product['tagline']}</p>
@@ -84,7 +85,7 @@ def create_html_page(products, date):
     for i, row in enumerate(rows):
         direction = "normal" if i % 2 == 0 else "reverse"
         cards_html += f"""
-        <div class="scroll-container">
+        <div class="scroll-container" data-row="{i}">
             <div class="scroll-row" style="animation-direction: {direction};">
                 {''.join([create_html_card(product) for product in row * 2])}
             </div>
@@ -97,8 +98,8 @@ def create_html_page(products, date):
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Product Hunt 每日热榜 | {date}</title>
-        <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600&display=swap" rel="stylesheet">
+        <title>PH每日热榜 | {date}</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
         <style>
             :root {{
                 --background-color: #f7f7f7;
@@ -108,7 +109,7 @@ def create_html_page(products, date):
                 --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             }}
             body {{
-                font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+                font-family: 'Poppins', sans-serif;
                 background-color: var(--background-color);
                 color: var(--text-color);
                 margin: 0;
@@ -116,38 +117,89 @@ def create_html_page(products, date):
                 line-height: 1.4;
                 overflow-x: hidden;
             }}
-            .container {{
-                max-width: 100%;
-                margin: 0 auto;
-                padding: 2rem 0;
-            }}
             header {{
-                text-align: center;
-                margin-bottom: 2rem;
+                background-color: #ffffff;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+                padding: 0.5rem 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
             }}
-            h1 {{
-                font-size: 48px;
+            .brand h1 {{
+                font-size: 18px;
+                margin: 0;
                 font-weight: 600;
-                margin-bottom: 0.5rem;
+            }}
+            nav ul {{
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+            }}
+            nav ul li {{
+                margin-left: 1.5rem;
+            }}
+            nav ul li a {{
+                text-decoration: none;
+                color: var(--text-color);
+                font-size: 16px;
+                font-weight: 400;
+            }}
+            .main-content {{
+                padding: 1rem 2rem;  /* 减少上下padding */
+            }}
+            .title-container {{
+                text-align: center;
+                position: relative;
+                padding: 10px 0;  /* 减少上下padding */
+                margin-bottom: 1rem;  /* 减少底部margin */
+            }}
+            .title-container h1 {{
+                font-size: 36px;
+                margin: 0 0 10px 0;  /* 减少底部margin */
+            }}
+            .blue-line {{
+                width: 50px;
+                height: 3px;
+                background-color: #0066cc;
+                margin: 10px auto;
+                animation: pulse 2s infinite;
+            }}
+            @keyframes pulse {{
+                0% {{ transform: scaleX(1); }}
+                50% {{ transform: scaleX(1.5); }}
+                100% {{ transform: scaleX(1); }}
             }}
             .date {{
                 font-size: 18px;
                 color: #666;
+                text-align: center;
+                margin-bottom: 1rem;  /* 减少底部margin */
+            }}
+            .robot {{
+                position: absolute;
+                font-size: 36px;
+                transition: all 0.2s ease;
+                user-select: none;
             }}
             .scroll-container {{
                 overflow: hidden;
                 margin-bottom: 2rem;
+                cursor: grab;
+                user-select: none;
             }}
             .scroll-row {{
                 display: flex;
                 animation: scroll 30s linear infinite;
-                width: 200%; /* 显示8个卡片的宽度 */
+                width: 200%;
+                user-select: none;
             }}
             .card {{
-                flex: 0 0 12.5%;
-                max-width: 12.5%;
-                padding: 1rem;
+                flex: 0 0 16.666%;
+                max-width: 16.666%;
+                padding: 0.5rem;
                 box-sizing: border-box;
+                user-select: none;
                 position: relative;
             }}
             .card-inner {{
@@ -211,17 +263,6 @@ def create_html_page(products, date):
                     transform: translateX(-50%);
                 }}
             }}
-            .title-container {{
-                position: relative;
-                display: inline-block;
-                overflow: hidden;
-                padding: 0 30px;
-            }}
-            .robot {{
-                position: absolute;
-                font-size: 24px;
-                transition: all 0.5s ease;
-            }}
             @keyframes float {{
                 0%, 100% {{ transform: translateY(0); }}
                 50% {{ transform: translateY(-10px); }}
@@ -236,8 +277,8 @@ def create_html_page(products, date):
             }}
             .votes-badge {{
                 position: absolute;
-                top: 0.5rem;
-                left: 0.5rem;
+                top: 1rem;
+                left: 1rem;
                 background-color: rgba(0, 0, 0, 0.6);
                 color: white;
                 padding: 0.25rem 0.5rem;
@@ -246,55 +287,135 @@ def create_html_page(products, date):
                 font-weight: bold;
                 z-index: 1;
             }}
+            .scroll-container:hover .scroll-row {{
+                animation-play-state: paused;
+            }}
         </style>
     </head>
     <body>
+        <header>
+            <div class="brand">
+                <h1>Product Hunt Daily Hot</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">关于我</a></li>
+                    <li><a href="#contact">联系</a></li>
+                </ul>
+            </nav>
+        </header>
         <div class="container">
-            <header>
+            <div class="main-content">
                 <div class="title-container">
-                    <h1>Product Hunt 每日热榜</h1>
-                    <span class="robot" id="robot">🤖</span>
+                    <h1>Product Hunt 每日热榜 <span id="robot" class="robot">🤖</span></h1>
+                    <div class="blue-line"></div>
+                    <div class="date">{date}</div>
                 </div>
-                <div class="date">{date}</div>
-            </header>
-            {cards_html}
+                {cards_html}
+            </div>
         </div>
         <footer>
-            <p>&copy; 2024 Made by Lark. All rights reserved.</p>
+            <p>&copy; {datetime.now().year} Product Hunt Daily Hot. All rights reserved.</p>
         </footer>
         <script>
             const robot = document.getElementById('robot');
             const container = document.querySelector('.title-container');
-            let direction = 1;
-            let position = -30;
-            let isJumping = false;
+            let x = 0;
+            let y = 0;
+            let vx = 0;
+            let vy = 0;
+            const maxSpeed = 8;  // 增加最大速度
+            const acceleration = 0.8;  // 增加加速度
+            const deceleration = 0.98;
+            const avoidanceDistance = 100;
 
-            function moveRobot() {{
-                if (!isJumping) {{
-                    position += direction * 2;
-                    if (position > container.offsetWidth - 30 || position < -30) {{
-                        direction *= -1;
-                        robot.style.transform = `scaleX(${{direction}})`;
-                    }}
-                    robot.style.left = `${{position}}px`;
+            function updateRobotPosition() {{
+                const rect = container.getBoundingClientRect();
+                
+                // 随机运动
+                if (Math.random() < 0.05) {{  // 增加改变方向的概率
+                    vx += (Math.random() - 0.5) * acceleration * 2;  // 增加随机运动的力度
+                    vy += (Math.random() - 0.5) * acceleration * 2;
                 }}
 
-                if (Math.random() < 0.005 && !isJumping) {{  // 0.5% 概率开始跳跃
-                    isJumping = true;
-                    robot.style.animation = 'float 1s ease-in-out';
-                    setTimeout(() => {{
-                        isJumping = false;
-                        robot.style.animation = 'none';
-                    }}, 1000);
+                x += vx;
+                y += vy;
+
+                // 边界检查
+                if (x < 0) {{ x = 0; vx = -vx * 0.8; }}
+                if (x > rect.width - 60) {{ x = rect.width - 60; vx = -vx * 0.8; }}
+                if (y < 0) {{ y = 0; vy = -vy * 0.8; }}
+                if (y > rect.height - 60) {{ y = rect.height - 60; vy = -vy * 0.8; }}
+
+                // 应用减速
+                vx *= deceleration;
+                vy *= deceleration;
+
+                // 限制最大速度
+                const speed = Math.sqrt(vx * vx + vy * vy);
+                if (speed > maxSpeed) {{
+                    vx = (vx / speed) * maxSpeed;
+                    vy = (vy / speed) * maxSpeed;
                 }}
 
-                requestAnimationFrame(moveRobot);
+                robot.style.left = `${{x}}px`;
+                robot.style.top = `${{y}}px`;
+
+                requestAnimationFrame(updateRobotPosition);
             }}
 
-            robot.style.left = '-30px';
-            robot.style.top = '50%';
-            robot.style.transform = 'translateY(-50%)';
-            moveRobot();
+            function avoidMouse(e) {{
+                const rect = container.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+
+                const dx = x + 30 - mouseX;
+                const dy = y + 30 - mouseY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < avoidanceDistance) {{
+                    const angle = Math.atan2(dy, dx);
+                    const force = (avoidanceDistance - distance) / avoidanceDistance;
+
+                    vx += Math.cos(angle) * force * acceleration * 3;  // 增加躲避力度
+                    vy += Math.sin(angle) * force * acceleration * 3;
+                }}
+            }}
+
+            container.addEventListener('mousemove', avoidMouse);
+            updateRobotPosition();
+
+            // 修改卡片交互脚本
+            document.querySelectorAll('.scroll-container').forEach(container => {{
+                let isDragging = false;
+                let startX;
+                let scrollLeft;
+
+                container.addEventListener('mousedown', (e) => {{
+                    isDragging = true;
+                    startX = e.pageX - container.offsetLeft;
+                    scrollLeft = container.scrollLeft;
+                    container.style.cursor = 'grabbing';
+                }});
+
+                container.addEventListener('mousemove', (e) => {{
+                    if (!isDragging) return;
+                    e.preventDefault();  // 防止默认的拖动行为
+                    const x = e.pageX - container.offsetLeft;
+                    const walk = (x - startX) * 2;
+                    container.scrollLeft = scrollLeft - walk;
+                }});
+
+                container.addEventListener('mouseup', () => {{
+                    isDragging = false;
+                    container.style.cursor = 'grab';
+                }});
+
+                container.addEventListener('mouseleave', () => {{
+                    isDragging = false;
+                    container.style.cursor = 'grab';
+                }});
+            }});
         </script>
     </body>
     </html>
@@ -302,17 +423,27 @@ def create_html_page(products, date):
     return html
 
 def main():
-    # 获取最新的markdown文件
-    data_dir = 'data'
+    # 获取脚本所在的目录
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    # 获取项目根目录（假设脚本在 scripts 文件夹中）
+    project_root = os.path.dirname(script_dir)
+    # 设置 data 目录的路径
+    data_dir = os.path.join(project_root, 'data')
+    
+    # 确保 data 目录存在
+    if not os.path.exists(data_dir):
+        print(f"错误：找不到 data 目录：{data_dir}")
+        sys.exit(1)
+
+    # 获取最新的 markdown 文件
     markdown_files = [f for f in os.listdir(data_dir) if f.endswith('.md')]
     if not markdown_files:
-        print("Error: No Markdown files found in the data directory.")
-        return
+        print("错误：在 data 目录中没有找到 Markdown 文件。")
+        sys.exit(1)
     
     # 根据文件名中的日期排序，选择最新的文件
     latest_file = max(markdown_files, key=lambda x: datetime.strptime(re.search(r'(\d{4}-\d{2}-\d{2})', x).group(1), '%Y-%m-%d'))
     markdown_path = os.path.join(data_dir, latest_file)
-    #print(f"Reading file: {markdown_path}")
 
     # 从文件名中提取日期
     file_date = re.search(r'(\d{4}-\d{2}-\d{2})', latest_file)
@@ -320,12 +451,10 @@ def main():
         file_date = file_date.group(1)
     else:
         file_date = datetime.now().strftime('%Y-%m-%d')
-        #print(f"Warning: Could not extract date from filename. Using current date: {file_date}")
 
     # 读取markdown内容
     markdown_content = read_markdown_file(markdown_path)
     if markdown_content is None:
-        #print("Error: Failed to read Markdown content. Exiting.")
         return
 
     # 解析Product Hunt项目
@@ -338,10 +467,10 @@ def main():
     # 创建HTML页面
     html_content = create_html_page(products, file_date)
 
-    # 保存HTML文件
-    output_dir = 'output'
-    os.makedirs(output_dir, exist_ok=True)
-    output_path = os.path.join(output_dir, f'producthunt_daily_{file_date}.html')
+    # 创建并保存HTML文件到 website_daily 文件夹
+    website_daily_dir = os.path.join(project_root, 'website_daily')
+    os.makedirs(website_daily_dir, exist_ok=True)
+    output_path = os.path.join(website_daily_dir, f'producthunt_daily_{file_date}.html')
     with open(output_path, 'w', encoding='utf-8') as file:
         file.write(html_content)
 
