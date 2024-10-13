@@ -1,4 +1,4 @@
-name: Generate Daily HTML
+name: Generate Daily HTML and Push to Website Repo
 
 on:
   workflow_run:
@@ -38,3 +38,24 @@ jobs:
     - name: Push changes
       run: |
         git push --force https://${{ secrets.PAT }}@github.com/${{ github.repository_owner }}/producthunt-daily-hot.git HEAD:main
+
+    - name: Checkout website repository
+      uses: actions/checkout@v3
+      with:
+        repository: Larkspur-Wang/Daily_Hot_Website
+        path: website
+        token: ${{ secrets.PAT }}
+
+    - name: Copy HTML to website repository
+      run: |
+        cp website_daily/*.html website/
+        cp website_daily/feed.xml website/
+
+    - name: Commit and push to website repository
+      run: |
+        cd website
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add .
+        git commit -m "Update daily Product Hunt content"
+        git push
