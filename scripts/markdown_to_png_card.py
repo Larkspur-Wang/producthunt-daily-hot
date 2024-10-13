@@ -76,7 +76,6 @@ def generate_rainbow_colors(num_colors=7):
     return [f"hsl({i * 360 / num_colors}, 100%, 50%)" for i in range(num_colors)]
 
 def create_html_page(products, date):
-    products = products[:24]  # 确保只使用前24个产品
     rows = [products[i:i+6] for i in range(0, len(products), 6)]
     
     cards_html = ""
@@ -85,7 +84,7 @@ def create_html_page(products, date):
         cards_html += f"""
         <div class="scroll-container" data-row="{i}">
             <div class="scroll-row" style="animation-direction: {direction};">
-                {''.join([create_html_card(product) for product in row * 2])}
+                {''.join([create_html_card(product) for product in row * 8])}
             </div>
         </div>
         """
@@ -96,7 +95,7 @@ def create_html_page(products, date):
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>PH每日热榜 | {date}</title>
+        <title>Daily Hot | {date}</title>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
         <style>
             :root {{
@@ -124,9 +123,10 @@ def create_html_page(products, date):
                 align-items: center;
             }}
             .brand h1 {{
-                font-size: 18px;
-                margin: 0;
+                font-size: 24px;
                 font-weight: 600;
+                color: #333;
+                margin: 0;
             }}
             nav ul {{
                 list-style-type: none;
@@ -153,8 +153,10 @@ def create_html_page(products, date):
                 margin-bottom: 1rem;  /* 减少底部margin */
             }}
             .title-container h1 {{
-                font-size: 36px;
-                margin: 0 0 10px 0;  /* 减少底部margin */
+                font-size: 48px;  /* 增加页面标题的字体大小 */
+                margin: 0 0 10px 0;
+                font-weight: 700;  /* 加粗字体 */
+                color: #333;  /* 深色字体，提高可读性 */
             }}
             .blue-line {{
                 width: 50px;
@@ -183,22 +185,20 @@ def create_html_page(products, date):
             .scroll-container {{
                 overflow: hidden;
                 margin-bottom: 2rem;
-                cursor: grab;
-                user-select: none;
+                width: 100%;
             }}
             .scroll-row {{
                 display: flex;
-                animation: scroll 30s linear infinite;
-                width: 200%;
-                user-select: none;
+                animation: scroll 180s linear infinite;  /* 增加动画时间以减慢速度 */
+                width: 800%;
             }}
             .card {{
-                flex: 0 0 16.666%;
-                max-width: 16.666%;
-                padding: 1rem 0.5rem 0.5rem;
+                flex: 0 0 4.166%;  /* 100% / 24, 使卡片宽度约为4% */
+                max-width: 4.166%;
+                padding: 0.5rem;
                 box-sizing: border-box;
-                user-select: none;
                 position: relative;
+                margin-top: 1rem;  /* 为票数标签留出空间 */
             }}
             .card-inner {{
                 background-color: var(--card-background);
@@ -208,14 +208,15 @@ def create_html_page(products, date):
                 height: 100%;
                 display: flex;
                 flex-direction: column;
+                position: relative;  /* 确保内容不会被票数标签遮挡 */
             }}
             .product-image {{
                 width: 100%;
-                height: 150px;
+                height: 180px;
                 object-fit: cover;
             }}
             h2 {{
-                font-size: 18px;
+                font-size: 16px;  /* 调整标题字体大小 */
                 font-weight: 600;
                 margin: 0.5rem 0;
                 padding: 0 1rem;
@@ -248,22 +249,19 @@ def create_html_page(products, date):
                 display: -webkit-box;
                 -webkit-line-clamp: 3;
                 -webkit-box-orient: vertical;
+                font-size: 12px;  /* 调整文字大小 */
             }}
             .votes {{
                 font-weight: 600;
                 color: var(--accent-color);
             }}
             .keywords, .time {{
-                font-size: 12px;
+                font-size: 10px;  /* 调整关键词字体大小 */
                 color: #888;
             }}
             @keyframes scroll {{
-                0% {{
-                    transform: translateX(0);
-                }}
-                100% {{
-                    transform: translateX(-50%);
-                }}
+                0% {{ transform: translateX(0); }}
+                100% {{ transform: translateX(-87.5%); }}  /* -7/8 of the total width */
             }}
             @keyframes float {{
                 0%, 100% {{ transform: translateY(0); }}
@@ -277,9 +275,12 @@ def create_html_page(products, date):
                 font-size: 14px;
                 margin-top: 2rem;
             }}
+            footer p {{
+                margin: 0;
+            }}
             .votes-badge {{
                 position: absolute;
-                top: 0;
+                top: -0.5rem;  /* 调整位置，使其与卡片有约1/3重叠 */
                 left: 0.5rem;
                 background-color: rgba(0, 0, 0, 0.7);
                 color: white;
@@ -287,8 +288,7 @@ def create_html_page(products, date):
                 border-radius: 12px;
                 font-size: 14px;
                 font-weight: bold;
-                z-index: 2;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                z-index: 2;  /* 确保票数标签在最上层 */
             }}
             .scroll-container:hover .scroll-row {{
                 animation-play-state: paused;
@@ -309,12 +309,19 @@ def create_html_page(products, date):
                 border-radius: 12px;
                 font-size: 12px;
             }}
+            
+            .scroll-container, .card, .card-inner, .card-inner * {{
+                user-select: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+            }}
         </style>
     </head>
     <body>
         <header>
             <div class="brand">
-                <h1>Product Hunt Daily Hot</h1>
+                <h1>Daily Hot</h1>
             </div>
             <nav>
                 <ul>
@@ -334,7 +341,7 @@ def create_html_page(products, date):
             </div>
         </div>
         <footer>
-            <p>&copy; {datetime.now().year} Product Hunt Daily Hot. All rights reserved.</p>
+            <p>&copy; {datetime.now().year} Daily Hot. All rights reserved. Made by Larkspur</p>
         </footer>
         <script>
             const robot = document.getElementById('robot');
@@ -451,7 +458,7 @@ def main():
     
     # 确保 data 目录存在
     if not os.path.exists(data_dir):
-        print(f"错误：找不到 data 目录：{data_dir}")
+        print(f"错：找不到 data 目录：{data_dir}")
         sys.exit(1)
 
     # 获取最新的 markdown 文件
@@ -460,7 +467,7 @@ def main():
         print("错误：在 data 目录中没有找到 Markdown 文件。")
         sys.exit(1)
     
-    # 根据文件���中的日期排序，选择最新的文件
+    # 根据文件中的日期排序，择最新的文件
     latest_file = max(markdown_files, key=lambda x: datetime.strptime(re.search(r'(\d{4}-\d{2}-\d{2})', x).group(1), '%Y-%m-%d'))
     markdown_path = os.path.join(data_dir, latest_file)
 

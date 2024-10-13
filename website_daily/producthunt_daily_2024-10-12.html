@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>PH每日热榜 | 2024-10-12</title>
+        <title>Daily Hot | 2024-10-12</title>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
         <style>
             :root {
@@ -32,9 +32,10 @@
                 align-items: center;
             }
             .brand h1 {
-                font-size: 18px;
-                margin: 0;
+                font-size: 24px;
                 font-weight: 600;
+                color: #333;
+                margin: 0;
             }
             nav ul {
                 list-style-type: none;
@@ -61,8 +62,10 @@
                 margin-bottom: 1rem;  /* 减少底部margin */
             }
             .title-container h1 {
-                font-size: 36px;
-                margin: 0 0 10px 0;  /* 减少底部margin */
+                font-size: 48px;  /* 增加页面标题的字体大小 */
+                margin: 0 0 10px 0;
+                font-weight: 700;  /* 加粗字体 */
+                color: #333;  /* 深色字体，提高可读性 */
             }
             .blue-line {
                 width: 50px;
@@ -91,22 +94,20 @@
             .scroll-container {
                 overflow: hidden;
                 margin-bottom: 2rem;
-                cursor: grab;
-                user-select: none;
+                width: 100%;
             }
             .scroll-row {
                 display: flex;
-                animation: scroll 30s linear infinite;
-                width: 200%;
-                user-select: none;
+                animation: scroll 180s linear infinite;  /* 增加动画时间以减慢速度 */
+                width: 800%;
             }
             .card {
-                flex: 0 0 16.666%;
-                max-width: 16.666%;
-                padding: 1rem 0.5rem 0.5rem;
+                flex: 0 0 4.166%;  /* 100% / 24, 使卡片宽度约为4% */
+                max-width: 4.166%;
+                padding: 0.5rem;
                 box-sizing: border-box;
-                user-select: none;
                 position: relative;
+                margin-top: 1rem;  /* 为票数标签留出空间 */
             }
             .card-inner {
                 background-color: var(--card-background);
@@ -116,14 +117,15 @@
                 height: 100%;
                 display: flex;
                 flex-direction: column;
+                position: relative;  /* 确保内容不会被票数标签遮挡 */
             }
             .product-image {
                 width: 100%;
-                height: 150px;
+                height: 180px;
                 object-fit: cover;
             }
             h2 {
-                font-size: 18px;
+                font-size: 16px;  /* 调整标题字体大小 */
                 font-weight: 600;
                 margin: 0.5rem 0;
                 padding: 0 1rem;
@@ -156,22 +158,19 @@
                 display: -webkit-box;
                 -webkit-line-clamp: 3;
                 -webkit-box-orient: vertical;
+                font-size: 12px;  /* 调整文字大小 */
             }
             .votes {
                 font-weight: 600;
                 color: var(--accent-color);
             }
             .keywords, .time {
-                font-size: 12px;
+                font-size: 10px;  /* 调整关键词字体大小 */
                 color: #888;
             }
             @keyframes scroll {
-                0% {
-                    transform: translateX(0);
-                }
-                100% {
-                    transform: translateX(-50%);
-                }
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-87.5%); }  /* -7/8 of the total width */
             }
             @keyframes float {
                 0%, 100% { transform: translateY(0); }
@@ -185,9 +184,12 @@
                 font-size: 14px;
                 margin-top: 2rem;
             }
+            footer p {
+                margin: 0;
+            }
             .votes-badge {
                 position: absolute;
-                top: 0;
+                top: -0.5rem;  /* 调整位置，使其与卡片有约1/3重叠 */
                 left: 0.5rem;
                 background-color: rgba(0, 0, 0, 0.7);
                 color: white;
@@ -195,8 +197,7 @@
                 border-radius: 12px;
                 font-size: 14px;
                 font-weight: bold;
-                z-index: 2;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                z-index: 2;  /* 确保票数标签在最上层 */
             }
             .scroll-container:hover .scroll-row {
                 animation-play-state: paused;
@@ -217,12 +218,19 @@
                 border-radius: 12px;
                 font-size: 12px;
             }
+            
+            .scroll-container, .card, .card-inner, .card-inner * {
+                user-select: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+            }
         </style>
     </head>
     <body>
         <header>
             <div class="brand">
-                <h1>Product Hunt Daily Hot</h1>
+                <h1>Daily Hot</h1>
             </div>
             <nav>
                 <ul>
@@ -242,6 +250,402 @@
         <div class="scroll-container" data-row="0">
             <div class="scroll-row" style="animation-direction: normal;">
                 
+    <div class="card">
+        <div class="votes-badge">🔺461</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/c4673116-82e1-41df-997d-8f62af7f977b.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Octomind QA Agent" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/octomind-qa-agent?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Octomind QA Agent</a></h2>
+            <p class="tagline">AI驱动的端到端测试</p>
+            <p class="description">这是一款由智能代理驱动的问答工具，无需你告知它就知道要测试什么。就像拥有一个专属的初级质量保证工程师，从零开始为你搭建测试，并运行这些测试来检查你的应用是否有Bug。你负责构建应用，我们负责确保它能正常运行。</p>
+            <div class="keywords">#AI测试工具,端到端自动化测试,智能软件测试,自动化QA解决方案</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺348</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/0c32facc-87e3-48c5-9c42-1045bd3fad09.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Generate Anything " class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/generate-anything?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Generate Anything </a></h2>
+            <p class="tagline">3D模型生成和动画制作平台</p>
+            <p class="description">Generate Anything 是一个一站式的3D模型生成和动画制作平台。只需几分钟，您就可以根据文字或图像提示创建人形生物和奇异生物，然后使用 Animate Anything 无缝地为您的创作赋予动画——所有这些都在一个地方完成。</p>
+            <div class="keywords">#AI模型生成 #3D动画制作 #人工智能动画 #自动生成模型</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺275</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/e402b5fc-9dec-4a87-a855-6bb4bb412e95.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Flowbite WYSIWYG" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/flowbite-wysiwyg?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Flowbite WYSIWYG</a></h2>
+            <p class="tagline">使用Tailwind CSS的开源文本编辑器</p>
+            <p class="description">使用 Flowbite 提供的所见即所得（wysiwyg）文本编辑器组件，通过编辑段落、标题、图片等，并应用所有可用的样式选项，轻松创建和修改内容。</p>
+            <div class="keywords">#open-source #WYSIWYG #text editor #Tailwind CSS</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺261</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/52bbeb68-fe81-4933-b87d-1b5d0f710212.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Fillout 2.0" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/fillout-2-0?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Fillout 2.0</a></h2>
+            <p class="tagline">一体化表单、日程安排、支付和工作流程</p>
+            <p class="description">Fillout是一个全能的表单构建工具。免费表单、日程安排、PDF生成、支付和工作流，一应俱全，集成于一款易于使用的产品中。</p>
+            <div class="keywords">#表单生成器 #在线表单创建 #表单支付和工作流 #一站式表单解决方案</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺208</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/077943d2-871a-41cb-83cf-3e36b5d86cce.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="UI Builder for shadcn/ui" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ui-builder-for-shadcn-ui?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">UI Builder for shadcn/ui</a></h2>
+            <p class="tagline">用于通过视觉方式创建用户界面的 React 组件</p>
+            <p class="description">UI生成器是一个开源的React组件，它提供了一种无需编码、通过可视化方式来创建界面的方法。它兼容shadcn和自定义组件，非常适合搭建诸如着陆页或营销邮件等界面。同时，它能轻松整合进shadcn/ui项目中。</p>
+            <div class="keywords">#无代码界面构建 #可视化界面设计 #React UI 组件 #界面快速搭建</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺170</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/0c52bfd6-5b0e-4d29-b616-3c98b84939c0.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Planly 2.0" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/planly-2-0?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Planly 2.0</a></h2>
+            <p class="tagline">社交媒体管理工具</p>
+            <p class="description">我们明白——你很忙。正因为如此，我们开发了一款功能强大且易于使用的社交媒体管理工具。来看看Planly如何帮助你在网上成长吧。</p>
+            <div class="keywords">#社交媒体管理工具 #社交媒体营销工具 #网络营销管理 #社交媒体在线管理</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺461</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/c4673116-82e1-41df-997d-8f62af7f977b.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Octomind QA Agent" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/octomind-qa-agent?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Octomind QA Agent</a></h2>
+            <p class="tagline">AI驱动的端到端测试</p>
+            <p class="description">这是一款由智能代理驱动的问答工具，无需你告知它就知道要测试什么。就像拥有一个专属的初级质量保证工程师，从零开始为你搭建测试，并运行这些测试来检查你的应用是否有Bug。你负责构建应用，我们负责确保它能正常运行。</p>
+            <div class="keywords">#AI测试工具,端到端自动化测试,智能软件测试,自动化QA解决方案</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺348</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/0c32facc-87e3-48c5-9c42-1045bd3fad09.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Generate Anything " class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/generate-anything?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Generate Anything </a></h2>
+            <p class="tagline">3D模型生成和动画制作平台</p>
+            <p class="description">Generate Anything 是一个一站式的3D模型生成和动画制作平台。只需几分钟，您就可以根据文字或图像提示创建人形生物和奇异生物，然后使用 Animate Anything 无缝地为您的创作赋予动画——所有这些都在一个地方完成。</p>
+            <div class="keywords">#AI模型生成 #3D动画制作 #人工智能动画 #自动生成模型</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺275</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/e402b5fc-9dec-4a87-a855-6bb4bb412e95.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Flowbite WYSIWYG" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/flowbite-wysiwyg?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Flowbite WYSIWYG</a></h2>
+            <p class="tagline">使用Tailwind CSS的开源文本编辑器</p>
+            <p class="description">使用 Flowbite 提供的所见即所得（wysiwyg）文本编辑器组件，通过编辑段落、标题、图片等，并应用所有可用的样式选项，轻松创建和修改内容。</p>
+            <div class="keywords">#open-source #WYSIWYG #text editor #Tailwind CSS</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺261</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/52bbeb68-fe81-4933-b87d-1b5d0f710212.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Fillout 2.0" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/fillout-2-0?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Fillout 2.0</a></h2>
+            <p class="tagline">一体化表单、日程安排、支付和工作流程</p>
+            <p class="description">Fillout是一个全能的表单构建工具。免费表单、日程安排、PDF生成、支付和工作流，一应俱全，集成于一款易于使用的产品中。</p>
+            <div class="keywords">#表单生成器 #在线表单创建 #表单支付和工作流 #一站式表单解决方案</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺208</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/077943d2-871a-41cb-83cf-3e36b5d86cce.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="UI Builder for shadcn/ui" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ui-builder-for-shadcn-ui?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">UI Builder for shadcn/ui</a></h2>
+            <p class="tagline">用于通过视觉方式创建用户界面的 React 组件</p>
+            <p class="description">UI生成器是一个开源的React组件，它提供了一种无需编码、通过可视化方式来创建界面的方法。它兼容shadcn和自定义组件，非常适合搭建诸如着陆页或营销邮件等界面。同时，它能轻松整合进shadcn/ui项目中。</p>
+            <div class="keywords">#无代码界面构建 #可视化界面设计 #React UI 组件 #界面快速搭建</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺170</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/0c52bfd6-5b0e-4d29-b616-3c98b84939c0.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Planly 2.0" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/planly-2-0?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Planly 2.0</a></h2>
+            <p class="tagline">社交媒体管理工具</p>
+            <p class="description">我们明白——你很忙。正因为如此，我们开发了一款功能强大且易于使用的社交媒体管理工具。来看看Planly如何帮助你在网上成长吧。</p>
+            <div class="keywords">#社交媒体管理工具 #社交媒体营销工具 #网络营销管理 #社交媒体在线管理</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺461</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/c4673116-82e1-41df-997d-8f62af7f977b.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Octomind QA Agent" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/octomind-qa-agent?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Octomind QA Agent</a></h2>
+            <p class="tagline">AI驱动的端到端测试</p>
+            <p class="description">这是一款由智能代理驱动的问答工具，无需你告知它就知道要测试什么。就像拥有一个专属的初级质量保证工程师，从零开始为你搭建测试，并运行这些测试来检查你的应用是否有Bug。你负责构建应用，我们负责确保它能正常运行。</p>
+            <div class="keywords">#AI测试工具,端到端自动化测试,智能软件测试,自动化QA解决方案</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺348</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/0c32facc-87e3-48c5-9c42-1045bd3fad09.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Generate Anything " class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/generate-anything?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Generate Anything </a></h2>
+            <p class="tagline">3D模型生成和动画制作平台</p>
+            <p class="description">Generate Anything 是一个一站式的3D模型生成和动画制作平台。只需几分钟，您就可以根据文字或图像提示创建人形生物和奇异生物，然后使用 Animate Anything 无缝地为您的创作赋予动画——所有这些都在一个地方完成。</p>
+            <div class="keywords">#AI模型生成 #3D动画制作 #人工智能动画 #自动生成模型</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺275</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/e402b5fc-9dec-4a87-a855-6bb4bb412e95.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Flowbite WYSIWYG" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/flowbite-wysiwyg?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Flowbite WYSIWYG</a></h2>
+            <p class="tagline">使用Tailwind CSS的开源文本编辑器</p>
+            <p class="description">使用 Flowbite 提供的所见即所得（wysiwyg）文本编辑器组件，通过编辑段落、标题、图片等，并应用所有可用的样式选项，轻松创建和修改内容。</p>
+            <div class="keywords">#open-source #WYSIWYG #text editor #Tailwind CSS</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺261</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/52bbeb68-fe81-4933-b87d-1b5d0f710212.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Fillout 2.0" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/fillout-2-0?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Fillout 2.0</a></h2>
+            <p class="tagline">一体化表单、日程安排、支付和工作流程</p>
+            <p class="description">Fillout是一个全能的表单构建工具。免费表单、日程安排、PDF生成、支付和工作流，一应俱全，集成于一款易于使用的产品中。</p>
+            <div class="keywords">#表单生成器 #在线表单创建 #表单支付和工作流 #一站式表单解决方案</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺208</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/077943d2-871a-41cb-83cf-3e36b5d86cce.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="UI Builder for shadcn/ui" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ui-builder-for-shadcn-ui?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">UI Builder for shadcn/ui</a></h2>
+            <p class="tagline">用于通过视觉方式创建用户界面的 React 组件</p>
+            <p class="description">UI生成器是一个开源的React组件，它提供了一种无需编码、通过可视化方式来创建界面的方法。它兼容shadcn和自定义组件，非常适合搭建诸如着陆页或营销邮件等界面。同时，它能轻松整合进shadcn/ui项目中。</p>
+            <div class="keywords">#无代码界面构建 #可视化界面设计 #React UI 组件 #界面快速搭建</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺170</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/0c52bfd6-5b0e-4d29-b616-3c98b84939c0.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Planly 2.0" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/planly-2-0?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Planly 2.0</a></h2>
+            <p class="tagline">社交媒体管理工具</p>
+            <p class="description">我们明白——你很忙。正因为如此，我们开发了一款功能强大且易于使用的社交媒体管理工具。来看看Planly如何帮助你在网上成长吧。</p>
+            <div class="keywords">#社交媒体管理工具 #社交媒体营销工具 #网络营销管理 #社交媒体在线管理</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺461</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/c4673116-82e1-41df-997d-8f62af7f977b.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Octomind QA Agent" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/octomind-qa-agent?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Octomind QA Agent</a></h2>
+            <p class="tagline">AI驱动的端到端测试</p>
+            <p class="description">这是一款由智能代理驱动的问答工具，无需你告知它就知道要测试什么。就像拥有一个专属的初级质量保证工程师，从零开始为你搭建测试，并运行这些测试来检查你的应用是否有Bug。你负责构建应用，我们负责确保它能正常运行。</p>
+            <div class="keywords">#AI测试工具,端到端自动化测试,智能软件测试,自动化QA解决方案</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺348</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/0c32facc-87e3-48c5-9c42-1045bd3fad09.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Generate Anything " class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/generate-anything?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Generate Anything </a></h2>
+            <p class="tagline">3D模型生成和动画制作平台</p>
+            <p class="description">Generate Anything 是一个一站式的3D模型生成和动画制作平台。只需几分钟，您就可以根据文字或图像提示创建人形生物和奇异生物，然后使用 Animate Anything 无缝地为您的创作赋予动画——所有这些都在一个地方完成。</p>
+            <div class="keywords">#AI模型生成 #3D动画制作 #人工智能动画 #自动生成模型</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺275</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/e402b5fc-9dec-4a87-a855-6bb4bb412e95.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Flowbite WYSIWYG" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/flowbite-wysiwyg?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Flowbite WYSIWYG</a></h2>
+            <p class="tagline">使用Tailwind CSS的开源文本编辑器</p>
+            <p class="description">使用 Flowbite 提供的所见即所得（wysiwyg）文本编辑器组件，通过编辑段落、标题、图片等，并应用所有可用的样式选项，轻松创建和修改内容。</p>
+            <div class="keywords">#open-source #WYSIWYG #text editor #Tailwind CSS</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺261</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/52bbeb68-fe81-4933-b87d-1b5d0f710212.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Fillout 2.0" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/fillout-2-0?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Fillout 2.0</a></h2>
+            <p class="tagline">一体化表单、日程安排、支付和工作流程</p>
+            <p class="description">Fillout是一个全能的表单构建工具。免费表单、日程安排、PDF生成、支付和工作流，一应俱全，集成于一款易于使用的产品中。</p>
+            <div class="keywords">#表单生成器 #在线表单创建 #表单支付和工作流 #一站式表单解决方案</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺208</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/077943d2-871a-41cb-83cf-3e36b5d86cce.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="UI Builder for shadcn/ui" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ui-builder-for-shadcn-ui?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">UI Builder for shadcn/ui</a></h2>
+            <p class="tagline">用于通过视觉方式创建用户界面的 React 组件</p>
+            <p class="description">UI生成器是一个开源的React组件，它提供了一种无需编码、通过可视化方式来创建界面的方法。它兼容shadcn和自定义组件，非常适合搭建诸如着陆页或营销邮件等界面。同时，它能轻松整合进shadcn/ui项目中。</p>
+            <div class="keywords">#无代码界面构建 #可视化界面设计 #React UI 组件 #界面快速搭建</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺170</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/0c52bfd6-5b0e-4d29-b616-3c98b84939c0.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Planly 2.0" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/planly-2-0?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Planly 2.0</a></h2>
+            <p class="tagline">社交媒体管理工具</p>
+            <p class="description">我们明白——你很忙。正因为如此，我们开发了一款功能强大且易于使用的社交媒体管理工具。来看看Planly如何帮助你在网上成长吧。</p>
+            <div class="keywords">#社交媒体管理工具 #社交媒体营销工具 #网络营销管理 #社交媒体在线管理</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺461</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/c4673116-82e1-41df-997d-8f62af7f977b.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Octomind QA Agent" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/octomind-qa-agent?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Octomind QA Agent</a></h2>
+            <p class="tagline">AI驱动的端到端测试</p>
+            <p class="description">这是一款由智能代理驱动的问答工具，无需你告知它就知道要测试什么。就像拥有一个专属的初级质量保证工程师，从零开始为你搭建测试，并运行这些测试来检查你的应用是否有Bug。你负责构建应用，我们负责确保它能正常运行。</p>
+            <div class="keywords">#AI测试工具,端到端自动化测试,智能软件测试,自动化QA解决方案</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺348</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/0c32facc-87e3-48c5-9c42-1045bd3fad09.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Generate Anything " class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/generate-anything?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Generate Anything </a></h2>
+            <p class="tagline">3D模型生成和动画制作平台</p>
+            <p class="description">Generate Anything 是一个一站式的3D模型生成和动画制作平台。只需几分钟，您就可以根据文字或图像提示创建人形生物和奇异生物，然后使用 Animate Anything 无缝地为您的创作赋予动画——所有这些都在一个地方完成。</p>
+            <div class="keywords">#AI模型生成 #3D动画制作 #人工智能动画 #自动生成模型</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺275</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/e402b5fc-9dec-4a87-a855-6bb4bb412e95.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Flowbite WYSIWYG" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/flowbite-wysiwyg?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Flowbite WYSIWYG</a></h2>
+            <p class="tagline">使用Tailwind CSS的开源文本编辑器</p>
+            <p class="description">使用 Flowbite 提供的所见即所得（wysiwyg）文本编辑器组件，通过编辑段落、标题、图片等，并应用所有可用的样式选项，轻松创建和修改内容。</p>
+            <div class="keywords">#open-source #WYSIWYG #text editor #Tailwind CSS</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺261</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/52bbeb68-fe81-4933-b87d-1b5d0f710212.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Fillout 2.0" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/fillout-2-0?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Fillout 2.0</a></h2>
+            <p class="tagline">一体化表单、日程安排、支付和工作流程</p>
+            <p class="description">Fillout是一个全能的表单构建工具。免费表单、日程安排、PDF生成、支付和工作流，一应俱全，集成于一款易于使用的产品中。</p>
+            <div class="keywords">#表单生成器 #在线表单创建 #表单支付和工作流 #一站式表单解决方案</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺208</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/077943d2-871a-41cb-83cf-3e36b5d86cce.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="UI Builder for shadcn/ui" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ui-builder-for-shadcn-ui?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">UI Builder for shadcn/ui</a></h2>
+            <p class="tagline">用于通过视觉方式创建用户界面的 React 组件</p>
+            <p class="description">UI生成器是一个开源的React组件，它提供了一种无需编码、通过可视化方式来创建界面的方法。它兼容shadcn和自定义组件，非常适合搭建诸如着陆页或营销邮件等界面。同时，它能轻松整合进shadcn/ui项目中。</p>
+            <div class="keywords">#无代码界面构建 #可视化界面设计 #React UI 组件 #界面快速搭建</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺170</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/0c52bfd6-5b0e-4d29-b616-3c98b84939c0.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Planly 2.0" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/planly-2-0?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Planly 2.0</a></h2>
+            <p class="tagline">社交媒体管理工具</p>
+            <p class="description">我们明白——你很忙。正因为如此，我们开发了一款功能强大且易于使用的社交媒体管理工具。来看看Planly如何帮助你在网上成长吧。</p>
+            <div class="keywords">#社交媒体管理工具 #社交媒体营销工具 #网络营销管理 #社交媒体在线管理</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺461</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/c4673116-82e1-41df-997d-8f62af7f977b.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Octomind QA Agent" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/octomind-qa-agent?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Octomind QA Agent</a></h2>
+            <p class="tagline">AI驱动的端到端测试</p>
+            <p class="description">这是一款由智能代理驱动的问答工具，无需你告知它就知道要测试什么。就像拥有一个专属的初级质量保证工程师，从零开始为你搭建测试，并运行这些测试来检查你的应用是否有Bug。你负责构建应用，我们负责确保它能正常运行。</p>
+            <div class="keywords">#AI测试工具,端到端自动化测试,智能软件测试,自动化QA解决方案</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺348</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/0c32facc-87e3-48c5-9c42-1045bd3fad09.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Generate Anything " class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/generate-anything?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Generate Anything </a></h2>
+            <p class="tagline">3D模型生成和动画制作平台</p>
+            <p class="description">Generate Anything 是一个一站式的3D模型生成和动画制作平台。只需几分钟，您就可以根据文字或图像提示创建人形生物和奇异生物，然后使用 Animate Anything 无缝地为您的创作赋予动画——所有这些都在一个地方完成。</p>
+            <div class="keywords">#AI模型生成 #3D动画制作 #人工智能动画 #自动生成模型</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺275</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/e402b5fc-9dec-4a87-a855-6bb4bb412e95.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Flowbite WYSIWYG" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/flowbite-wysiwyg?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Flowbite WYSIWYG</a></h2>
+            <p class="tagline">使用Tailwind CSS的开源文本编辑器</p>
+            <p class="description">使用 Flowbite 提供的所见即所得（wysiwyg）文本编辑器组件，通过编辑段落、标题、图片等，并应用所有可用的样式选项，轻松创建和修改内容。</p>
+            <div class="keywords">#open-source #WYSIWYG #text editor #Tailwind CSS</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺261</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/52bbeb68-fe81-4933-b87d-1b5d0f710212.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Fillout 2.0" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/fillout-2-0?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Fillout 2.0</a></h2>
+            <p class="tagline">一体化表单、日程安排、支付和工作流程</p>
+            <p class="description">Fillout是一个全能的表单构建工具。免费表单、日程安排、PDF生成、支付和工作流，一应俱全，集成于一款易于使用的产品中。</p>
+            <div class="keywords">#表单生成器 #在线表单创建 #表单支付和工作流 #一站式表单解决方案</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺208</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/077943d2-871a-41cb-83cf-3e36b5d86cce.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="UI Builder for shadcn/ui" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/ui-builder-for-shadcn-ui?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">UI Builder for shadcn/ui</a></h2>
+            <p class="tagline">用于通过视觉方式创建用户界面的 React 组件</p>
+            <p class="description">UI生成器是一个开源的React组件，它提供了一种无需编码、通过可视化方式来创建界面的方法。它兼容shadcn和自定义组件，非常适合搭建诸如着陆页或营销邮件等界面。同时，它能轻松整合进shadcn/ui项目中。</p>
+            <div class="keywords">#无代码界面构建 #可视化界面设计 #React UI 组件 #界面快速搭建</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺170</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/0c52bfd6-5b0e-4d29-b616-3c98b84939c0.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Planly 2.0" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/planly-2-0?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Planly 2.0</a></h2>
+            <p class="tagline">社交媒体管理工具</p>
+            <p class="description">我们明白——你很忙。正因为如此，我们开发了一款功能强大且易于使用的社交媒体管理工具。来看看Planly如何帮助你在网上成长吧。</p>
+            <div class="keywords">#社交媒体管理工具 #社交媒体营销工具 #网络营销管理 #社交媒体在线管理</div>
+        </div>
+    </div>
+    
     <div class="card">
         <div class="votes-badge">🔺461</div>
         <div class="card-inner">
@@ -512,12 +916,804 @@
         </div>
     </div>
     
+    <div class="card">
+        <div class="votes-badge">🔺145</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3e87a8ae-dd6a-4287-a156-c079a048393f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Augment UI" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/augment-ui?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Augment UI</a></h2>
+            <p class="tagline">使用人工智能来原型化前端设计</p>
+            <p class="description">Augment UI是一个用于快速构建前端设计原型的平台。您可以与我们的系统聊天来创建设计，还可以直接在浏览器中自己编辑代码。</p>
+            <div class="keywords">#人工智能前端设计原型 #快速前端设计原型平台 #AI设计原型工具 #自动化前端设计构建</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺122</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/9746975c-b83e-461d-aea7-a8d8ace179ba.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Fuselio " class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/fuselio?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Fuselio </a></h2>
+            <p class="tagline">在6周内打造你的最简可行产品（MVP）</p>
+            <p class="description">从构思到上线，我们为创业公司和企业打造从最简可行产品（MVP）到全功能应用的一站式服务，让您专注于业务增长。</p>
+            <div class="keywords">#Fuselio #构建最小可行性产品 #6周内上线 #为初创企业与企业打造应用程序</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺120</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/88aa1519-8001-4869-a3fb-14817ec919fa.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AskSpot.ai" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/askspot-ai?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">AskSpot.ai</a></h2>
+            <p class="tagline">创建自定义人工智能助手——无需编程。</p>
+            <p class="description">吸引客户，自动化支持，推动增长——无需技术技能。AskSpot 帮助机构、创作者和小企业快速搭建定制化的 AI 助手。可以部署在任何地方，提供即时答案，提高转化率。</p>
+            <div class="keywords">#自定义AI助手 #无需编程AI #AI客户服务 #自助支持工具</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺107</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/f6c72076-0d23-4f51-a300-84ffc8f333c3.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="GoodsFox Fashion" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/goodsfox-fashion?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">GoodsFox Fashion</a></h2>
+            <p class="tagline"></p>
+            <p class="description">GoodsFox Fashion 是你发现最新时尚趋势的首选平台。在这里，你可以搜索全球数百万的电商产品，找到灵感，简化你的设计过程，始终走在时尚的前沿。无论你是设计师、买手还是品牌，这里都非常适合你。</p>
+            <div class="keywords">#时尚电商平台 #电商产品搜索 #时尚趋势发现 #产品设计灵感</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺101</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/06a64eeb-a8cb-4c0b-8eec-2ad6bd165d07.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Video Production Planner" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/video-production-planner?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Video Production Planner</a></h2>
+            <p class="tagline"></p>
+            <p class="description">你是否在为YouTube、Instagram或其他社媒体平台制作视频？《视频制作计划师》就是你的全能助手，帮助你规划和编写视频脚本。功能：创建视频脚本，规划视频章节以及创建清单。</p>
+            <div class="keywords">#视频制作计划工具 #视频脚本编写 #社交媒体视频制作 #视频内容规划</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺100</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/f55034d1-5dc1-4607-87e0-e7de34b705b1.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Stride" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/stride-6?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Stride</a></h2>
+            <p class="tagline">Easy engineering calculations</p>
+            <p class="description">Stride is a more modern technical documentation + calculation software for engineers and other calculation-driven professionals. It is local-first, has a robust units system, and is markdown-based.</p>
+            <div class="keywords">#Stride,工程计算软件,技术文档工具,本地优先计算</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺145</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3e87a8ae-dd6a-4287-a156-c079a048393f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Augment UI" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/augment-ui?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Augment UI</a></h2>
+            <p class="tagline">使用人工智能来原型化前端设计</p>
+            <p class="description">Augment UI是一个用于快速构建前端设计原型的平台。您可以与我们的系统聊天来创建设计，还可以直接在浏览器中自己编辑代码。</p>
+            <div class="keywords">#人工智能前端设计原型 #快速前端设计原型平台 #AI设计原型工具 #自动化前端设计构建</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺122</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/9746975c-b83e-461d-aea7-a8d8ace179ba.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Fuselio " class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/fuselio?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Fuselio </a></h2>
+            <p class="tagline">在6周内打造你的最简可行产品（MVP）</p>
+            <p class="description">从构思到上线，我们为创业公司和企业打造从最简可行产品（MVP）到全功能应用的一站式服务，让您专注于业务增长。</p>
+            <div class="keywords">#Fuselio #构建最小可行性产品 #6周内上线 #为初创企业与企业打造应用程序</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺120</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/88aa1519-8001-4869-a3fb-14817ec919fa.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AskSpot.ai" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/askspot-ai?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">AskSpot.ai</a></h2>
+            <p class="tagline">创建自定义人工智能助手——无需编程。</p>
+            <p class="description">吸引客户，自动化支持，推动增长——无需技术技能。AskSpot 帮助机构、创作者和小企业快速搭建定制化的 AI 助手。可以部署在任何地方，提供即时答案，提高转化率。</p>
+            <div class="keywords">#自定义AI助手 #无需编程AI #AI客户服务 #自助支持工具</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺107</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/f6c72076-0d23-4f51-a300-84ffc8f333c3.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="GoodsFox Fashion" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/goodsfox-fashion?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">GoodsFox Fashion</a></h2>
+            <p class="tagline"></p>
+            <p class="description">GoodsFox Fashion 是你发现最新时尚趋势的首选平台。在这里，你可以搜索全球数百万的电商产品，找到灵感，简化你的设计过程，始终走在时尚的前沿。无论你是设计师、买手还是品牌，这里都非常适合你。</p>
+            <div class="keywords">#时尚电商平台 #电商产品搜索 #时尚趋势发现 #产品设计灵感</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺101</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/06a64eeb-a8cb-4c0b-8eec-2ad6bd165d07.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Video Production Planner" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/video-production-planner?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Video Production Planner</a></h2>
+            <p class="tagline"></p>
+            <p class="description">你是否在为YouTube、Instagram或其他社媒体平台制作视频？《视频制作计划师》就是你的全能助手，帮助你规划和编写视频脚本。功能：创建视频脚本，规划视频章节以及创建清单。</p>
+            <div class="keywords">#视频制作计划工具 #视频脚本编写 #社交媒体视频制作 #视频内容规划</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺100</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/f55034d1-5dc1-4607-87e0-e7de34b705b1.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Stride" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/stride-6?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Stride</a></h2>
+            <p class="tagline">Easy engineering calculations</p>
+            <p class="description">Stride is a more modern technical documentation + calculation software for engineers and other calculation-driven professionals. It is local-first, has a robust units system, and is markdown-based.</p>
+            <div class="keywords">#Stride,工程计算软件,技术文档工具,本地优先计算</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺145</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3e87a8ae-dd6a-4287-a156-c079a048393f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Augment UI" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/augment-ui?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Augment UI</a></h2>
+            <p class="tagline">使用人工智能来原型化前端设计</p>
+            <p class="description">Augment UI是一个用于快速构建前端设计原型的平台。您可以与我们的系统聊天来创建设计，还可以直接在浏览器中自己编辑代码。</p>
+            <div class="keywords">#人工智能前端设计原型 #快速前端设计原型平台 #AI设计原型工具 #自动化前端设计构建</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺122</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/9746975c-b83e-461d-aea7-a8d8ace179ba.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Fuselio " class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/fuselio?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Fuselio </a></h2>
+            <p class="tagline">在6周内打造你的最简可行产品（MVP）</p>
+            <p class="description">从构思到上线，我们为创业公司和企业打造从最简可行产品（MVP）到全功能应用的一站式服务，让您专注于业务增长。</p>
+            <div class="keywords">#Fuselio #构建最小可行性产品 #6周内上线 #为初创企业与企业打造应用程序</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺120</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/88aa1519-8001-4869-a3fb-14817ec919fa.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AskSpot.ai" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/askspot-ai?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">AskSpot.ai</a></h2>
+            <p class="tagline">创建自定义人工智能助手——无需编程。</p>
+            <p class="description">吸引客户，自动化支持，推动增长——无需技术技能。AskSpot 帮助机构、创作者和小企业快速搭建定制化的 AI 助手。可以部署在任何地方，提供即时答案，提高转化率。</p>
+            <div class="keywords">#自定义AI助手 #无需编程AI #AI客户服务 #自助支持工具</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺107</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/f6c72076-0d23-4f51-a300-84ffc8f333c3.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="GoodsFox Fashion" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/goodsfox-fashion?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">GoodsFox Fashion</a></h2>
+            <p class="tagline"></p>
+            <p class="description">GoodsFox Fashion 是你发现最新时尚趋势的首选平台。在这里，你可以搜索全球数百万的电商产品，找到灵感，简化你的设计过程，始终走在时尚的前沿。无论你是设计师、买手还是品牌，这里都非常适合你。</p>
+            <div class="keywords">#时尚电商平台 #电商产品搜索 #时尚趋势发现 #产品设计灵感</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺101</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/06a64eeb-a8cb-4c0b-8eec-2ad6bd165d07.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Video Production Planner" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/video-production-planner?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Video Production Planner</a></h2>
+            <p class="tagline"></p>
+            <p class="description">你是否在为YouTube、Instagram或其他社媒体平台制作视频？《视频制作计划师》就是你的全能助手，帮助你规划和编写视频脚本。功能：创建视频脚本，规划视频章节以及创建清单。</p>
+            <div class="keywords">#视频制作计划工具 #视频脚本编写 #社交媒体视频制作 #视频内容规划</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺100</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/f55034d1-5dc1-4607-87e0-e7de34b705b1.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Stride" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/stride-6?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Stride</a></h2>
+            <p class="tagline">Easy engineering calculations</p>
+            <p class="description">Stride is a more modern technical documentation + calculation software for engineers and other calculation-driven professionals. It is local-first, has a robust units system, and is markdown-based.</p>
+            <div class="keywords">#Stride,工程计算软件,技术文档工具,本地优先计算</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺145</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3e87a8ae-dd6a-4287-a156-c079a048393f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Augment UI" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/augment-ui?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Augment UI</a></h2>
+            <p class="tagline">使用人工智能来原型化前端设计</p>
+            <p class="description">Augment UI是一个用于快速构建前端设计原型的平台。您可以与我们的系统聊天来创建设计，还可以直接在浏览器中自己编辑代码。</p>
+            <div class="keywords">#人工智能前端设计原型 #快速前端设计原型平台 #AI设计原型工具 #自动化前端设计构建</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺122</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/9746975c-b83e-461d-aea7-a8d8ace179ba.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Fuselio " class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/fuselio?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Fuselio </a></h2>
+            <p class="tagline">在6周内打造你的最简可行产品（MVP）</p>
+            <p class="description">从构思到上线，我们为创业公司和企业打造从最简可行产品（MVP）到全功能应用的一站式服务，让您专注于业务增长。</p>
+            <div class="keywords">#Fuselio #构建最小可行性产品 #6周内上线 #为初创企业与企业打造应用程序</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺120</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/88aa1519-8001-4869-a3fb-14817ec919fa.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AskSpot.ai" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/askspot-ai?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">AskSpot.ai</a></h2>
+            <p class="tagline">创建自定义人工智能助手——无需编程。</p>
+            <p class="description">吸引客户，自动化支持，推动增长——无需技术技能。AskSpot 帮助机构、创作者和小企业快速搭建定制化的 AI 助手。可以部署在任何地方，提供即时答案，提高转化率。</p>
+            <div class="keywords">#自定义AI助手 #无需编程AI #AI客户服务 #自助支持工具</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺107</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/f6c72076-0d23-4f51-a300-84ffc8f333c3.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="GoodsFox Fashion" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/goodsfox-fashion?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">GoodsFox Fashion</a></h2>
+            <p class="tagline"></p>
+            <p class="description">GoodsFox Fashion 是你发现最新时尚趋势的首选平台。在这里，你可以搜索全球数百万的电商产品，找到灵感，简化你的设计过程，始终走在时尚的前沿。无论你是设计师、买手还是品牌，这里都非常适合你。</p>
+            <div class="keywords">#时尚电商平台 #电商产品搜索 #时尚趋势发现 #产品设计灵感</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺101</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/06a64eeb-a8cb-4c0b-8eec-2ad6bd165d07.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Video Production Planner" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/video-production-planner?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Video Production Planner</a></h2>
+            <p class="tagline"></p>
+            <p class="description">你是否在为YouTube、Instagram或其他社媒体平台制作视频？《视频制作计划师》就是你的全能助手，帮助你规划和编写视频脚本。功能：创建视频脚本，规划视频章节以及创建清单。</p>
+            <div class="keywords">#视频制作计划工具 #视频脚本编写 #社交媒体视频制作 #视频内容规划</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺100</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/f55034d1-5dc1-4607-87e0-e7de34b705b1.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Stride" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/stride-6?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Stride</a></h2>
+            <p class="tagline">Easy engineering calculations</p>
+            <p class="description">Stride is a more modern technical documentation + calculation software for engineers and other calculation-driven professionals. It is local-first, has a robust units system, and is markdown-based.</p>
+            <div class="keywords">#Stride,工程计算软件,技术文档工具,本地优先计算</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺145</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3e87a8ae-dd6a-4287-a156-c079a048393f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Augment UI" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/augment-ui?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Augment UI</a></h2>
+            <p class="tagline">使用人工智能来原型化前端设计</p>
+            <p class="description">Augment UI是一个用于快速构建前端设计原型的平台。您可以与我们的系统聊天来创建设计，还可以直接在浏览器中自己编辑代码。</p>
+            <div class="keywords">#人工智能前端设计原型 #快速前端设计原型平台 #AI设计原型工具 #自动化前端设计构建</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺122</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/9746975c-b83e-461d-aea7-a8d8ace179ba.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Fuselio " class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/fuselio?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Fuselio </a></h2>
+            <p class="tagline">在6周内打造你的最简可行产品（MVP）</p>
+            <p class="description">从构思到上线，我们为创业公司和企业打造从最简可行产品（MVP）到全功能应用的一站式服务，让您专注于业务增长。</p>
+            <div class="keywords">#Fuselio #构建最小可行性产品 #6周内上线 #为初创企业与企业打造应用程序</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺120</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/88aa1519-8001-4869-a3fb-14817ec919fa.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AskSpot.ai" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/askspot-ai?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">AskSpot.ai</a></h2>
+            <p class="tagline">创建自定义人工智能助手——无需编程。</p>
+            <p class="description">吸引客户，自动化支持，推动增长——无需技术技能。AskSpot 帮助机构、创作者和小企业快速搭建定制化的 AI 助手。可以部署在任何地方，提供即时答案，提高转化率。</p>
+            <div class="keywords">#自定义AI助手 #无需编程AI #AI客户服务 #自助支持工具</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺107</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/f6c72076-0d23-4f51-a300-84ffc8f333c3.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="GoodsFox Fashion" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/goodsfox-fashion?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">GoodsFox Fashion</a></h2>
+            <p class="tagline"></p>
+            <p class="description">GoodsFox Fashion 是你发现最新时尚趋势的首选平台。在这里，你可以搜索全球数百万的电商产品，找到灵感，简化你的设计过程，始终走在时尚的前沿。无论你是设计师、买手还是品牌，这里都非常适合你。</p>
+            <div class="keywords">#时尚电商平台 #电商产品搜索 #时尚趋势发现 #产品设计灵感</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺101</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/06a64eeb-a8cb-4c0b-8eec-2ad6bd165d07.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Video Production Planner" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/video-production-planner?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Video Production Planner</a></h2>
+            <p class="tagline"></p>
+            <p class="description">你是否在为YouTube、Instagram或其他社媒体平台制作视频？《视频制作计划师》就是你的全能助手，帮助你规划和编写视频脚本。功能：创建视频脚本，规划视频章节以及创建清单。</p>
+            <div class="keywords">#视频制作计划工具 #视频脚本编写 #社交媒体视频制作 #视频内容规划</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺100</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/f55034d1-5dc1-4607-87e0-e7de34b705b1.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Stride" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/stride-6?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Stride</a></h2>
+            <p class="tagline">Easy engineering calculations</p>
+            <p class="description">Stride is a more modern technical documentation + calculation software for engineers and other calculation-driven professionals. It is local-first, has a robust units system, and is markdown-based.</p>
+            <div class="keywords">#Stride,工程计算软件,技术文档工具,本地优先计算</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺145</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3e87a8ae-dd6a-4287-a156-c079a048393f.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Augment UI" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/augment-ui?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Augment UI</a></h2>
+            <p class="tagline">使用人工智能来原型化前端设计</p>
+            <p class="description">Augment UI是一个用于快速构建前端设计原型的平台。您可以与我们的系统聊天来创建设计，还可以直接在浏览器中自己编辑代码。</p>
+            <div class="keywords">#人工智能前端设计原型 #快速前端设计原型平台 #AI设计原型工具 #自动化前端设计构建</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺122</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/9746975c-b83e-461d-aea7-a8d8ace179ba.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Fuselio " class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/fuselio?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Fuselio </a></h2>
+            <p class="tagline">在6周内打造你的最简可行产品（MVP）</p>
+            <p class="description">从构思到上线，我们为创业公司和企业打造从最简可行产品（MVP）到全功能应用的一站式服务，让您专注于业务增长。</p>
+            <div class="keywords">#Fuselio #构建最小可行性产品 #6周内上线 #为初创企业与企业打造应用程序</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺120</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/88aa1519-8001-4869-a3fb-14817ec919fa.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AskSpot.ai" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/askspot-ai?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">AskSpot.ai</a></h2>
+            <p class="tagline">创建自定义人工智能助手——无需编程。</p>
+            <p class="description">吸引客户，自动化支持，推动增长——无需技术技能。AskSpot 帮助机构、创作者和小企业快速搭建定制化的 AI 助手。可以部署在任何地方，提供即时答案，提高转化率。</p>
+            <div class="keywords">#自定义AI助手 #无需编程AI #AI客户服务 #自助支持工具</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺107</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/f6c72076-0d23-4f51-a300-84ffc8f333c3.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="GoodsFox Fashion" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/goodsfox-fashion?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">GoodsFox Fashion</a></h2>
+            <p class="tagline"></p>
+            <p class="description">GoodsFox Fashion 是你发现最新时尚趋势的首选平台。在这里，你可以搜索全球数百万的电商产品，找到灵感，简化你的设计过程，始终走在时尚的前沿。无论你是设计师、买手还是品牌，这里都非常适合你。</p>
+            <div class="keywords">#时尚电商平台 #电商产品搜索 #时尚趋势发现 #产品设计灵感</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺101</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/06a64eeb-a8cb-4c0b-8eec-2ad6bd165d07.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Video Production Planner" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/video-production-planner?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Video Production Planner</a></h2>
+            <p class="tagline"></p>
+            <p class="description">你是否在为YouTube、Instagram或其他社媒体平台制作视频？《视频制作计划师》就是你的全能助手，帮助你规划和编写视频脚本。功能：创建视频脚本，规划视频章节以及创建清单。</p>
+            <div class="keywords">#视频制作计划工具 #视频脚本编写 #社交媒体视频制作 #视频内容规划</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺100</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/f55034d1-5dc1-4607-87e0-e7de34b705b1.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Stride" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/stride-6?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Stride</a></h2>
+            <p class="tagline">Easy engineering calculations</p>
+            <p class="description">Stride is a more modern technical documentation + calculation software for engineers and other calculation-driven professionals. It is local-first, has a robust units system, and is markdown-based.</p>
+            <div class="keywords">#Stride,工程计算软件,技术文档工具,本地优先计算</div>
+        </div>
+    </div>
+    
             </div>
         </div>
         
         <div class="scroll-container" data-row="2">
             <div class="scroll-row" style="animation-direction: normal;">
                 
+    <div class="card">
+        <div class="votes-badge">🔺99</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/d10a2c78-477a-4edf-9bad-92cf1b58dfdc.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Talespinner" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/talespinner?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Talespinner</a></h2>
+            <p class="tagline">AI assisted story writing with complete control</p>
+            <p class="description">Talespinner.io empowers storytellers with AI assistance. Craft characters, plots, and chapters using advanced language models. Generate ideas, and write your novel in any genre. Choose from multiple AI models with unique strengths. Write in any language.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺88</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/568bc5ab-94c3-4275-b23b-96618de84623.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Reimbursable" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/reimbursable?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Reimbursable</a></h2>
+            <p class="tagline">Effortless HSA reimbursement tracking</p>
+            <p class="description">Build wealth through health with effortless HSA reimbursement tracking. Reimbursable helps you find and track qualified medical expenses for future reimbursement.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺78</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/a648dbb3-8be7-47f8-9a31-7df5927db5bd.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AiQArt by LockChain" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/aiqart-by-lockchain?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">AiQArt by LockChain</a></h2>
+            <p class="tagline">Generate AI art QR codes</p>
+            <p class="description">Ultra quality, photorealistic QR codes. Perks: No watermark. No subscription. Cheap credit-based generations. Free credits for new users. Buy as much as you want. No URL shortener - use your own. All features unlocked. No extra fees.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺72</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/a02cb4ad-0af3-4665-aac8-3a41c6fc269f.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Writers Copilot" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/writers-copilot?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Writers Copilot</a></h2>
+            <p class="tagline">Transform your writing with smart, instant edits</p>
+            <p class="description">It is a writing assistant that streamlines editing by providing targeted feedback and previewing suggested changes. Users can hover over revisions to see how they'll look and engage in threaded side conversations for focused discussions on specific sections.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺72</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/45c431ce-166a-49d7-8707-a3a5db5318a8.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="LockBridge" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/lockbridge?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">LockBridge</a></h2>
+            <p class="tagline">Secure and seamless file transfer with zero-trust encryption</p>
+            <p class="description">A secure, file-sharing platform for businesses that prioritize data protection. It enables real-time file transfers with peer-to-peer and end to end encrypted storage. With role-based access control, admins can manage permissions across different user roles</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺69</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/25b816bc-3844-4e25-810c-0f527c9f4864.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Invoice Matchpoint by .dodocs.AI" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/invoice-matchpoint-by-dodocs-ai?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Invoice Matchpoint by .dodocs.AI</a></h2>
+            <p class="tagline">80/20 - focus on added value tasks, keep the rest for dodocs</p>
+            <p class="description">.dodocs Invoice MatchPoint API designed to automate invoices, quotations and receipts processing for accounting and restaurants inventory management of any type of business. The product already proved and saves up to 90% time of operations with documents</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺99</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/d10a2c78-477a-4edf-9bad-92cf1b58dfdc.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Talespinner" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/talespinner?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Talespinner</a></h2>
+            <p class="tagline">AI assisted story writing with complete control</p>
+            <p class="description">Talespinner.io empowers storytellers with AI assistance. Craft characters, plots, and chapters using advanced language models. Generate ideas, and write your novel in any genre. Choose from multiple AI models with unique strengths. Write in any language.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺88</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/568bc5ab-94c3-4275-b23b-96618de84623.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Reimbursable" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/reimbursable?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Reimbursable</a></h2>
+            <p class="tagline">Effortless HSA reimbursement tracking</p>
+            <p class="description">Build wealth through health with effortless HSA reimbursement tracking. Reimbursable helps you find and track qualified medical expenses for future reimbursement.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺78</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/a648dbb3-8be7-47f8-9a31-7df5927db5bd.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AiQArt by LockChain" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/aiqart-by-lockchain?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">AiQArt by LockChain</a></h2>
+            <p class="tagline">Generate AI art QR codes</p>
+            <p class="description">Ultra quality, photorealistic QR codes. Perks: No watermark. No subscription. Cheap credit-based generations. Free credits for new users. Buy as much as you want. No URL shortener - use your own. All features unlocked. No extra fees.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺72</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/a02cb4ad-0af3-4665-aac8-3a41c6fc269f.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Writers Copilot" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/writers-copilot?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Writers Copilot</a></h2>
+            <p class="tagline">Transform your writing with smart, instant edits</p>
+            <p class="description">It is a writing assistant that streamlines editing by providing targeted feedback and previewing suggested changes. Users can hover over revisions to see how they'll look and engage in threaded side conversations for focused discussions on specific sections.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺72</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/45c431ce-166a-49d7-8707-a3a5db5318a8.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="LockBridge" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/lockbridge?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">LockBridge</a></h2>
+            <p class="tagline">Secure and seamless file transfer with zero-trust encryption</p>
+            <p class="description">A secure, file-sharing platform for businesses that prioritize data protection. It enables real-time file transfers with peer-to-peer and end to end encrypted storage. With role-based access control, admins can manage permissions across different user roles</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺69</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/25b816bc-3844-4e25-810c-0f527c9f4864.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Invoice Matchpoint by .dodocs.AI" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/invoice-matchpoint-by-dodocs-ai?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Invoice Matchpoint by .dodocs.AI</a></h2>
+            <p class="tagline">80/20 - focus on added value tasks, keep the rest for dodocs</p>
+            <p class="description">.dodocs Invoice MatchPoint API designed to automate invoices, quotations and receipts processing for accounting and restaurants inventory management of any type of business. The product already proved and saves up to 90% time of operations with documents</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺99</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/d10a2c78-477a-4edf-9bad-92cf1b58dfdc.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Talespinner" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/talespinner?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Talespinner</a></h2>
+            <p class="tagline">AI assisted story writing with complete control</p>
+            <p class="description">Talespinner.io empowers storytellers with AI assistance. Craft characters, plots, and chapters using advanced language models. Generate ideas, and write your novel in any genre. Choose from multiple AI models with unique strengths. Write in any language.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺88</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/568bc5ab-94c3-4275-b23b-96618de84623.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Reimbursable" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/reimbursable?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Reimbursable</a></h2>
+            <p class="tagline">Effortless HSA reimbursement tracking</p>
+            <p class="description">Build wealth through health with effortless HSA reimbursement tracking. Reimbursable helps you find and track qualified medical expenses for future reimbursement.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺78</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/a648dbb3-8be7-47f8-9a31-7df5927db5bd.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AiQArt by LockChain" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/aiqart-by-lockchain?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">AiQArt by LockChain</a></h2>
+            <p class="tagline">Generate AI art QR codes</p>
+            <p class="description">Ultra quality, photorealistic QR codes. Perks: No watermark. No subscription. Cheap credit-based generations. Free credits for new users. Buy as much as you want. No URL shortener - use your own. All features unlocked. No extra fees.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺72</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/a02cb4ad-0af3-4665-aac8-3a41c6fc269f.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Writers Copilot" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/writers-copilot?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Writers Copilot</a></h2>
+            <p class="tagline">Transform your writing with smart, instant edits</p>
+            <p class="description">It is a writing assistant that streamlines editing by providing targeted feedback and previewing suggested changes. Users can hover over revisions to see how they'll look and engage in threaded side conversations for focused discussions on specific sections.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺72</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/45c431ce-166a-49d7-8707-a3a5db5318a8.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="LockBridge" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/lockbridge?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">LockBridge</a></h2>
+            <p class="tagline">Secure and seamless file transfer with zero-trust encryption</p>
+            <p class="description">A secure, file-sharing platform for businesses that prioritize data protection. It enables real-time file transfers with peer-to-peer and end to end encrypted storage. With role-based access control, admins can manage permissions across different user roles</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺69</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/25b816bc-3844-4e25-810c-0f527c9f4864.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Invoice Matchpoint by .dodocs.AI" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/invoice-matchpoint-by-dodocs-ai?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Invoice Matchpoint by .dodocs.AI</a></h2>
+            <p class="tagline">80/20 - focus on added value tasks, keep the rest for dodocs</p>
+            <p class="description">.dodocs Invoice MatchPoint API designed to automate invoices, quotations and receipts processing for accounting and restaurants inventory management of any type of business. The product already proved and saves up to 90% time of operations with documents</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺99</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/d10a2c78-477a-4edf-9bad-92cf1b58dfdc.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Talespinner" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/talespinner?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Talespinner</a></h2>
+            <p class="tagline">AI assisted story writing with complete control</p>
+            <p class="description">Talespinner.io empowers storytellers with AI assistance. Craft characters, plots, and chapters using advanced language models. Generate ideas, and write your novel in any genre. Choose from multiple AI models with unique strengths. Write in any language.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺88</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/568bc5ab-94c3-4275-b23b-96618de84623.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Reimbursable" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/reimbursable?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Reimbursable</a></h2>
+            <p class="tagline">Effortless HSA reimbursement tracking</p>
+            <p class="description">Build wealth through health with effortless HSA reimbursement tracking. Reimbursable helps you find and track qualified medical expenses for future reimbursement.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺78</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/a648dbb3-8be7-47f8-9a31-7df5927db5bd.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AiQArt by LockChain" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/aiqart-by-lockchain?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">AiQArt by LockChain</a></h2>
+            <p class="tagline">Generate AI art QR codes</p>
+            <p class="description">Ultra quality, photorealistic QR codes. Perks: No watermark. No subscription. Cheap credit-based generations. Free credits for new users. Buy as much as you want. No URL shortener - use your own. All features unlocked. No extra fees.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺72</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/a02cb4ad-0af3-4665-aac8-3a41c6fc269f.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Writers Copilot" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/writers-copilot?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Writers Copilot</a></h2>
+            <p class="tagline">Transform your writing with smart, instant edits</p>
+            <p class="description">It is a writing assistant that streamlines editing by providing targeted feedback and previewing suggested changes. Users can hover over revisions to see how they'll look and engage in threaded side conversations for focused discussions on specific sections.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺72</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/45c431ce-166a-49d7-8707-a3a5db5318a8.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="LockBridge" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/lockbridge?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">LockBridge</a></h2>
+            <p class="tagline">Secure and seamless file transfer with zero-trust encryption</p>
+            <p class="description">A secure, file-sharing platform for businesses that prioritize data protection. It enables real-time file transfers with peer-to-peer and end to end encrypted storage. With role-based access control, admins can manage permissions across different user roles</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺69</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/25b816bc-3844-4e25-810c-0f527c9f4864.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Invoice Matchpoint by .dodocs.AI" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/invoice-matchpoint-by-dodocs-ai?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Invoice Matchpoint by .dodocs.AI</a></h2>
+            <p class="tagline">80/20 - focus on added value tasks, keep the rest for dodocs</p>
+            <p class="description">.dodocs Invoice MatchPoint API designed to automate invoices, quotations and receipts processing for accounting and restaurants inventory management of any type of business. The product already proved and saves up to 90% time of operations with documents</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺99</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/d10a2c78-477a-4edf-9bad-92cf1b58dfdc.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Talespinner" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/talespinner?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Talespinner</a></h2>
+            <p class="tagline">AI assisted story writing with complete control</p>
+            <p class="description">Talespinner.io empowers storytellers with AI assistance. Craft characters, plots, and chapters using advanced language models. Generate ideas, and write your novel in any genre. Choose from multiple AI models with unique strengths. Write in any language.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺88</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/568bc5ab-94c3-4275-b23b-96618de84623.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Reimbursable" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/reimbursable?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Reimbursable</a></h2>
+            <p class="tagline">Effortless HSA reimbursement tracking</p>
+            <p class="description">Build wealth through health with effortless HSA reimbursement tracking. Reimbursable helps you find and track qualified medical expenses for future reimbursement.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺78</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/a648dbb3-8be7-47f8-9a31-7df5927db5bd.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AiQArt by LockChain" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/aiqart-by-lockchain?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">AiQArt by LockChain</a></h2>
+            <p class="tagline">Generate AI art QR codes</p>
+            <p class="description">Ultra quality, photorealistic QR codes. Perks: No watermark. No subscription. Cheap credit-based generations. Free credits for new users. Buy as much as you want. No URL shortener - use your own. All features unlocked. No extra fees.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺72</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/a02cb4ad-0af3-4665-aac8-3a41c6fc269f.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Writers Copilot" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/writers-copilot?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Writers Copilot</a></h2>
+            <p class="tagline">Transform your writing with smart, instant edits</p>
+            <p class="description">It is a writing assistant that streamlines editing by providing targeted feedback and previewing suggested changes. Users can hover over revisions to see how they'll look and engage in threaded side conversations for focused discussions on specific sections.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺72</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/45c431ce-166a-49d7-8707-a3a5db5318a8.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="LockBridge" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/lockbridge?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">LockBridge</a></h2>
+            <p class="tagline">Secure and seamless file transfer with zero-trust encryption</p>
+            <p class="description">A secure, file-sharing platform for businesses that prioritize data protection. It enables real-time file transfers with peer-to-peer and end to end encrypted storage. With role-based access control, admins can manage permissions across different user roles</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺69</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/25b816bc-3844-4e25-810c-0f527c9f4864.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Invoice Matchpoint by .dodocs.AI" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/invoice-matchpoint-by-dodocs-ai?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Invoice Matchpoint by .dodocs.AI</a></h2>
+            <p class="tagline">80/20 - focus on added value tasks, keep the rest for dodocs</p>
+            <p class="description">.dodocs Invoice MatchPoint API designed to automate invoices, quotations and receipts processing for accounting and restaurants inventory management of any type of business. The product already proved and saves up to 90% time of operations with documents</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺99</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/d10a2c78-477a-4edf-9bad-92cf1b58dfdc.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Talespinner" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/talespinner?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Talespinner</a></h2>
+            <p class="tagline">AI assisted story writing with complete control</p>
+            <p class="description">Talespinner.io empowers storytellers with AI assistance. Craft characters, plots, and chapters using advanced language models. Generate ideas, and write your novel in any genre. Choose from multiple AI models with unique strengths. Write in any language.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺88</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/568bc5ab-94c3-4275-b23b-96618de84623.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Reimbursable" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/reimbursable?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Reimbursable</a></h2>
+            <p class="tagline">Effortless HSA reimbursement tracking</p>
+            <p class="description">Build wealth through health with effortless HSA reimbursement tracking. Reimbursable helps you find and track qualified medical expenses for future reimbursement.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺78</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/a648dbb3-8be7-47f8-9a31-7df5927db5bd.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="AiQArt by LockChain" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/aiqart-by-lockchain?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">AiQArt by LockChain</a></h2>
+            <p class="tagline">Generate AI art QR codes</p>
+            <p class="description">Ultra quality, photorealistic QR codes. Perks: No watermark. No subscription. Cheap credit-based generations. Free credits for new users. Buy as much as you want. No URL shortener - use your own. All features unlocked. No extra fees.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺72</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/a02cb4ad-0af3-4665-aac8-3a41c6fc269f.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Writers Copilot" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/writers-copilot?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Writers Copilot</a></h2>
+            <p class="tagline">Transform your writing with smart, instant edits</p>
+            <p class="description">It is a writing assistant that streamlines editing by providing targeted feedback and previewing suggested changes. Users can hover over revisions to see how they'll look and engage in threaded side conversations for focused discussions on specific sections.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺72</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/45c431ce-166a-49d7-8707-a3a5db5318a8.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="LockBridge" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/lockbridge?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">LockBridge</a></h2>
+            <p class="tagline">Secure and seamless file transfer with zero-trust encryption</p>
+            <p class="description">A secure, file-sharing platform for businesses that prioritize data protection. It enables real-time file transfers with peer-to-peer and end to end encrypted storage. With role-based access control, admins can manage permissions across different user roles</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺69</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/25b816bc-3844-4e25-810c-0f527c9f4864.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Invoice Matchpoint by .dodocs.AI" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/invoice-matchpoint-by-dodocs-ai?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Invoice Matchpoint by .dodocs.AI</a></h2>
+            <p class="tagline">80/20 - focus on added value tasks, keep the rest for dodocs</p>
+            <p class="description">.dodocs Invoice MatchPoint API designed to automate invoices, quotations and receipts processing for accounting and restaurants inventory management of any type of business. The product already proved and saves up to 90% time of operations with documents</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
     <div class="card">
         <div class="votes-badge">🔺99</div>
         <div class="card-inner">
@@ -788,13 +1984,409 @@
         </div>
     </div>
     
+    <div class="card">
+        <div class="votes-badge">🔺49</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/b157197b-69e6-4159-899c-276f88e62844.gif?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Backlink Status Checker" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/backlink-status-checker?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Backlink Status Checker</a></h2>
+            <p class="tagline">One-Click Backlink Status Check – Fast and Easy</p>
+            <p class="description">The Backlink Status Checker is a simple yet powerful tool for SEOs and site owners. With one click, you can check if your backlinks are live, broken, or missing and see whether they’re do-follow or no-follow, giving you quick insights about your backlinks.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺44</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/e9a2d8ba-3f9c-4ac0-a12e-9de9e5a5499e.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="sphere" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/sphere-cda81d65-aab8-476c-bcf0-e1f0840b1efd?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">sphere</a></h2>
+            <p class="tagline">AI-powered knowledge management platform for colleges.</p>
+            <p class="description">This platform helps students and teachers to store notes on the cloud or create new ones with a built-in text editor. It offers a centralized repository for accessing notes and question papers plus a productivity suite for efficient time management.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺35</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/187546eb-9798-4fd9-ac58-862eb229fc2e.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="WbizTool - Personal Whatsapp API" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/wbiztool-personal-whatsapp-api?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">WbizTool - Personal Whatsapp API</a></h2>
+            <p class="tagline">Automate your whatsapp messages</p>
+            <p class="description">Wbiztool lets you convert your WhatsApp into a powerful messaging API. Automate communication via API or Excel integration for seamless business interactions.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺17</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3d06d8c1-db9e-4fc6-9057-5c3fa12cdc03.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Doc Insight" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/doc-insight?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Doc Insight</a></h2>
+            <p class="tagline">Empower ChatGPT: Enhanced Doc Q&A and Academic Reading</p>
+            <p class="description">Unlock the full potential of ChatGPT for document analysis, the ultimate extension for researchers, students, and professionals. Features: 💠Instant Document Preview 💠Auto-Generated Table of Contents 💠Diagram Rendering 💠Smart Prompts for Deeper Engagement</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺16</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/acabf374-8bcc-489e-bd28-cbf7daecd622.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="X Bot Remover" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/x-bot-remover?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">X Bot Remover</a></h2>
+            <p class="tagline">Remove suspected bots from your X account.</p>
+            <p class="description">A rule-based automation tool to remove suspected bots from your X account.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺13</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/75e14d59-8d06-469a-9b61-44c08f0de0ea.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Color Explorer" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/color-explorer?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Color Explorer</a></h2>
+            <p class="tagline">Tap into unlimited inspiration!</p>
+            <p class="description">Fuel your creative spark with Color Explorer. Dive into 100s of color-coded ads, artworks, palettes, and bring your vision to life with our (actually) fully customizable templates.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺49</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/b157197b-69e6-4159-899c-276f88e62844.gif?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Backlink Status Checker" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/backlink-status-checker?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Backlink Status Checker</a></h2>
+            <p class="tagline">One-Click Backlink Status Check – Fast and Easy</p>
+            <p class="description">The Backlink Status Checker is a simple yet powerful tool for SEOs and site owners. With one click, you can check if your backlinks are live, broken, or missing and see whether they’re do-follow or no-follow, giving you quick insights about your backlinks.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺44</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/e9a2d8ba-3f9c-4ac0-a12e-9de9e5a5499e.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="sphere" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/sphere-cda81d65-aab8-476c-bcf0-e1f0840b1efd?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">sphere</a></h2>
+            <p class="tagline">AI-powered knowledge management platform for colleges.</p>
+            <p class="description">This platform helps students and teachers to store notes on the cloud or create new ones with a built-in text editor. It offers a centralized repository for accessing notes and question papers plus a productivity suite for efficient time management.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺35</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/187546eb-9798-4fd9-ac58-862eb229fc2e.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="WbizTool - Personal Whatsapp API" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/wbiztool-personal-whatsapp-api?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">WbizTool - Personal Whatsapp API</a></h2>
+            <p class="tagline">Automate your whatsapp messages</p>
+            <p class="description">Wbiztool lets you convert your WhatsApp into a powerful messaging API. Automate communication via API or Excel integration for seamless business interactions.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺17</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3d06d8c1-db9e-4fc6-9057-5c3fa12cdc03.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Doc Insight" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/doc-insight?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Doc Insight</a></h2>
+            <p class="tagline">Empower ChatGPT: Enhanced Doc Q&A and Academic Reading</p>
+            <p class="description">Unlock the full potential of ChatGPT for document analysis, the ultimate extension for researchers, students, and professionals. Features: 💠Instant Document Preview 💠Auto-Generated Table of Contents 💠Diagram Rendering 💠Smart Prompts for Deeper Engagement</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺16</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/acabf374-8bcc-489e-bd28-cbf7daecd622.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="X Bot Remover" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/x-bot-remover?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">X Bot Remover</a></h2>
+            <p class="tagline">Remove suspected bots from your X account.</p>
+            <p class="description">A rule-based automation tool to remove suspected bots from your X account.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺13</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/75e14d59-8d06-469a-9b61-44c08f0de0ea.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Color Explorer" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/color-explorer?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Color Explorer</a></h2>
+            <p class="tagline">Tap into unlimited inspiration!</p>
+            <p class="description">Fuel your creative spark with Color Explorer. Dive into 100s of color-coded ads, artworks, palettes, and bring your vision to life with our (actually) fully customizable templates.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺49</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/b157197b-69e6-4159-899c-276f88e62844.gif?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Backlink Status Checker" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/backlink-status-checker?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Backlink Status Checker</a></h2>
+            <p class="tagline">One-Click Backlink Status Check – Fast and Easy</p>
+            <p class="description">The Backlink Status Checker is a simple yet powerful tool for SEOs and site owners. With one click, you can check if your backlinks are live, broken, or missing and see whether they’re do-follow or no-follow, giving you quick insights about your backlinks.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺44</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/e9a2d8ba-3f9c-4ac0-a12e-9de9e5a5499e.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="sphere" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/sphere-cda81d65-aab8-476c-bcf0-e1f0840b1efd?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">sphere</a></h2>
+            <p class="tagline">AI-powered knowledge management platform for colleges.</p>
+            <p class="description">This platform helps students and teachers to store notes on the cloud or create new ones with a built-in text editor. It offers a centralized repository for accessing notes and question papers plus a productivity suite for efficient time management.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺35</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/187546eb-9798-4fd9-ac58-862eb229fc2e.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="WbizTool - Personal Whatsapp API" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/wbiztool-personal-whatsapp-api?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">WbizTool - Personal Whatsapp API</a></h2>
+            <p class="tagline">Automate your whatsapp messages</p>
+            <p class="description">Wbiztool lets you convert your WhatsApp into a powerful messaging API. Automate communication via API or Excel integration for seamless business interactions.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺17</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3d06d8c1-db9e-4fc6-9057-5c3fa12cdc03.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Doc Insight" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/doc-insight?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Doc Insight</a></h2>
+            <p class="tagline">Empower ChatGPT: Enhanced Doc Q&A and Academic Reading</p>
+            <p class="description">Unlock the full potential of ChatGPT for document analysis, the ultimate extension for researchers, students, and professionals. Features: 💠Instant Document Preview 💠Auto-Generated Table of Contents 💠Diagram Rendering 💠Smart Prompts for Deeper Engagement</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺16</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/acabf374-8bcc-489e-bd28-cbf7daecd622.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="X Bot Remover" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/x-bot-remover?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">X Bot Remover</a></h2>
+            <p class="tagline">Remove suspected bots from your X account.</p>
+            <p class="description">A rule-based automation tool to remove suspected bots from your X account.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺13</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/75e14d59-8d06-469a-9b61-44c08f0de0ea.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Color Explorer" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/color-explorer?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Color Explorer</a></h2>
+            <p class="tagline">Tap into unlimited inspiration!</p>
+            <p class="description">Fuel your creative spark with Color Explorer. Dive into 100s of color-coded ads, artworks, palettes, and bring your vision to life with our (actually) fully customizable templates.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺49</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/b157197b-69e6-4159-899c-276f88e62844.gif?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Backlink Status Checker" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/backlink-status-checker?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Backlink Status Checker</a></h2>
+            <p class="tagline">One-Click Backlink Status Check – Fast and Easy</p>
+            <p class="description">The Backlink Status Checker is a simple yet powerful tool for SEOs and site owners. With one click, you can check if your backlinks are live, broken, or missing and see whether they’re do-follow or no-follow, giving you quick insights about your backlinks.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺44</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/e9a2d8ba-3f9c-4ac0-a12e-9de9e5a5499e.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="sphere" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/sphere-cda81d65-aab8-476c-bcf0-e1f0840b1efd?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">sphere</a></h2>
+            <p class="tagline">AI-powered knowledge management platform for colleges.</p>
+            <p class="description">This platform helps students and teachers to store notes on the cloud or create new ones with a built-in text editor. It offers a centralized repository for accessing notes and question papers plus a productivity suite for efficient time management.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺35</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/187546eb-9798-4fd9-ac58-862eb229fc2e.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="WbizTool - Personal Whatsapp API" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/wbiztool-personal-whatsapp-api?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">WbizTool - Personal Whatsapp API</a></h2>
+            <p class="tagline">Automate your whatsapp messages</p>
+            <p class="description">Wbiztool lets you convert your WhatsApp into a powerful messaging API. Automate communication via API or Excel integration for seamless business interactions.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺17</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3d06d8c1-db9e-4fc6-9057-5c3fa12cdc03.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Doc Insight" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/doc-insight?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Doc Insight</a></h2>
+            <p class="tagline">Empower ChatGPT: Enhanced Doc Q&A and Academic Reading</p>
+            <p class="description">Unlock the full potential of ChatGPT for document analysis, the ultimate extension for researchers, students, and professionals. Features: 💠Instant Document Preview 💠Auto-Generated Table of Contents 💠Diagram Rendering 💠Smart Prompts for Deeper Engagement</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺16</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/acabf374-8bcc-489e-bd28-cbf7daecd622.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="X Bot Remover" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/x-bot-remover?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">X Bot Remover</a></h2>
+            <p class="tagline">Remove suspected bots from your X account.</p>
+            <p class="description">A rule-based automation tool to remove suspected bots from your X account.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺13</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/75e14d59-8d06-469a-9b61-44c08f0de0ea.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Color Explorer" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/color-explorer?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Color Explorer</a></h2>
+            <p class="tagline">Tap into unlimited inspiration!</p>
+            <p class="description">Fuel your creative spark with Color Explorer. Dive into 100s of color-coded ads, artworks, palettes, and bring your vision to life with our (actually) fully customizable templates.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺49</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/b157197b-69e6-4159-899c-276f88e62844.gif?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Backlink Status Checker" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/backlink-status-checker?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Backlink Status Checker</a></h2>
+            <p class="tagline">One-Click Backlink Status Check – Fast and Easy</p>
+            <p class="description">The Backlink Status Checker is a simple yet powerful tool for SEOs and site owners. With one click, you can check if your backlinks are live, broken, or missing and see whether they’re do-follow or no-follow, giving you quick insights about your backlinks.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺44</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/e9a2d8ba-3f9c-4ac0-a12e-9de9e5a5499e.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="sphere" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/sphere-cda81d65-aab8-476c-bcf0-e1f0840b1efd?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">sphere</a></h2>
+            <p class="tagline">AI-powered knowledge management platform for colleges.</p>
+            <p class="description">This platform helps students and teachers to store notes on the cloud or create new ones with a built-in text editor. It offers a centralized repository for accessing notes and question papers plus a productivity suite for efficient time management.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺35</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/187546eb-9798-4fd9-ac58-862eb229fc2e.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="WbizTool - Personal Whatsapp API" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/wbiztool-personal-whatsapp-api?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">WbizTool - Personal Whatsapp API</a></h2>
+            <p class="tagline">Automate your whatsapp messages</p>
+            <p class="description">Wbiztool lets you convert your WhatsApp into a powerful messaging API. Automate communication via API or Excel integration for seamless business interactions.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺17</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3d06d8c1-db9e-4fc6-9057-5c3fa12cdc03.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Doc Insight" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/doc-insight?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Doc Insight</a></h2>
+            <p class="tagline">Empower ChatGPT: Enhanced Doc Q&A and Academic Reading</p>
+            <p class="description">Unlock the full potential of ChatGPT for document analysis, the ultimate extension for researchers, students, and professionals. Features: 💠Instant Document Preview 💠Auto-Generated Table of Contents 💠Diagram Rendering 💠Smart Prompts for Deeper Engagement</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺16</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/acabf374-8bcc-489e-bd28-cbf7daecd622.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="X Bot Remover" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/x-bot-remover?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">X Bot Remover</a></h2>
+            <p class="tagline">Remove suspected bots from your X account.</p>
+            <p class="description">A rule-based automation tool to remove suspected bots from your X account.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺13</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/75e14d59-8d06-469a-9b61-44c08f0de0ea.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Color Explorer" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/color-explorer?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Color Explorer</a></h2>
+            <p class="tagline">Tap into unlimited inspiration!</p>
+            <p class="description">Fuel your creative spark with Color Explorer. Dive into 100s of color-coded ads, artworks, palettes, and bring your vision to life with our (actually) fully customizable templates.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺49</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/b157197b-69e6-4159-899c-276f88e62844.gif?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Backlink Status Checker" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/backlink-status-checker?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Backlink Status Checker</a></h2>
+            <p class="tagline">One-Click Backlink Status Check – Fast and Easy</p>
+            <p class="description">The Backlink Status Checker is a simple yet powerful tool for SEOs and site owners. With one click, you can check if your backlinks are live, broken, or missing and see whether they’re do-follow or no-follow, giving you quick insights about your backlinks.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺44</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/e9a2d8ba-3f9c-4ac0-a12e-9de9e5a5499e.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="sphere" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/sphere-cda81d65-aab8-476c-bcf0-e1f0840b1efd?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">sphere</a></h2>
+            <p class="tagline">AI-powered knowledge management platform for colleges.</p>
+            <p class="description">This platform helps students and teachers to store notes on the cloud or create new ones with a built-in text editor. It offers a centralized repository for accessing notes and question papers plus a productivity suite for efficient time management.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺35</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/187546eb-9798-4fd9-ac58-862eb229fc2e.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024" alt="WbizTool - Personal Whatsapp API" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/wbiztool-personal-whatsapp-api?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">WbizTool - Personal Whatsapp API</a></h2>
+            <p class="tagline">Automate your whatsapp messages</p>
+            <p class="description">Wbiztool lets you convert your WhatsApp into a powerful messaging API. Automate communication via API or Excel integration for seamless business interactions.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺17</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/3d06d8c1-db9e-4fc6-9057-5c3fa12cdc03.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Doc Insight" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/doc-insight?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Doc Insight</a></h2>
+            <p class="tagline">Empower ChatGPT: Enhanced Doc Q&A and Academic Reading</p>
+            <p class="description">Unlock the full potential of ChatGPT for document analysis, the ultimate extension for researchers, students, and professionals. Features: 💠Instant Document Preview 💠Auto-Generated Table of Contents 💠Diagram Rendering 💠Smart Prompts for Deeper Engagement</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺16</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/acabf374-8bcc-489e-bd28-cbf7daecd622.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="X Bot Remover" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/x-bot-remover?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">X Bot Remover</a></h2>
+            <p class="tagline">Remove suspected bots from your X account.</p>
+            <p class="description">A rule-based automation tool to remove suspected bots from your X account.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="votes-badge">🔺13</div>
+        <div class="card-inner">
+            <img src="https://ph-files.imgix.net/75e14d59-8d06-469a-9b61-44c08f0de0ea.png?auto=format&fit=crop&frame=1&h=512&w=1024" alt="Color Explorer" class="product-image">
+            <h2><a href="https://www.producthunt.com/posts/color-explorer?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29" target="_blank">Color Explorer</a></h2>
+            <p class="tagline">Tap into unlimited inspiration!</p>
+            <p class="description">Fuel your creative spark with Color Explorer. Dive into 100s of color-coded ads, artworks, palettes, and bring your vision to life with our (actually) fully customizable templates.</p>
+            <div class="keywords">#无关键词</div>
+        </div>
+    </div>
+    
             </div>
         </div>
         
             </div>
         </div>
         <footer>
-            <p>&copy; 2024 Product Hunt Daily Hot. All rights reserved.</p>
+            <p>&copy; 2024 Daily Hot. All rights reserved. Made by Larkspur</p>
         </footer>
         <script>
             const robot = document.getElementById('robot');

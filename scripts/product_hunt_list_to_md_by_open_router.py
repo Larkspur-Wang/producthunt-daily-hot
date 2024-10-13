@@ -49,7 +49,7 @@ class Product:
         
         try:
             response = client.chat.completions.create(
-                model="meta-llama/llama-3.1-70b-instruct:free",
+                model="meta-llama/llama-3.1-405b-instruct:free",
                 messages=[
                     {"role": "system", "content": "Generate suitable Chinese keywords based on the product information provided. The keywords should be separated by commas."},
                     {"role": "user", "content": prompt},
