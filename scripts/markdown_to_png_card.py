@@ -653,7 +653,7 @@ def create_rss_feed(products, date):
     channel = ET.SubElement(rss, "channel")
     
     ET.SubElement(channel, "title").text = "Product Hunt Daily Hot"
-    ET.SubElement(channel, "link").text = "https://your-website-url.com"
+    ET.SubElement(channel, "link").text = "https://dailyhot.zeabur.app/"
     ET.SubElement(channel, "description").text = "Daily hot products from Product Hunt"
     ET.SubElement(channel, "language").text = "zh-cn"
     ET.SubElement(channel, "pubDate").text = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S %z")
