@@ -41,12 +41,12 @@ class Product:
 
     async def generate_keywords(self) -> str:
         """生成产品的关键词，显示在一行，用逗号分隔"""
-        prompt = f"根据以下内容生成适合的中文关键词，用英文逗号分隔开：\n\n产品名称：{self.name}\n\n标语：{self.tagline}\n\n描述：{self.description}"
+        prompt = f"根据以下内容生成适合的3个中文关键词，用英文逗号分隔开：\n\n产品名称：{self.name}\n\n标语：{self.tagline}\n\n描述：{self.description}"
         
         try:
             system_prompt = "Generate suitable Chinese keywords based on the product information provided. The keywords should be separated by commas."
             inputs = json.dumps([{"role": "system", "content": system_prompt}])
-            response, _ = await call_groq_async(GROQ_API_KEY, prompt, "", inputs, "", "blocking")
+            response, _ = await call_groq_async(GROQ_API_KEY, prompt, "", inputs, "", model="llama-3.2-11b-text-preview", response_mode="blocking")
             keywords = response.strip()
             if ',' not in keywords:
                 keywords = ', '.join(keywords.split())
@@ -60,7 +60,7 @@ class Product:
         try:
             system_prompt = "你是世界上最专业的翻译工具，擅长英文和中文互译。你是一位精通英文和中文的专业翻译，尤其擅长将IT公司黑话和专业词汇翻译成简洁易懂的地道表达。你的任务是将以下内容翻译成地道的中文，风格与科普杂志或日常对话相似。"
             inputs = json.dumps([{"role": "system", "content": system_prompt}])
-            response, _ = await call_groq_async(GROQ_API_KEY, text, "", inputs, "", "blocking")
+            response, _ = await call_groq_async(GROQ_API_KEY, text, "", inputs, "", model="llama-3.2-90b-text-preview", response_mode="blocking")
             return response.strip()
         except Exception as e:
             print(f"Error occurred during translation: {e}")
@@ -91,27 +91,27 @@ class Product:
         """返回产品数据的Markdown格式"""
         og_image_markdown = f"![{self.name}]({self.og_image_url})"
         return (
-            f"## [{rank}. {self.name}]({self.url})\n"
-            f"**标语**：{self.translated_tagline}\n"
-            f"**介绍**：{self.translated_description}\n"
-            f"**产品网站**: [立即访问]({self.website})\n"
-            f"**Product Hunt**: [View on Product Hunt]({self.url})\n\n"
-            f"{og_image_markdown}\n\n"
-            f"**关键词**：{self.keyword}\n"
-            f"**票数**: 🔺{self.votes_count}\n"
-            f"**是否精选**：{self.featured}\n"
-            f"**发布时间**：{self.created_at}\n\n"
+            f"## [{rank}. {self.name}]({self.url})  \n"
+            f"{og_image_markdown}  \n\n"
+            f"**标语**：{self.translated_tagline}  \n"
+            f"**介绍**：{self.translated_description}  \n"
+            f"**票数**: 🔺{self.votes_count}  \n"
+            f"**关键词**：{self.keyword}  \n"
+            f"**发布时间**：{self.created_at}  \n\n"
+            #f"**产品网站**: [立即访问]({self.website})  \n"
+            #f"**Product Hunt**: [View on Product Hunt]({self.url})\n\n"                                  
+            #f"**是否精选**：{self.featured} \n"           
             f"---\n\n"
         )
 
-async def send_chat_message_async(base_url: str, api_key: str, query: str, user: str, conversation_id: str, inputs: List[dict] = [], files: List[dict] = [], response_mode="streaming") -> Tuple[str, str]:
+async def send_chat_message_async(base_url: str, api_key: str, query: str, user: str, conversation_id: str, model: str, inputs: List[dict] = [], files: List[dict] = [], response_mode="streaming") -> Tuple[str, str]:
     url = f"{base_url}/chat/completions"
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json"
     }
     payload = {
-        "model": 'llama3-70b-8192',
+        "model": model,
         "messages": [
             *inputs,
             {
@@ -160,7 +160,7 @@ async def handle_streaming_response_async(response: aiohttp.ClientResponse, conv
                 continue
     return result, conversation_id
 
-async def call_groq_async(api_key, content, conversation_id, inputs, files, response_mode="blocking"):
+async def call_groq_async(api_key, content, conversation_id, inputs, files, model="llama3-70b-8192", response_mode="blocking"):
     base_url = GROQ_API_BASE_URL
     user = "user"
     if not inputs:
@@ -171,7 +171,7 @@ async def call_groq_async(api_key, content, conversation_id, inputs, files, resp
     inputs = json.loads(inputs)
     files = json.loads(files)
     try:
-        result, conversation_id = await send_chat_message_async(base_url, api_key, content, user=user, conversation_id=conversation_id, inputs=inputs, files=files, response_mode=response_mode)
+        result, conversation_id = await send_chat_message_async(base_url, api_key, content, user=user, conversation_id=conversation_id, model=model, inputs=inputs, files=files, response_mode=response_mode)
         return result, conversation_id
     except Exception as e:
         print(f"Error in call_groq_async: {e}")
@@ -199,7 +199,7 @@ def get_producthunt_token():
     return token
 
 def fetch_product_hunt_data():
-    """从Product Hunt获取前一天的Top 30数据"""
+    """从Product Hunt获取前一天的Top 24数据"""
     token = get_producthunt_token()
     yesterday = datetime.now(timezone.utc) - timedelta(days=1)
     date_str = yesterday.strftime('%Y-%m-%d')
@@ -232,7 +232,7 @@ def fetch_product_hunt_data():
     has_next_page = True
     cursor = ""
 
-    while has_next_page and len(all_posts) < 30:
+    while has_next_page and len(all_posts) < 24:
         query = base_query % (date_str, date_str, cursor)
         response = requests.post(url, headers=headers, json={"query": query})
 
@@ -246,8 +246,8 @@ def fetch_product_hunt_data():
         has_next_page = data['pageInfo']['hasNextPage']
         cursor = data['pageInfo']['endCursor']
 
-    # 只保留前30个产品
-    return [Product(**post) for post in sorted(all_posts, key=lambda x: x['votesCount'], reverse=True)[:30]]
+    # 只保留前24个产品
+    return [Product(**post) for post in sorted(all_posts, key=lambda x: x['votesCount'], reverse=True)[:24]]
 
 def generate_markdown(products, date_str):
     """生成Markdown内容并保存到data目录"""

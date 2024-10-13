@@ -41,7 +41,7 @@ class Product:
 
     def generate_keywords(self) -> str:
         """生成产品的关键词，显示在一行，用逗号分隔"""
-        prompt = f"根据以下内容生成4个适合的中文关键词，用英文逗号分隔开：\n\n产品名称：{self.name}\n\n标语：{self.tagline}\n\n描述：{self.description}"
+        prompt = f"根据以下内容生成3个适合的中文关键词，用英文逗号分隔开：\n\n产品名称：{self.name}\n\n标语：{self.tagline}\n\n描述：{self.description}"
         
         try:
             response = client.text_generation(prompt, max_new_tokens=50, temperature=0.7)
