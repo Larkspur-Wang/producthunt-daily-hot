@@ -109,7 +109,7 @@
             }
             .scroll-row {
                 display: flex;
-                animation: scroll 120s linear infinite;
+                animation: scroll 160s linear infinite;
                 width: 800%;
             }
             .card {
@@ -224,7 +224,7 @@
                 background-color: #f0f0f0;
                 color: #333;
                 padding: 2px 8px;
-                margin-left: 10px;  /* 改为左距，使标签之间有间隔 */
+                margin-left: 10px;  /* 为左距，使标签之间有间隔 */
                 margin-bottom: 10px;
                 border-radius: 12px;
                 font-size: 12px;
@@ -343,21 +343,22 @@
         </style>
         <script>
         function showRSSInfo() {
-            alert('RSS订阅说明：\n\n1. 点击"RSS订阅"链接下载feed.xml文件\n2. 将此文件导入您的RSS阅读器。\n3. 如果您没有RSS阅读器，我们推荐使用Feedly或Inoreader等在线服务。\n\n感谢您的订阅！');
+            alert('RSS订说明：\n\n1. 点击"RSS订阅"链接下载feed.xml文件\n2. 将此文件导入您的RSS阅读器。\n3. 如果您没有RSS阅读器，我们推荐使用Feedly或Inoreader等在线服务。\n\n感谢您的订阅！');
         }
         function loadSelectedDate() {
             var selectedDate = document.getElementById('dateSelector').value;
-            window.location.href = 'producthunt_daily_' + selectedDate + '.html';
+            window.parent.postMessage({ type: 'loadDate', date: selectedDate }, '*');
         }
+
         function navigateDate(direction) {
-            var select = document.getElementById('dateSelector');
-            var currentIndex = select.selectedIndex;
-            if (direction === 'prev' && currentIndex < select.options.length - 1) {
-                select.selectedIndex = currentIndex + 1;
-            } else if (direction === 'next' && currentIndex > 0) {
-                select.selectedIndex = currentIndex - 1;
+            var currentDate = document.getElementById('dateSelector').value;
+            var dates = Array.from(document.getElementById('dateSelector').options).map(option => option.value);
+            var currentIndex = dates.indexOf(currentDate);
+            var newIndex = direction === 'prev' ? currentIndex + 1 : currentIndex - 1;
+            if (newIndex >= 0 && newIndex < dates.length) {
+                var newDate = dates[newIndex];
+                window.parent.postMessage({ type: 'loadDate', date: newDate }, '*');
             }
-            loadSelectedDate();
         }
         </script>
     </head>
@@ -381,7 +382,7 @@
                     <li class="contact">
                         <a href="#contact">联系与共创</a>
                         <span class="tooltip">
-                            <img src="..\img\contact.jpg" alt="WeChat QR Code" class="qr-code">
+                            <img src="/img/contact.jpg" alt="WeChat QR Code" class="qr-code">
                         </span>
                     </li>
                 </ul>

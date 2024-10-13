@@ -79,15 +79,6 @@ def generate_rainbow_colors(num_colors=7):
 
 def create_html_page(products, date):
     available_dates = get_available_dates()
-    
-    if date not in available_dates:
-        print(f"警告：日期 {date} 不在可用日期列表中。使用最近的可用日期。")
-        if available_dates:
-            date = min(available_dates, key=lambda x: abs(datetime.strptime(x, '%Y-%m-%d') - datetime.strptime(date, '%Y-%m-%d')))
-        else:
-            print("错误：没有可用的日期。")
-            return ""
-
     current_index = available_dates.index(date)
     prev_date = available_dates[current_index + 1] if current_index < len(available_dates) - 1 else None
     next_date = available_dates[current_index - 1] if current_index > 0 else None
@@ -107,12 +98,6 @@ def create_html_page(products, date):
         </div>
         """
     
-    # 获取项目根目录
-    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    # 构建图片的相对路径
-    contact_img_path = os.path.relpath(os.path.join(project_root, 'img', 'contact.jpg'), 
-                                       os.path.join(project_root, 'website_daily'))
-
     html = f"""
     <!DOCTYPE html>
     <html lang="zh-CN">
@@ -224,7 +209,7 @@ def create_html_page(products, date):
             }}
             .scroll-row {{
                 display: flex;
-                animation: scroll 120s linear infinite;
+                animation: scroll 160s linear infinite;
                 width: 800%;
             }}
             .card {{
@@ -339,7 +324,7 @@ def create_html_page(products, date):
                 background-color: #f0f0f0;
                 color: #333;
                 padding: 2px 8px;
-                margin-left: 10px;  /* 改为左距，使标签之间有间隔 */
+                margin-left: 10px;  /* 为左距，使标签之间有间隔 */
                 margin-bottom: 10px;
                 border-radius: 12px;
                 font-size: 12px;
@@ -458,21 +443,22 @@ def create_html_page(products, date):
         </style>
         <script>
         function showRSSInfo() {{
-            alert('RSS订阅说明：\\n\\n1. 点击"RSS订阅"链接下载feed.xml文件\\n2. 将此文件导入您的RSS阅读器。\\n3. 如果您没有RSS阅读器，我们推荐使用Feedly或Inoreader等在线服务。\\n\\n感谢您的订阅！');
+            alert('RSS订说明：\\n\\n1. 点击"RSS订阅"链接下载feed.xml文件\\n2. 将此文件导入您的RSS阅读器。\\n3. 如果您没有RSS阅读器，我们推荐使用Feedly或Inoreader等在线服务。\\n\\n感谢您的订阅！');
         }}
         function loadSelectedDate() {{
             var selectedDate = document.getElementById('dateSelector').value;
-            window.location.href = 'producthunt_daily_' + selectedDate + '.html';
+            window.parent.postMessage({{ type: 'loadDate', date: selectedDate }}, '*');
         }}
+
         function navigateDate(direction) {{
-            var select = document.getElementById('dateSelector');
-            var currentIndex = select.selectedIndex;
-            if (direction === 'prev' && currentIndex < select.options.length - 1) {{
-                select.selectedIndex = currentIndex + 1;
-            }} else if (direction === 'next' && currentIndex > 0) {{
-                select.selectedIndex = currentIndex - 1;
+            var currentDate = document.getElementById('dateSelector').value;
+            var dates = Array.from(document.getElementById('dateSelector').options).map(option => option.value);
+            var currentIndex = dates.indexOf(currentDate);
+            var newIndex = direction === 'prev' ? currentIndex + 1 : currentIndex - 1;
+            if (newIndex >= 0 && newIndex < dates.length) {{
+                var newDate = dates[newIndex];
+                window.parent.postMessage({{ type: 'loadDate', date: newDate }}, '*');
             }}
-            loadSelectedDate();
         }}
         </script>
     </head>
@@ -496,7 +482,7 @@ def create_html_page(products, date):
                     <li class="contact">
                         <a href="#contact">联系与共创</a>
                         <span class="tooltip">
-                            <img src="{contact_img_path}" alt="WeChat QR Code" class="qr-code">
+                            <img src="/img/contact.jpg" alt="WeChat QR Code" class="qr-code">
                         </span>
                     </li>
                 </ul>
@@ -712,60 +698,36 @@ def main():
     # 确保 website_daily 目录存在
     os.makedirs(website_daily_dir, exist_ok=True)
 
-    # 获取未处理的 Markdown 文件
-    unprocessed_files = get_unprocessed_markdown_files(data_dir, website_daily_dir)
+    # 获取所有 Markdown 文件
+    markdown_files = [f for f in os.listdir(data_dir) if f.startswith('producthunt-daily-') and f.endswith('.md')]
 
-    if not unprocessed_files:
-        print("没有新的 Markdown 文件需要处理。")
-        return
+    for markdown_file in markdown_files:
+        file_date = re.search(r'(\d{4}-\d{2}-\d{2})', markdown_file).group(1)
+        html_file = f'producthunt_daily_{file_date}.html'
+        html_path = os.path.join(website_daily_dir, html_file)
 
-    for markdown_file in unprocessed_files:
-        try:
+        # 检查是否已经存在对应的 HTML 文件
+        if not os.path.exists(html_path):
             markdown_path = os.path.join(data_dir, markdown_file)
-            
-            # 从文件名中提取日期
-            file_date = re.search(r'(\d{4}-\d{2}-\d{2})', markdown_file)
-            if file_date:
-                file_date = file_date.group(1)
-            else:
-                print(f"无法从文件名 {markdown_file} 中提取日期，跳过此文件。")
-                continue
-
-            # 读取markdown内容
             markdown_content = read_markdown_file(markdown_path)
-            if markdown_content is None:
-                continue
+            if markdown_content is not None:
+                products = parse_product_hunt_items(markdown_content)[:24]
+                html_content = create_html_page(products, file_date)
 
-            # 解析Product Hunt项目
-            products = parse_product_hunt_items(markdown_content)[:24]  # 确保只使用前24个产品
-            print(f"文件 {markdown_file} 中解析到的产品数: {len(products)}")
+                with open(html_path, 'w', encoding='utf-8') as file:
+                    file.write(html_content)
 
-            # 创建HTML页面
-            html_content = create_html_page(products, file_date)
-            if not html_content:
-                print(f"跳过文件 {markdown_file}，因为无法创建 HTML 内容。")
-                continue
+                print(f"生成了新的HTML文件: {html_file}")
 
-            # 保存HTML文件
-            output_path = os.path.join(website_daily_dir, f'producthunt_daily_{file_date}.html')
-            with open(output_path, 'w', encoding='utf-8') as file:
-                file.write(html_content)
+                # 更新 RSS feed
+                rss_content = create_rss_feed(products, file_date)
+                rss_path = os.path.join(website_daily_dir, 'feed.xml')
+                with open(rss_path, 'w', encoding='utf-8') as file:
+                    file.write(rss_content)
 
-            print(f"HTML文件已生成: {output_path}")
+                print(f"更新了RSS feed: {rss_path}")
 
-            # 创建并保存RSS feed
-            rss_content = create_rss_feed(products, file_date)
-            rss_path = os.path.join(website_daily_dir, 'feed.xml')
-            with open(rss_path, 'w', encoding='utf-8') as file:
-                file.write(rss_content)
-
-            print(f"RSS feed已更新: {rss_path}")
-
-        except Exception as e:
-            print(f"处理文件 {markdown_file} 时发生错误: {e}")
-            continue
-
-    print("所有未处理的 Markdown 文件已转换为 HTML。")
+    print("所有缺失的HTML文件已生成。")
 
 if __name__ == "__main__":
     main()
