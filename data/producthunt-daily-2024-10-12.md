@@ -14,12 +14,12 @@
 ## [2. Generate Anything ](https://www.producthunt.com/posts/generate-anything?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)  
 ![Generate Anything ](https://ph-files.imgix.net/0c32facc-87e3-48c5-9c42-1045bd3fad09.png?auto=format&fit=crop&frame=1&h=512&w=1024)  
 
-**标语**：  
+**标语**：3D模型生成和动画制作平台  
 **介绍**：Generate Anything 是一个一站式的3D模型生成和动画制作平台。只需几分钟，您就可以根据文字或图像提示创建人形生物和奇异生物，然后使用 Animate Anything 无缝地为您的创作赋予动画——所有这些都在一个地方完成。  
 **票数**: 🔺348  
 **关键词**：AI模型生成, 3D动画制作, 人工智能动画, 自动生成模型  
 **发布时间**：2024年10月11日 PM03:01 (北京时间)  
-
+d
 ---
 
 ## [3. Flowbite WYSIWYG](https://www.producthunt.com/posts/flowbite-wysiwyg?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)  
@@ -50,9 +50,7 @@
 **标语**：用于通过视觉方式创建用户界面的 React 组件  
 **介绍**：UI生成器是一个开源的React组件，它提供了一种无需编码、通过可视化方式来创建界面的方法。它兼容shadcn和自定义组件，非常适合搭建诸如着陆页或营销邮件等界面。同时，它能轻松整合进shadcn/ui项目中。  
 **票数**: 🔺208  
-**关键词**：以下是四个适合的中文关键词：
-
-无代码界面构建, 可视化界面设计, React UI 组件, 界面快速搭建  
+**关键词**：无代码界面构建, 可视化界面设计, React UI 组件, 界面快速搭建  
 **发布时间**：2024年10月11日 PM03:01 (北京时间)  
 
 ---
@@ -96,9 +94,7 @@
 **标语**：创建自定义人工智能助手——无需编程。  
 **介绍**：吸引客户，自动化支持，推动增长——无需技术技能。AskSpot 帮助机构、创作者和小企业快速搭建定制化的 AI 助手。可以部署在任何地方，提供即时答案，提高转化率。  
 **票数**: 🔺120  
-**关键词**：Here are 4 Chinese keywords that match the product information:
-
-自定义AI助手, 无需编程AI, AI客户服务, 自助支持工具  
+**关键词**：自定义AI助手, 无需编程AI, AI客户服务, 自助支持工具  
 **发布时间**：2024年10月11日 PM03:01 (北京时间)  
 
 ---

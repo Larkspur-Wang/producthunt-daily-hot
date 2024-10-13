@@ -40,11 +40,10 @@ def parse_product_hunt_items(markdown_content):
             elif line.startswith('**票数**:'):
                 product['votes'] = line.replace('**票数**: ', '').strip()
             elif line.startswith('**关键词**：'):
-                product['keywords'] = line.replace('**关键词**：', '').strip()
-            elif line.startswith('**发布时间**：'):
-                product['time'] = line.replace('**发布时间**：', '').strip()
+                keywords = line.replace('**关键词**：', '').strip().split(', ')
+                product['keywords'] = ' '.join([f"#{keyword.strip()}" for keyword in keywords])
         
-        if all(key in product for key in ['name', 'url', 'image', 'tagline', 'description', 'votes', 'keywords', 'time']):
+        if all(key in product for key in ['name', 'url', 'image', 'tagline', 'description', 'votes', 'keywords']):
             products.append(product)
         else:
             print(f"Skipped a product due to missing information: {product}")
@@ -55,14 +54,13 @@ def parse_product_hunt_items(markdown_content):
 def create_html_card(product):
     card_html = f"""
     <div class="card">
+        <div class="votes-badge">{product['votes']}</div>
         <div class="card-inner">
-            <div class="votes-badge">{product['votes']}</div>
             <img src="{product['image']}" alt="{product['name']}" class="product-image">
             <h2><a href="{product['url']}" target="_blank">{product['name']}</a></h2>
             <p class="tagline">{product['tagline']}</p>
             <p class="description">{product['description']}</p>
-            <p class="keywords">{product['keywords']}</p>
-            <p class="time">{product['time']}</p>
+            <div class="keywords">{product['keywords']}</div>
         </div>
     </div>
     """
@@ -197,7 +195,7 @@ def create_html_page(products, date):
             .card {{
                 flex: 0 0 16.666%;
                 max-width: 16.666%;
-                padding: 0.5rem;
+                padding: 1rem 0.5rem 0.5rem;
                 box-sizing: border-box;
                 user-select: none;
                 position: relative;
@@ -236,8 +234,12 @@ def create_html_page(products, date):
                 padding: 0 1rem;
             }}
             .tagline {{
+                text-decoration: underline wavy red;
+                text-decoration-thickness: 1px;
+                text-underline-offset: 3px;
+                margin-bottom: 10px;
                 font-weight: 500;
-                color: #555;
+                color: #333;
             }}
             .description {{
                 flex-grow: 1;
@@ -277,18 +279,35 @@ def create_html_page(products, date):
             }}
             .votes-badge {{
                 position: absolute;
-                top: 1rem;
-                left: 1rem;
-                background-color: rgba(0, 0, 0, 0.6);
+                top: 0;
+                left: 0.5rem;
+                background-color: rgba(0, 0, 0, 0.7);
                 color: white;
-                padding: 0.25rem 0.5rem;
+                padding: 4px 8px;
                 border-radius: 12px;
-                font-size: 12px;
+                font-size: 14px;
                 font-weight: bold;
-                z-index: 1;
+                z-index: 2;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             }}
             .scroll-container:hover .scroll-row {{
                 animation-play-state: paused;
+            }}
+            
+            .keywords {{
+                margin-top: 10px;
+                padding-right: 10px;  /* 添加左侧内边距 */
+                text-align: right;  /* 将标签靠右对齐 */
+            }}
+            .keyword {{
+                display: inline-block;
+                background-color: #f0f0f0;
+                color: #333;
+                padding: 2px 8px;
+                margin-left: 10px;  /* 改为左距，使标签之间有间隔 */
+                margin-bottom: 10px;
+                border-radius: 12px;
+                font-size: 12px;
             }}
         </style>
     </head>
@@ -441,7 +460,7 @@ def main():
         print("错误：在 data 目录中没有找到 Markdown 文件。")
         sys.exit(1)
     
-    # 根据文件名中的日期排序，选择最新的文件
+    # 根据文件���中的日期排序，选择最新的文件
     latest_file = max(markdown_files, key=lambda x: datetime.strptime(re.search(r'(\d{4}-\d{2}-\d{2})', x).group(1), '%Y-%m-%d'))
     markdown_path = os.path.join(data_dir, latest_file)
 
