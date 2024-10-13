@@ -60,7 +60,7 @@ class Product:
         try:
             system_prompt = "你是世界上最专业的翻译工具，擅长英文和中文互译。你是一位精通英文和中文的专业翻译，尤其擅长将IT公司黑话和专业词汇翻译成简洁易懂的地道表达。你的任务是将以下内容翻译成地道的中文，风格与科普杂志或日常对话相似。"
             inputs = json.dumps([{"role": "system", "content": system_prompt}])
-            response, _ = await call_groq_async(GROQ_API_KEY, text, "", inputs, "", model="llama-3.2-90b-text-preview", response_mode="blocking")
+            response, _ = await call_groq_async_with_retry(GROQ_API_KEY, text, "", inputs, "", model="llama-3.2-90b-text-preview", response_mode="blocking")
             return response.strip()
         except Exception as e:
             print(f"Error occurred during translation: {e}")
@@ -177,6 +177,19 @@ async def call_groq_async(api_key, content, conversation_id, inputs, files, mode
         print(f"Error in call_groq_async: {e}")
         raise
 
+async def call_groq_async_with_retry(api_key, content, conversation_id, inputs, files, model="llama3-70b-8192", response_mode="blocking", max_retries=3):
+    for attempt in range(max_retries):
+        try:
+            result, conversation_id = await call_groq_async(api_key, content, conversation_id, inputs, files, model, response_mode)
+            return result, conversation_id
+        except aiohttp.ClientError as e:
+            if "429" in str(e) and attempt < max_retries - 1:
+                wait_time = (2 ** attempt) * 5  # 指数退避，基础等待时间为5秒
+                print(f"Rate limit reached. Waiting for {wait_time} seconds before retrying...")
+                await asyncio.sleep(wait_time)
+            else:
+                raise
+
 def get_producthunt_token():
     """通过 client_id 和 client_secret 获取 Product Hunt 的 access_token"""
     url = "https://api.producthunt.com/v2/oauth/token"
@@ -284,6 +297,7 @@ async def main():
         tasks.append(product.generate_keywords())
         tasks.append(product.translate_tagline())
         tasks.append(product.translate_description())
+        await asyncio.sleep(2)  # 在每个产品的处理之间添加2秒的延迟
 
     await asyncio.gather(*tasks)
 
