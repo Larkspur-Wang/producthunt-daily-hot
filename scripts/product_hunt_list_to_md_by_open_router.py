@@ -5,6 +5,7 @@ from datetime import datetime, timedelta, timezone
 from openai import OpenAI
 from bs4 import BeautifulSoup
 import pytz
+import time
 
 # 加载 .env 文件
 # load_dotenv()
@@ -60,6 +61,7 @@ class Product:
             keywords = response.choices[0].message.content.strip()
             if ',' not in keywords:
                 keywords = ', '.join(keywords.split())
+            time.sleep(3)  # 在API调用后等待3秒
             return keywords
         except Exception as e:
             print(f"Error occurred during keyword generation: {e}")
@@ -78,6 +80,7 @@ class Product:
                 temperature=0.7,
             )
             translated_text = response.choices[0].message.content.strip()
+            time.sleep(3)  # 在API调用后等待3秒
             return translated_text
         except Exception as e:
             print(f"Error occurred during translation: {e}")
@@ -208,6 +211,13 @@ def main():
 
     # 获取Product Hunt数据
     products = fetch_product_hunt_data()
+
+    # 生成关键词和翻译
+    for product in products:
+        product.keyword = product.generate_keywords()
+        product.translated_tagline = product.translate_text(product.tagline)
+        product.translated_description = product.translate_text(product.description)
+        time.sleep(2)  # 在每个产品的处理之间添加2秒的延迟
 
     # 生成Markdown文件
     generate_markdown(products, date_str)

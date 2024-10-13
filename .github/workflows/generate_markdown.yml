@@ -32,7 +32,7 @@ jobs:
         PRODUCTHUNT_CLIENT_SECRET: ${{ secrets.PRODUCTHUNT_CLIENT_SECRET }}
         HUGGINGFACE_API_TOKEN: ${{ secrets.HUGGINGFACE_API_TOKEN }}
       run: |
-        python scripts/product_hunt_list_to_md_by_groq.py
+        python scripts/product_hunt_list_to_md_by_open_router.py
 
     - name: Commit files
       run: |
