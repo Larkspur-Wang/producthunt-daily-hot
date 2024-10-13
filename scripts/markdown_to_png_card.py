@@ -106,7 +106,6 @@ def create_html_page(products, date):
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Daily Hot | {date}</title>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-        <link rel="alternate" type="application/rss+xml" title="Product Hunt Daily Hot RSS Feed" href="feed.xml">
         <style>
             :root {{
                 --background-color: #f7f7f7;
@@ -171,6 +170,7 @@ def create_html_page(products, date):
                 position: relative;
                 padding: 10px 0;  /* 减少上下padding */
                 margin-bottom: 1rem;  /* 减少底部margin */
+                z-index: 1;  /* 确保标题容器在机器人下方 */
             }}
             .title-container h1 {{
                 font-size: 48px;  /* 增加页面标题的字体大小 */
@@ -184,6 +184,8 @@ def create_html_page(products, date):
                 background-color: #0066cc;
                 margin: 10px auto;
                 animation: pulse 2s infinite;
+                position: relative;
+                z-index: 1;  /* 确保蓝线在机器人下方 */
             }}
             @keyframes pulse {{
                 0% {{ transform: scaleX(1); }}
@@ -194,13 +196,14 @@ def create_html_page(products, date):
                 font-size: 18px;
                 color: #666;
                 text-align: center;
-                margin-bottom: 1rem;  /* 减少底部margin */
+                margin-bottom: 1rem;  /* 减少底margin */
             }}
             .robot {{
                 position: absolute;
                 font-size: 36px;
                 transition: all 0.3s ease;
                 cursor: pointer;
+                z-index: 1000;  /* 确保机器人始终在最上层 */
             }}
             .scroll-container {{
                 overflow: hidden;
@@ -209,7 +212,7 @@ def create_html_page(products, date):
             }}
             .scroll-row {{
                 display: flex;
-                animation: scroll 160s linear infinite;
+                animation: scroll 213s linear infinite;  /* 将动画时间从 160s 增加到 213s */
                 width: 800%;
             }}
             .card {{
@@ -228,19 +231,26 @@ def create_html_page(products, date):
                 height: 100%;
                 display: flex;
                 flex-direction: column;
-                position: relative;  /* 确保内容不会被票数标签遮挡 */
+                position: relative;  /* 确保内容不会被票数标签挡 */
             }}
             .product-image {{
                 width: 100%;
                 height: 180px;
                 object-fit: cover;
             }}
-            h2 {{
-                font-size: 16px;  /* 调整标题字体大小 */
+            .card-inner h2 {{
+                font-size: 18px;  /* 将字体大小从 24px 减小到 18px */
                 font-weight: 600;
                 margin: 0.5rem 0;
                 padding: 0 1rem;
+                line-height: 1.3;
             }}
+            
+            .card-inner h2 a {{
+                color: #0066cc;
+                text-decoration: underline;
+            }}
+            
             a {{
                 color: var(--text-color);
                 text-decoration: none;
@@ -316,7 +326,7 @@ def create_html_page(products, date):
             
             .keywords {{
                 margin-top: 10px;
-                padding-right: 10px;  /* 添加左侧内边距 */
+                padding-right: 10px;  /* 添左侧内边距 */
                 text-align: right;  /* 将标签靠右对齐 */
             }}
             .keyword {{
@@ -395,6 +405,8 @@ def create_html_page(products, date):
                 justify-content: center;
                 align-items: center;
                 margin: 20px 0;
+                position: relative;
+                z-index: 1;  /* 确保日期导航在机器人下方 */
             }}
             
             .date-navigation button {{
@@ -440,11 +452,46 @@ def create_html_page(products, date):
                 border-color: #0066cc;
                 box-shadow: 0 0 5px rgba(0, 102, 204, 0.5);
             }}
+            
+            .contact {{
+                position: relative;
+                cursor: pointer;
+            }}
+            
+            .contact .tooltip {{
+                visibility: hidden;
+                width: 200px;
+                background-color: #555;
+                color: #fff;
+                text-align: center;
+                border-radius: 6px;
+                padding: 5px 0;
+                position: absolute;
+                z-index: 1000;
+                top: 100%;
+                right: 0;
+                margin-top: 5px;
+                opacity: 0;
+                transition: opacity 0.3s;
+            }}
+            
+            .contact .tooltip::after {{
+                content: "";
+                position: absolute;
+                bottom: 100%;
+                right: 15%;
+                margin-left: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: transparent transparent #555 transparent;
+            }}
+            
+            .contact:hover .tooltip {{
+                visibility: visible;
+                opacity: 1;
+            }}
         </style>
         <script>
-        function showRSSInfo() {{
-            alert('RSS订说明：\\n\\n1. 点击"RSS订阅"链接下载feed.xml文件\\n2. 将此文件导入您的RSS阅读器。\\n3. 如果您没有RSS阅读器，我们推荐使用Feedly或Inoreader等在线服务。\\n\\n感谢您的订阅！');
-        }}
         function loadSelectedDate() {{
             var selectedDate = document.getElementById('dateSelector').value;
             window.parent.postMessage({{ type: 'loadDate', date: selectedDate }}, '*');
@@ -469,21 +516,13 @@ def create_html_page(products, date):
             </div>
             <nav>
                 <ul>
-                    <li>
-                        <a href="feed.xml" title="RSS订阅" onclick="showRSSInfo(); return true;">
-                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFA500'%3E%3Cpath d='M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20C5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1Z'/%3E%3C/svg%3E" alt="RSS" class="rss-icon">
-                            RSS订阅
-                        </a>
-                    </li>
                     <li class="about-me">
                         <a href="#about">关于我</a>
                         <span class="tooltip">我是Lark，AI开发爱好者，对人工智能的未来充满期待！</span>
                     </li>
                     <li class="contact">
                         <a href="#contact">联系与共创</a>
-                        <span class="tooltip">
-                            <img src="/img/contact.jpg" alt="WeChat QR Code" class="qr-code">
-                        </span>
+                        <span class="tooltip">微信号: Larkspur-wlw</span>
                     </li>
                 </ul>
             </nav>
@@ -634,25 +673,6 @@ def create_html_page(products, date):
     """
     return html
 
-def create_rss_feed(products, date):
-    rss = ET.Element("rss", version="2.0")
-    channel = ET.SubElement(rss, "channel")
-    
-    ET.SubElement(channel, "title").text = "Product Hunt Daily Hot"
-    ET.SubElement(channel, "link").text = "https://dailyhot.zeabur.app/"
-    ET.SubElement(channel, "description").text = "Daily hot products from Product Hunt"
-    ET.SubElement(channel, "language").text = "zh-cn"
-    ET.SubElement(channel, "pubDate").text = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S %z")
-    
-    for product in products:
-        item = ET.SubElement(channel, "item")
-        ET.SubElement(item, "title").text = product['name']
-        ET.SubElement(item, "link").text = product['url']
-        ET.SubElement(item, "description").text = f"{product['tagline']}\n\n{product['description']}"
-        ET.SubElement(item, "pubDate").text = datetime.strptime(date, "%Y-%m-%d").strftime("%a, %d %b %Y %H:%M:%S %z")
-    
-    return ET.tostring(rss, encoding="unicode")
-
 def get_unprocessed_markdown_files(data_dir, website_daily_dir):
     markdown_files = [f for f in os.listdir(data_dir) if f.endswith('.md')]
     unprocessed_files = []
@@ -718,14 +738,6 @@ def main():
                     file.write(html_content)
 
                 print(f"生成了新的HTML文件: {html_file}")
-
-                # 更新 RSS feed
-                rss_content = create_rss_feed(products, file_date)
-                rss_path = os.path.join(website_daily_dir, 'feed.xml')
-                with open(rss_path, 'w', encoding='utf-8') as file:
-                    file.write(rss_content)
-
-                print(f"更新了RSS feed: {rss_path}")
 
     print("所有缺失的HTML文件已生成。")
 
