@@ -5,6 +5,8 @@ import os
 import sys
 from datetime import datetime
 import random
+import xml.etree.ElementTree as ET
+from datetime import datetime, timezone
 
 def read_markdown_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
@@ -89,6 +91,12 @@ def create_html_page(products, date):
         </div>
         """
     
+    # 获取项目根目录
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    # 构建图片的相对路径
+    contact_img_path = os.path.relpath(os.path.join(project_root, 'img', 'contact.jpg'), 
+                                       os.path.join(project_root, 'website_daily'))
+    
     html = f"""
     <!DOCTYPE html>
     <html lang="zh-CN">
@@ -97,6 +105,7 @@ def create_html_page(products, date):
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Daily Hot | {date}</title>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+        <link rel="alternate" type="application/rss+xml" title="Product Hunt Daily Hot RSS Feed" href="feed.xml">
         <style>
             :root {{
                 --background-color: #f7f7f7;
@@ -133,15 +142,25 @@ def create_html_page(products, date):
                 padding: 0;
                 margin: 0;
                 display: flex;
+                align-items: center;
             }}
             nav ul li {{
                 margin-left: 1.5rem;
+            }}
+            nav ul li:first-child {{
+                margin-left: 0;
             }}
             nav ul li a {{
                 text-decoration: none;
                 color: var(--text-color);
                 font-size: 16px;
                 font-weight: 400;
+            }}
+            .rss-icon {{
+                width: 20px;
+                height: 20px;
+                vertical-align: middle;
+                margin-right: 5px;
             }}
             .main-content {{
                 padding: 1rem 2rem;  /* 减少上下padding */
@@ -189,7 +208,7 @@ def create_html_page(products, date):
             }}
             .scroll-row {{
                 display: flex;
-                animation: scroll 180s linear infinite;  /* 增加动画时间以减慢速度 */
+                animation: scroll 180s linear infinite;  /* 增加动画时间减慢速度 */
                 width: 800%;
             }}
             .card {{
@@ -280,7 +299,7 @@ def create_html_page(products, date):
             }}
             .votes-badge {{
                 position: absolute;
-                top: -0.5rem;  /* 调整位置，使其与卡片有约1/3重叠 */
+                top: -0.5rem;  /* 调整位置，使与卡片有约1/3重叠 */
                 left: 0.5rem;
                 background-color: rgba(0, 0, 0, 0.7);
                 color: white;
@@ -316,7 +335,66 @@ def create_html_page(products, date):
                 -moz-user-select: none;
                 -ms-user-select: none;
             }}
+            
+            .about-me, .contact {{
+                position: relative;
+                display: inline-block;
+            }}
+            
+            .tooltip {{
+                visibility: hidden;
+                background-color: #555;
+                color: #fff;
+                text-align: left;
+                border-radius: 6px;
+                padding: 10px;
+                position: absolute;
+                z-index: 1;
+                top: 100%;
+                right: 0;
+                margin-top: 5px;
+                opacity: 0;
+                transition: opacity 0.3s;
+            }}
+            
+            .about-me .tooltip {{
+                width: 250px;
+            }}
+            
+            .contact .tooltip {{
+                width: 200px;  /* 增加宽度 */
+                padding: 15px;  /* 增加内边距 */
+            }}
+            
+            .tooltip::after {{
+                content: "";
+                position: absolute;
+                bottom: 100%;
+                right: 10%;
+                margin-right: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: transparent transparent #555 transparent;
+            }}
+            
+            .about-me:hover .tooltip, .contact:hover .tooltip {{
+                visibility: visible;
+                opacity: 1;
+            }}
+            
+            .qr-code {{
+                width: 100%;  /* 使图片填满容器宽度 */
+                height: auto;  /* 保持宽比 */
+                max-width: 180px;  /* 设置最大宽度 */
+                display: block;  /* 块级显示 */
+                margin: 0 auto;  /* 居中显示 */
+            }}
         </style>
+        <script>
+        function showRSSInfo() {{
+            alert('RSS订阅说明：\\n\\n1. 点击"RSS订阅"链接下载feed.xml文件。\\n2. 将此文件导入您的RSS阅读器。\\n3. 如果您没有RSS阅读器，我们推荐使用Feedly或Inoreader等在线服务。\\n\\n感谢您的订阅！');
+        }}
+        </script>
     </head>
     <body>
         <header>
@@ -325,8 +403,22 @@ def create_html_page(products, date):
             </div>
             <nav>
                 <ul>
-                    <li><a href="#about">关于我</a></li>
-                    <li><a href="#contact">联系</a></li>
+                    <li>
+                        <a href="feed.xml" title="RSS订阅" onclick="showRSSInfo(); return true;">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFA500'%3E%3Cpath d='M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20C5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1Z'/%3E%3C/svg%3E" alt="RSS" class="rss-icon">
+                            RSS订阅
+                        </a>
+                    </li>
+                    <li class="about-me">
+                        <a href="#about">关于我</a>
+                        <span class="tooltip">我是Lark，AI开发爱好者，对人工智能的未来充满期待！</span>
+                    </li>
+                    <li class="contact">
+                        <a href="#contact">联系与共创</a>
+                        <span class="tooltip">
+                            <img src="{contact_img_path}" alt="WeChat QR Code" class="qr-code">
+                        </span>
+                    </li>
                 </ul>
             </nav>
         </header>
@@ -411,7 +503,7 @@ def create_html_page(products, date):
             container.addEventListener('mousemove', avoidMouse);
             updateRobotPosition();
 
-            // 修改卡片交互脚本
+            // 修改卡片交脚本
             document.querySelectorAll('.scroll-container').forEach(container => {{
                 let isDragging = false;
                 let startX;
@@ -448,6 +540,25 @@ def create_html_page(products, date):
     """
     return html
 
+def create_rss_feed(products, date):
+    rss = ET.Element("rss", version="2.0")
+    channel = ET.SubElement(rss, "channel")
+    
+    ET.SubElement(channel, "title").text = "Product Hunt Daily Hot"
+    ET.SubElement(channel, "link").text = "https://your-website-url.com"
+    ET.SubElement(channel, "description").text = "Daily hot products from Product Hunt"
+    ET.SubElement(channel, "language").text = "zh-cn"
+    ET.SubElement(channel, "pubDate").text = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S %z")
+    
+    for product in products:
+        item = ET.SubElement(channel, "item")
+        ET.SubElement(item, "title").text = product['name']
+        ET.SubElement(item, "link").text = product['url']
+        ET.SubElement(item, "description").text = f"{product['tagline']}\n\n{product['description']}"
+        ET.SubElement(item, "pubDate").text = datetime.strptime(date, "%Y-%m-%d").strftime("%a, %d %b %Y %H:%M:%S %z")
+    
+    return ET.tostring(rss, encoding="unicode")
+
 def main():
     # 获取脚本所在的目录
     script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -461,7 +572,21 @@ def main():
         print(f"错：找不到 data 目录：{data_dir}")
         sys.exit(1)
 
-    # 获取最新的 markdown 文件
+    # 确保 img 目录和 contact.jpg 文件存在
+    img_dir = os.path.join(project_root, 'img')
+    contact_jpg_path = os.path.join(img_dir, 'contact.jpg')
+    if not os.path.exists(img_dir):
+        print(f"警告：找不到 img 目录：{img_dir}")
+        print("正在创建 img 目录...")
+        os.makedirs(img_dir)
+    if not os.path.exists(contact_jpg_path):
+        print(f"错误：找不到 contact.jpg 文件：{contact_jpg_path}")
+        print("请确保将 contact.jpg 文件放置在 img 目录中。")
+        sys.exit(1)  # 如果文件不存在，直接退出程序
+    else:
+        print(f"contact.jpg 文件已找到：{contact_jpg_path}")
+    
+    # 获取最新的 markdown 文
     markdown_files = [f for f in os.listdir(data_dir) if f.endswith('.md')]
     if not markdown_files:
         print("错误：在 data 目录中没有找到 Markdown 文件。")
@@ -501,6 +626,14 @@ def main():
         file.write(html_content)
 
     print(f"HTML文件已生成: {output_path}")
+
+    # 创建并保存RSS feed
+    rss_content = create_rss_feed(products, file_date)
+    rss_path = os.path.join(project_root, 'website_daily', 'feed.xml')
+    with open(rss_path, 'w', encoding='utf-8') as file:
+        file.write(rss_content)
+
+    print(f"RSS feed已生成: {rss_path}")
 
     print("Preview of generated HTML:")
     print(html_content[:500])  # 打印前500个字符
