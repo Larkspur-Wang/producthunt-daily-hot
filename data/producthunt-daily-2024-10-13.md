@@ -3,9 +3,9 @@
 ## [1. Instant SEO Audit](https://www.producthunt.com/posts/instant-seo-audit?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)  
 ![Instant SEO Audit](https://ph-files.imgix.net/f2828f67-7907-4f0b-aa48-a38d9584ee28.png?auto=format&fit=crop&frame=1&h=512&w=1024)  
 
-**标语**：  
+**标语**：Check your website's SEO score instantly & boost traffic  
 **介绍**：  
-**票数**: 🔺420  
+**票数**: 🔺419  
 **关键词**：  
 **发布时间**：2024年10月12日 PM03:01 (北京时间)  
 
@@ -15,7 +15,7 @@
 ![WPS Office](https://ph-files.imgix.net/836fe6f8-ac51-413d-a9cf-348ecbcd8fd2.png?auto=format&fit=crop&frame=1&h=512&w=1024)  
 
 **标语**：  
-**介绍**：  
+**介绍**：WPS Office is an AI-powered office suite that makes AI easily accessible in everyday work for everyone, without expensive costs. Reshape your office workflow with AI copilot for writing, creating PPTs, spell check, translation, chatting with PDFs, and more.  
 **票数**: 🔺368  
 **关键词**：  
 **发布时间**：2024年10月12日 PM03:01 (北京时间)  
@@ -27,7 +27,7 @@
 
 **标语**：  
 **介绍**：  
-**票数**: 🔺349  
+**票数**: 🔺351  
 **关键词**：  
 **发布时间**：2024年10月12日 PM03:01 (北京时间)  
 
@@ -36,7 +36,7 @@
 ## [4. Sparrow](https://www.producthunt.com/posts/sparrow-7?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)  
 ![Sparrow](https://ph-files.imgix.net/3e43b794-1330-4bca-9a77-973f5e054e17.png?auto=format&fit=crop&frame=1&h=512&w=1024)  
 
-**标语**：  
+**标语**：The Open Source API Testing Tool For All Developers  
 **介绍**：  
 **票数**: 🔺289  
 **关键词**：  
@@ -48,8 +48,8 @@
 ![Google Illuminate](https://ph-files.imgix.net/80971630-198d-40e2-bf16-4182c363371b.png?auto=format&fit=crop&frame=1&h=512&w=1024)  
 
 **标语**：  
-**介绍**：Transform research papers into AI-generated audio summaries with Illuminate, your Gen AI tool for understanding complex content faster.  
-**票数**: 🔺178  
+**介绍**：  
+**票数**: 🔺175  
 **关键词**：  
 **发布时间**：2024年10月12日 PM03:01 (北京时间)  
 
@@ -80,7 +80,7 @@
 ## [8. Temporal](https://www.producthunt.com/posts/temporal-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)  
 ![Temporal](https://ph-files.imgix.net/57f0c2e3-074b-4332-912c-8cbf551d4b6e.png?auto=format&fit=crop&frame=1&h=512&w=1024)  
 
-**标语**：Intelligent capacity planner for teams  
+**标语**：  
 **介绍**：  
 **票数**: 🔺87  
 **关键词**：  
@@ -124,7 +124,7 @@
 ## [12. Attend QR](https://www.producthunt.com/posts/attend-qr?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)  
 ![Attend QR](https://ph-files.imgix.net/c5f7f844-61bb-4c92-8d4c-c97dd0016b6f.png?auto=format&fit=crop&frame=1&h=512&w=1024)  
 
-**标语**：An attendance management system  
+**标语**：  
 **介绍**：Attend QR is an Attendance Management System where users scan Attend QR code to mark attendance in real time. Admins get detailed insights and reports. Automations and customizations can be made as per requirements.  
 **票数**: 🔺71  
 **关键词**：  
@@ -135,8 +135,8 @@
 ## [13. GoodWay Sprite Generator](https://www.producthunt.com/posts/goodway-sprite-generator?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)  
 ![GoodWay Sprite Generator](https://ph-files.imgix.net/2340f160-0d53-4199-b0f7-39f5458fc3a0.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024)  
 
-**标语**：Magically transform Figma icons into sprite sheets with JSON  
-**介绍**：GoodWay Sprite Generator plugin turns selected icons into sprite sheets with JSON metadata. It generates a PNG sprite and a JSON file with icon sizes and coordinates, ideal for developers and designers working on web projects or UI libraries.  
+**标语**：  
+**介绍**：  
 **票数**: 🔺68  
 **关键词**：  
 **发布时间**：2024年10月12日 PM03:01 (北京时间)  
@@ -168,7 +168,7 @@
 ## [16. Bitcoin Price Live - Never miss a dip](https://www.producthunt.com/posts/bitcoin-price-live-never-miss-a-dip?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)  
 ![Bitcoin Price Live - Never miss a dip](https://ph-files.imgix.net/acce1839-1353-4178-b574-2b0a4c886469.png?auto=format&fit=crop&frame=1&h=512&w=1024)  
 
-**标语**：Want to buy bitcoin cheaply? Get bitcoin drop alert!  
+**标语**：  
 **介绍**：  
 **票数**: 🔺43  
 **关键词**：  
@@ -179,8 +179,8 @@
 ## [17. MindR](https://www.producthunt.com/posts/mindr-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)  
 ![MindR](https://ph-files.imgix.net/7fda8f3d-d6de-4973-9849-6b1d7e014700.png?auto=format&fit=crop&frame=1&h=512&w=1024)  
 
-**标语**：Your AI powered second brain on Telegram.  
-**介绍**：  
+**标语**：  
+**介绍**：Ever stumbled upon a great idea, thought or some random musings only to forget it later? MindR remembers everything for you. Just send it anything you want to keep, then chat with it naturally whenever you need to recall.  
 **票数**: 🔺33  
 **关键词**：  
 **发布时间**：2024年10月12日 PM03:01 (北京时间)  
@@ -190,8 +190,8 @@
 ## [18. Turbo Generate](https://www.producthunt.com/posts/turbo-generate?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)  
 ![Turbo Generate](https://ph-files.imgix.net/68229fff-f342-4585-8fb0-357d85904520.png?auto=format&fit=crop&frame=1&h=512&w=1024)  
 
-**标语**：Generate Text, Audio and Images in 1 Click with AI  
-**介绍**：Generate text, audio and images in 1 click with artificial intelligence tools. Start your Free Trial!  
+**标语**：  
+**介绍**：  
 **票数**: 🔺20  
 **关键词**：  
 **发布时间**：2024年10月12日 PM03:01 (北京时间)  
@@ -223,7 +223,7 @@
 ## [21. Startup Levels](https://www.producthunt.com/posts/startup-levels?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)  
 ![Startup Levels](https://ph-files.imgix.net/809ff4cf-a3ab-4357-8e1a-26270d4a6616.png?auto=format&fit=crop&frame=1&h=512&w=1024)  
 
-**标语**：  
+**标语**：A competitive startup leaderboard to get traffic + backlink  
 **介绍**：  
 **票数**: 🔺15  
 **关键词**：  
@@ -234,7 +234,7 @@
 ## [22. Let's Focus](https://www.producthunt.com/posts/let-s-focus?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)  
 ![Let's Focus](https://ph-files.imgix.net/5bd77ab1-8460-4814-81fb-48bdee81c429.png?auto=format&fit=crop&frame=1&h=512&w=1024)  
 
-**标语**：Simple and powerful todo list that helps you get more done  
+**标语**：  
 **介绍**：A simple and powerful to-do list designed to help you get more done with ease. Whether you're managing daily tasks or tackling complex projects, it offers the tools you need to stay organized and productive. Optimized for individual who want to thrive.  
 **票数**: 🔺15  
 **关键词**：  
@@ -253,11 +253,11 @@
 
 ---
 
-## [24. Travis](https://www.producthunt.com/posts/travis-4?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)  
-![Travis](https://ph-files.imgix.net/19907939-3284-4eec-82be-a1b2a044ff7c.png?auto=format&fit=crop&frame=1&h=512&w=1024)  
+## [24. Job Title Generator](https://www.producthunt.com/posts/job-title-generator?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+DailyHunter+%28ID%3A+140760%29)  
+![Job Title Generator](https://ph-files.imgix.net/6d5e5912-6e79-4d6a-9e82-41385334ac54.png?auto=format&fit=crop&frame=1&h=512&w=1024)  
 
-**标语**：Your Autonomous Marketing Agent  
-**介绍**：Just ship, don't worry about marketing! The first AI agent that works on it's own to grow your business, your all in one marketing and sales agency.  
+**标语**：Need to Define a Job? Generate One in 10 seconds. 100% Free.  
+**介绍**：  
 **票数**: 🔺10  
 **关键词**：  
 **发布时间**：2024年10月12日 PM03:01 (北京时间)  
