@@ -6,6 +6,7 @@ from openai import OpenAI
 from bs4 import BeautifulSoup
 import pytz
 import time
+import random
 
 # 加载 .env 文件
 # load_dotenv()
@@ -48,24 +49,34 @@ class Product:
         """生成产品的关键词，显示在一行，用逗号分隔"""
         prompt = f"根据以下内容生成3个适合的中文关键词，用英文逗号分隔开：\n\n产品名称：{self.name}\n\n标语：{self.tagline}\n\n描述：{self.description}"
         
-        try:
-            response = client.chat.completions.create(
-                model="meta-llama/llama-3.1-405b-instruct:free",
-                messages=[
-                    {"role": "system", "content": "Generate suitable Chinese keywords based on the product information provided. The keywords should be separated by commas."},
-                    {"role": "user", "content": prompt},
-                ],
-                max_tokens=50,
-                temperature=0.7,
-            )
-            keywords = response.choices[0].message.content.strip()
-            if ',' not in keywords:
-                keywords = ', '.join(keywords.split())
-            time.sleep(3)  # 在API调用后等待3秒
-            return keywords
-        except Exception as e:
-            print(f"Error occurred during keyword generation: {e}")
-            return "无关键词"
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                response = client.chat.completions.create(
+                    model="meta-llama/llama-3.1-405b-instruct:free",
+                    messages=[
+                        {"role": "system", "content": "Generate suitable Chinese keywords based on the product information provided. The keywords should be separated by commas."},
+                        {"role": "user", "content": prompt},
+                    ],
+                    max_tokens=50,
+                    temperature=0.7,
+                )
+                if response.choices and response.choices[0].message:
+                    keywords = response.choices[0].message.content.strip()
+                    if ',' not in keywords:
+                        keywords = ', '.join(keywords.split())
+                    time.sleep(random.uniform(3, 5))  # 随机等待3-5秒
+                    return keywords
+                else:
+                    print(f"API返回空响应，尝试重试 {attempt + 1}/{max_retries}")
+            except Exception as e:
+                print(f"生成关键词时发生错误（尝试 {attempt + 1}/{max_retries}）: {e}")
+                if attempt < max_retries - 1:
+                    time.sleep(random.uniform(5, 10))  # 在重试之前随机等待5-10秒
+                else:
+                    return "无关键词"
+        
+        return "无关键词"
 
     def translate_text(self, text: str) -> str:
         """使用OpenAI翻译文本内容"""
