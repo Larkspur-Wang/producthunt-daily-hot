@@ -46,7 +46,7 @@ class Product:
         try:
             system_prompt = "Generate suitable Chinese keywords based on the product information provided. The keywords should be separated by commas."
             inputs = json.dumps([{"role": "system", "content": system_prompt}])
-            response, _ = await call_groq_async(GROQ_API_KEY, prompt, "", inputs, "", model="llama-3.2-11b-text-preview", response_mode="blocking")
+            response, _ = await call_groq_async_with_retry(GROQ_API_KEY, prompt, "", inputs, "", model="llama-3.1-8b-instant", response_mode="blocking")
             keywords = response.strip()
             if ',' not in keywords:
                 keywords = ', '.join(keywords.split())
@@ -60,7 +60,7 @@ class Product:
         try:
             system_prompt = "你是世界上最专业的翻译工具，擅长英文和中文互译。你是一位精通英文和中文的专业翻译，尤其擅长将IT公司黑话和专业词汇翻译成简洁易懂的地道表达。你的任务是将以下内容翻译成地道的中文，风格与科普杂志或日常对话相似。"
             inputs = json.dumps([{"role": "system", "content": system_prompt}])
-            response, _ = await call_groq_async_with_retry(GROQ_API_KEY, text, "", inputs, "", model="llama-3.1-70b-versatile", response_mode="blocking")
+            response, _ = await call_groq_async_with_retry(GROQ_API_KEY, text, "", inputs, "", model="llama3-groq-70b-8192-tool-use-preview", response_mode="blocking")
             return response.strip()
         except Exception as e:
             print(f"Error occurred during translation: {e}")
@@ -297,7 +297,7 @@ async def main():
         tasks.append(product.generate_keywords())
         tasks.append(product.translate_tagline())
         tasks.append(product.translate_description())
-        await asyncio.sleep(2)  # 在每个产品的处理之间添加2秒的延迟
+        await asyncio.sleep(10)  # 在每个产品的处理之间添加2秒的延迟
 
     await asyncio.gather(*tasks)
 
