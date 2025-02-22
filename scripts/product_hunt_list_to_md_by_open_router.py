@@ -37,14 +37,19 @@ class Product:
         self.translated_tagline = self.translate_text(self.tagline)
         self.translated_description = self.translate_text(self.description)
 
-    def fetch_og_image_url(self) -> str:
+   def fetch_og_image_url(self) -> str:
         """获取产品的Open Graph图片URL"""
         response = requests.get(self.url)
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, 'html.parser')
+            # 查找og:image meta标签
             og_image = soup.find("meta", property="og:image")
             if og_image:
                 return og_image["content"]
+            # 备用:查找twitter:image meta标签
+            twitter_image = soup.find("meta", name="twitter:image") 
+            if twitter_image:
+                return twitter_image["content"]
         return ""
 
     def generate_keywords(self) -> str:
