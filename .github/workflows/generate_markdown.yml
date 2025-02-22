@@ -25,6 +25,7 @@ jobs:
 
     - name: Generate Markdown
       env:
+        GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
         PRODUCTHUNT_DEVELOPER_TOKEN: ${{ secrets.PRODUCTHUNT_DEVELOPER_TOKEN }}
         GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         GROQ_API_BASE_URL: ${{ secrets.GROQ_API_BASE_URL }}
