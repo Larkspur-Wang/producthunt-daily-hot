@@ -7,6 +7,8 @@ from bs4 import BeautifulSoup
 import pytz
 import time
 import random
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 # 加载 .env 文件
 # load_dotenv()
