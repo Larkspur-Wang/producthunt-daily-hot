@@ -9,12 +9,13 @@ import random
 import json
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
-from google import genai
 
 # 加载 .env 文件
 # load_dotenv()
 
 GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+GEMINI_API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
+
 producthunt_client_id = os.getenv('PRODUCTHUNT_CLIENT_ID')
 producthunt_client_secret = os.getenv('PRODUCTHUNT_CLIENT_SECRET')
 
@@ -24,19 +25,26 @@ def call_gemini_api(prompt: str, model: str = "gemini-2.0-flash-exp", temperatur
         if not GOOGLE_API_KEY:
             raise ValueError("GOOGLE_API_KEY not found in environment variables")
             
-        genai.configure(api_key=GOOGLE_API_KEY)
-        client = genai.GenerativeModel(model)
-        response = client.generate_content(
-            prompt,
-            generation_config=genai.types.GenerationConfig(
-                temperature=temperature,
-                top_k=40,
-                top_p=0.95,
-            )
-        )
+        url = f"{GEMINI_API_BASE}/{model}:generateContent?key={GOOGLE_API_KEY}"
+        headers = {'Content-Type': 'application/json'}
         
-        if response and response.text:
-            return response.text.strip()
+        data = {
+            "contents": [{
+                "parts":[{"text": prompt}]
+            }],
+            "generationConfig": {
+                "temperature": temperature,
+                "topK": 40,
+                "topP": 0.95,
+            }
+        }
+        
+        response = requests.post(url, headers=headers, json=data)
+        response.raise_for_status()
+        result = response.json()
+        
+        if 'candidates' in result and len(result['candidates']) > 0:
+            return result['candidates'][0]['content']['parts'][0]['text'].strip()
         else:
             return ""
     except Exception as e:
