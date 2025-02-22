@@ -124,6 +124,7 @@ class Product:
 def get_producthunt_token():
     """使用 developer token 进行认证"""
     token = os.getenv('PRODUCTHUNT_DEVELOPER_TOKEN')
+    print(token)
     if not token:
         raise Exception("Product Hunt developer token not found in environment variables")
     return token
