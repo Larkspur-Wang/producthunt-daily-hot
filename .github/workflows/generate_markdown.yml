@@ -32,7 +32,7 @@ jobs:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         HUGGINGFACE_API_TOKEN: ${{ secrets.HUGGINGFACE_API_TOKEN }}
       run: |
-        python scripts/product_hunt_list_to_md_by_open_router.py
+        python scripts/product_hunt_list_to_md_by_google.py
 
     - name: Commit files
       run: |
