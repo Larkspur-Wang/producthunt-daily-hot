@@ -37,7 +37,7 @@ class Product:
         self.translated_tagline = self.translate_text(self.tagline)
         self.translated_description = self.translate_text(self.description)
 
-   def fetch_og_image_url(self) -> str:
+    def fetch_og_image_url(self) -> str:
         """获取产品的Open Graph图片URL"""
         response = requests.get(self.url)
         if response.status_code == 200:
