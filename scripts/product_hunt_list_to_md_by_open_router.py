@@ -39,17 +39,22 @@ class Product:
 
     def fetch_og_image_url(self) -> str:
         """获取产品的Open Graph图片URL"""
+        print(f"正在获取URL: {self.url}")  # 打印正在请求的URL
         response = requests.get(self.url)
+        print(f"请求状态码: {response.status_code}")  # 打印请求状态码
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, 'html.parser')
             # 查找og:image meta标签
             og_image = soup.find("meta", property="og:image")
             if og_image:
+                print(f"找到 og:image 标签: {og_image}") # 打印 og:image 标签内容
                 return og_image["content"]
             # 备用:查找twitter:image meta标签
-            twitter_image = soup.find("meta", name="twitter:image") 
+            twitter_image = soup.find("meta", name="twitter:image")
             if twitter_image:
+                print(f"找到 twitter:image 标签: {twitter_image}") # 打印 twitter:image 标签内容
                 return twitter_image["content"]
+        print("没有找到图片 URL") # 打印未找到图片 URL 的消息
         return ""
 
     def generate_keywords(self) -> str:
@@ -91,7 +96,7 @@ class Product:
             response = client.chat.completions.create(
                 model="google/gemini-2.0-pro-exp-02-05:free",
                 messages=[
-                    {"role": "system", "content": "你是世界上最专业的翻译工具，擅长英文和中文互译。你是一位精通英文和中文的专业翻译，尤其擅长将IT公司黑话和专业词汇翻译成简洁易懂的地道表达。你的任务是将以下内容翻译成地道的中文，风格与科普杂志或日常对话相似。"},
+                    {"role": "system", "content": "你是世界上最专业的翻译工具，擅长英文和中文互译。你是一位精通英文和中文的专业翻译，尤其擅长将IT公司黑话和专业词汇翻译成简洁易懂的地道表达。你的任务是将以下内容翻译成地道的中文，风格与科普杂志或日常对话相似。不要有翻译外的额外内容"},
                     {"role": "user", "content": text},
                 ],
                 max_tokens=500,
