@@ -132,32 +132,12 @@ def get_producthunt_token():
     return token
 
 def fetch_product_hunt_data():
-    """从Product Hunt获取前一天的Top 30数据"""
+    """从Product Hunt获取前一天的Top 24数据"""
     token = get_producthunt_token()
     yesterday = datetime.now(timezone.utc) - timedelta(days=1)
     date_str = yesterday.strftime('%Y-%m-%d')
     url = "https://api.producthunt.com/v2/api/graphql"
-    
-    # 添加更多请求头信息
-    headers = {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {token}",
-        "User-Agent": "DecohackBot/1.0 (https://decohack.com)",
-        "Origin": "https://decohack.com",
-        "Accept-Language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7",
-        "Connection": "keep-alive"
-    }
-
-    # 设置重试策略
-    retry_strategy = Retry(
-        total=3,  # 最多重试3次
-        backoff_factor=1,  # 重试间隔时间
-        status_forcelist=[429, 500, 502, 503, 504]  # 需要重试的HTTP状态码
-    )
-    adapter = HTTPAdapter(max_retries=retry_strategy)
-    session = requests.Session()
-    session.mount("https://", adapter)
+    headers = {"Authorization": f"Bearer {token}"}
 
     base_query = """
     {
@@ -185,14 +165,12 @@ def fetch_product_hunt_data():
     has_next_page = True
     cursor = ""
 
-    while has_next_page and len(all_posts) < 30:
+    while has_next_page and len(all_posts) < 24:
         query = base_query % (date_str, date_str, cursor)
-        try:
-            response = session.post(url, headers=headers, json={"query": query})
-            response.raise_for_status()  # 抛出非200状态码的异常
-        except requests.exceptions.RequestException as e:
-            print(f"请求失败: {e}")
-            raise Exception(f"Failed to fetch data from Product Hunt: {e}")
+        response = requests.post(url, headers=headers, json={"query": query})
+
+        if response.status_code != 200:
+            raise Exception(f"Failed to fetch data from Product Hunt: {response.status_code}, {response.text}")
 
         data = response.json()['data']['posts']
         posts = data['nodes']
