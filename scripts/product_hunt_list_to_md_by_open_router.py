@@ -60,7 +60,7 @@ class Product:
         for attempt in range(max_retries):
             try:
                 response = client.chat.completions.create(
-                    model="meta-llama/llama-3.1-405b-instruct:free",
+                    model="google/gemini-2.0-flash-exp:free",
                     messages=[
                         {"role": "system", "content": "Generate suitable Chinese keywords based on the product information provided. The keywords should be separated by commas."},
                         {"role": "user", "content": prompt},
@@ -89,7 +89,7 @@ class Product:
         """使用OpenAI翻译文本内容"""
         try:
             response = client.chat.completions.create(
-                model="nousresearch/hermes-3-llama-3.1-405b:free",
+                model="google/gemini-2.0-pro-exp-02-05:free",
                 messages=[
                     {"role": "system", "content": "你是世界上最专业的翻译工具，擅长英文和中文互译。你是一位精通英文和中文的专业翻译，尤其擅长将IT公司黑话和专业词汇翻译成简洁易懂的地道表达。你的任务是将以下内容翻译成地道的中文，风格与科普杂志或日常对话相似。"},
                     {"role": "user", "content": text},
