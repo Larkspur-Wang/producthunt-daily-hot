@@ -40,7 +40,11 @@ class Product:
     def fetch_og_image_url(self) -> str:
         """获取产品的Open Graph图片URL"""
         print(f"正在获取URL: {self.url}")  # 打印正在请求的URL
-        response = requests.get(self.url)
+        
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+        }
+        response = requests.get(self.url, headers=headers)
         print(f"请求状态码: {response.status_code}")  # 打印请求状态码
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, 'html.parser')
@@ -73,18 +77,18 @@ class Product:
                     max_tokens=50,
                     temperature=0.7,
                 )
-                if response.choices and response.choices[0].message:
+                if response and response.choices and response.choices[0].message and response.choices[0].message.content: # 检查 response 和 message 是否为空
                     keywords = response.choices[0].message.content.strip()
                     if ',' not in keywords:
                         keywords = ', '.join(keywords.split())
-                    time.sleep(random.uniform(3, 5))  # 随机等待3-5秒
+                    time.sleep(random.uniform(5, 8))  # 随机等待5-8秒, 增加等待时间
                     return keywords
                 else:
                     print(f"API返回空响应，尝试重试 {attempt + 1}/{max_retries}")
             except Exception as e:
                 print(f"生成关键词时发生错误（尝试 {attempt + 1}/{max_retries}）: {e}")
                 if attempt < max_retries - 1:
-                    time.sleep(random.uniform(5, 10))  # 在重试之前随机等待5-10秒
+                    time.sleep(random.uniform(8, 12))  # 在重试之前随机等待8-12秒, 增加等待时间
                 else:
                     return "无关键词"
         
@@ -92,22 +96,30 @@ class Product:
 
     def translate_text(self, text: str) -> str:
         """使用OpenAI翻译文本内容"""
-        try:
-            response = client.chat.completions.create(
-                model="google/gemini-2.0-pro-exp-02-05:free",
-                messages=[
-                    {"role": "system", "content": "你是世界上最专业的翻译工具，擅长英文和中文互译。你是一位精通英文和中文的专业翻译，尤其擅长将IT公司黑话和专业词汇翻译成简洁易懂的地道表达。你的任务是将以下内容翻译成地道的中文，风格与科普杂志或日常对话相似。不要有翻译外的额外内容"},
-                    {"role": "user", "content": text},
-                ],
-                max_tokens=500,
-                temperature=0.7,
-            )
-            translated_text = response.choices[0].message.content.strip()
-            time.sleep(3)  # 在API调用后等待3秒
-            return translated_text
-        except Exception as e:
-            print(f"Error occurred during translation: {e}")
-            return text
+        max_retries = 3 # 添加重试次数
+        for attempt in range(max_retries):
+            try:
+                response = client.chat.completions.create(
+                    model="google/gemini-2.0-pro-exp-02-05:free",
+                    messages=[
+                        {"role": "system", "content": "你是世界上最专业的翻译工具，擅长英文和中文互译。你是一位精通英文和中文的专业翻译，尤其擅长将IT公司黑话和专业词汇翻译成简洁易懂的地道表达。你的任务是将以下内容翻译成地道的中文，风格与科普杂志或日常对话相似。不要有翻译外的额外内容"},
+                        {"role": "user", "content": text},
+                    ],
+                    max_tokens=500,
+                    temperature=0.7,
+                )
+                if response and response.choices and response.choices[0].message and response.choices[0].message.content: # 检查 response 和 message 是否为空
+                    translated_text = response.choices[0].message.content.strip()
+                    time.sleep(5)  # 在API调用后等待5秒, 增加等待时间
+                    return translated_text
+                else:
+                    print(f"API返回空响应，尝试重试 {attempt + 1}/{max_retries}")
+            except Exception as e:
+                print(f"翻译文本时发生错误 (尝试 {attempt + 1}/{max_retries}): {e}")
+                if attempt < max_retries - 1:
+                    time.sleep(random.uniform(8, 12))  # 在重试之前随机等待8-12秒, 增加等待时间
+                else:
+                    return text # 最后一次重试失败，返回原始文本
 
     def convert_to_beijing_time(self, utc_time_str: str) -> str:
         """将UTC时间转换为北京时间"""
