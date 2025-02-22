@@ -137,8 +137,18 @@ def fetch_product_hunt_data():
     yesterday = datetime.now(timezone.utc) - timedelta(days=1)
     date_str = yesterday.strftime('%Y-%m-%d')
     url = "https://api.producthunt.com/v2/api/graphql"
-    headers = {"Authorization": f"Bearer {token}"}
-
+    
+    # 添加更多请求头信息
+    headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {token}",
+        "User-Agent": "DecohackBot/1.0 (https://decohack.com)",
+        "Origin": "https://decohack.com",
+        "Accept-Language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7",
+        "Connection": "keep-alive"
+    }
+    
     base_query = """
     {
       posts(order: VOTES, postedAfter: "%sT00:00:00Z", postedBefore: "%sT23:59:59Z", after: "%s") {
