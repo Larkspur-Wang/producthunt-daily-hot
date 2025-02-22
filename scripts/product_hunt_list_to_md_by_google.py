@@ -21,6 +21,7 @@ producthunt_client_secret = os.getenv('PRODUCTHUNT_CLIENT_SECRET')
 
 def call_gemini_api(prompt: str, model: str = "gemini-2.0-flash-exp", temperature: float = 0.7) -> str:
     """调用Google Gemini API"""
+    print(f"\n[DEBUG] 正在调用Gemini API，模型：{model}")
     try:
         if not GOOGLE_API_KEY:
             raise ValueError("GOOGLE_API_KEY not found in environment variables")
@@ -39,20 +40,24 @@ def call_gemini_api(prompt: str, model: str = "gemini-2.0-flash-exp", temperatur
             }
         }
         
+        print(f"[DEBUG] 发送API请求...")
         response = requests.post(url, headers=headers, json=data)
         response.raise_for_status()
         result = response.json()
         
         if 'candidates' in result and len(result['candidates']) > 0:
+            print(f"[DEBUG] API调用成功")
             return result['candidates'][0]['content']['parts'][0]['text'].strip()
         else:
+            print(f"[DEBUG] API返回结果为空")
             return ""
     except Exception as e:
-        print(f"API调用错误: {e}")
+        print(f"[DEBUG] API调用错误: {e}")
         return ""
 
 class Product:
     def __init__(self, id: str, name: str, tagline: str, description: str, votesCount: int, createdAt: str, featuredAt: str, website: str, url: str, **kwargs):
+        print(f"\n[DEBUG] 正在初始化产品: {name}")
         self.name = name
         self.tagline = tagline
         self.description = description
@@ -61,10 +66,20 @@ class Product:
         self.featured = "是" if featuredAt else "否"
         self.website = website
         self.url = url
+        
+        print(f"[DEBUG] 获取产品图片URL...")
         self.og_image_url = self.fetch_og_image_url()
-        self.keyword = ""
-        self.translated_tagline = ""
-        self.translated_description = ""
+        
+        print(f"[DEBUG] 生成产品关键词...")
+        self.keyword = self.generate_keywords()
+        
+        print(f"[DEBUG] 翻译产品标语...")
+        self.translated_tagline = self.translate_text(self.tagline)
+        
+        print(f"[DEBUG] 翻译产品描述...")
+        self.translated_description = self.translate_text(self.description)
+        
+        print(f"[DEBUG] 产品 {name} 初始化完成\n")
 
     def fetch_og_image_url(self) -> str:
         """获取产品的Open Graph图片URL"""
@@ -252,22 +267,22 @@ def generate_markdown(products, date_str):
 
 
 def main():
+    print("\n[DEBUG] 程序开始运行...")
+    
     # 获取昨天的日期并格式化
     yesterday = datetime.now(timezone.utc) - timedelta(days=1)
     date_str = yesterday.strftime('%Y-%m-%d')
+    print(f"[DEBUG] 处理日期: {date_str}")
 
     # 获取Product Hunt数据
+    print("[DEBUG] 开始获取Product Hunt数据...")
     products = fetch_product_hunt_data()
-
-    # 生成关键词和翻译
-    for product in products:
-        product.keyword = product.generate_keywords()
-        product.translated_tagline = product.translate_text(product.tagline)
-        product.translated_description = product.translate_text(product.description)
-        time.sleep(2)  # 在每个产品的处理之间添加2秒的延迟
+    print(f"[DEBUG] 成功获取{len(products)}个产品数据")
 
     # 生成Markdown文件
+    print("[DEBUG] 开始生成Markdown文件...")
     generate_markdown(products, date_str)
+    print("[DEBUG] 程序运行完成")
 
 if __name__ == "__main__":
     main()
