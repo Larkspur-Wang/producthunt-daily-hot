@@ -62,9 +62,9 @@ class Product:
         self.website = website
         self.url = url
         self.og_image_url = self.fetch_og_image_url()
-        self.keyword = self.generate_keywords()
-        self.translated_tagline = self.translate_text(self.tagline)
-        self.translated_description = self.translate_text(self.description)
+        self.keyword = ""
+        self.translated_tagline = ""
+        self.translated_description = ""
 
     def fetch_og_image_url(self) -> str:
         """获取产品的Open Graph图片URL"""
