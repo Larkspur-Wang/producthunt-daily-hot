@@ -131,7 +131,7 @@ class Product:
 
     def translate_text(self, text: str) -> str:
         """使用Google Gemini翻译文本内容"""
-        prompt = f"将以下英文翻译成地道的中文，风格与科普杂志或日常对话相似。不要有翻译外的额外内容：\n\n{text}"
+        prompt = f"将以下英文翻译成地道的中文，风格与科普杂志或日常对话相似。\n\n{text}"
         
         max_retries = 3
         for attempt in range(max_retries):
