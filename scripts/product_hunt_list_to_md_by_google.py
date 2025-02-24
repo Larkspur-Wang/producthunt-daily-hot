@@ -19,7 +19,7 @@ GEMINI_API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 producthunt_client_id = os.getenv('PRODUCTHUNT_CLIENT_ID')
 producthunt_client_secret = os.getenv('PRODUCTHUNT_CLIENT_SECRET')
 
-def call_gemini_api(prompt: str, model: str = "gemini-2.0-flash-exp", temperature: float = 0.7) -> str:
+def call_gemini_api(prompt: str, model: str = "gemini-2.0-flash-exp", temperature: float = 0.8) -> str:
     """调用Google Gemini API"""
     print(f"\n[DEBUG] 正在调用Gemini API，模型：{model}")
     try:
@@ -131,7 +131,7 @@ class Product:
 
     def translate_text(self, text: str) -> str:
         """使用Google Gemini翻译文本内容"""
-        prompt = f"将以下英文翻译成地道的中文，风格与科普杂志或日常对话相似。\n\n{text}"
+        prompt = f"将以下英文翻译成中文。\n\n{text}"
         
         max_retries = 3
         for attempt in range(max_retries):
