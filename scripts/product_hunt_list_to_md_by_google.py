@@ -1,5 +1,10 @@
 import os
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
+from pathlib import Path
+
+# 加载 .env 文件
+env_path = Path(__file__).parent.parent / "my_automation" / "xiaohongshu_agent" / "config" / ".env"
+load_dotenv(env_path)
 try:
     import cloudscraper
 except ImportError:
@@ -24,7 +29,7 @@ GEMINI_API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 producthunt_client_id = os.getenv('PRODUCTHUNT_CLIENT_ID')
 producthunt_client_secret = os.getenv('PRODUCTHUNT_CLIENT_SECRET')
 
-def call_gemini_api(prompt: str, model: str = "gemini-2.0-flash-exp", temperature: float = 0.8) -> str:
+def call_gemini_api(prompt: str, model: str = "gemini-2.5-flash", temperature: float = 0.8) -> str:
     """调用Google Gemini API"""
     print(f"\n[DEBUG] 正在调用Gemini API，模型：{model}")
     try:
@@ -135,7 +140,7 @@ class Product:
         max_retries = 3
         for attempt in range(max_retries):
             try:
-                keywords = call_gemini_api(prompt, model="gemini-2.0-flash-exp")
+                keywords = call_gemini_api(prompt, model="gemini-2.5-flash")
                 if keywords:
                     if ',' not in keywords:
                         keywords = ', '.join(keywords.split())
@@ -159,7 +164,7 @@ class Product:
         max_retries = 3
         for attempt in range(max_retries):
             try:
-                translated_text = call_gemini_api(prompt, model="gemini-2.0-flash-exp")
+                translated_text = call_gemini_api(prompt, model="gemini-2.5-flash")
                 if translated_text:
                     time.sleep(5)  # 在API调用后等待5秒
                     return translated_text
@@ -338,9 +343,9 @@ def fetch_product_hunt_data_github_actions() -> List[Product]:
     # API端点
     url = "https://api.producthunt.com/v2/api/graphql"
     
-    # 计算昨天的日期
-    yesterday = datetime.now(timezone.utc) - timedelta(days=1)
-    date_str = yesterday.strftime('%Y-%m-%d')
+    # 计算今天的日期
+    today = datetime.now(timezone.utc)
+    date_str = today.strftime('%Y-%m-%d')
     
     print(f"[DEBUG] 获取日期: {date_str}")
     
@@ -484,7 +489,7 @@ def fetch_product_hunt_data_github_actions() -> List[Product]:
     
     return []
 
-def fetch_product_hunt_data_simple() -> List[Product]:
+def fetch_product_hunt_data_simple() -> List[Dict]:
     """简化的Product Hunt数据获取 - 基于测试成功的版本"""
     print("[DEBUG] 使用简化版本获取Product Hunt数据...")
     
@@ -498,30 +503,25 @@ def fetch_product_hunt_data_simple() -> List[Product]:
     # API端点
     url = "https://api.producthunt.com/v2/api/graphql"
     
-    # 计算昨天的日期
-    yesterday = datetime.now(timezone.utc) - timedelta(days=1)
-    date_str = yesterday.strftime('%Y-%m-%d')
+    # 计算今天的日期
+    today = datetime.now(timezone.utc)
+    date_str = today.strftime('%Y-%m-%d')
     
     print(f"[DEBUG] 获取日期: {date_str}")
     
     # 使用测试成功的headers
     headers = {
-        "Authorization": f"Bearer {token}",
-        "Content-Type": "application/json",
         "Accept": "application/json",
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
-        "Accept-Language": "en-US,en;q=0.9",
-        "Accept-Encoding": "gzip, deflate, br",
-        "Origin": "https://producthunt.com",
-        "Referer": "https://producthunt.com/",
-        "Connection": "keep-alive"
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {token}",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
     }
     
-    # 简化的查询 - 直接获取前24个
-    query = f"""
-    {{
-      posts(first: 24, order: VOTES, postedAfter: "{date_str}T00:00:00Z", postedBefore: "{date_str}T23:59:59Z") {{
-        nodes {{
+    # 使用测试成功的GraphQL查询
+    query = """
+    query {
+      posts(order: VOTES, postedAfter: "%sT00:00:00Z", postedBefore: "%sT23:59:59Z") {
+        nodes {
           id
           name
           tagline
@@ -531,10 +531,14 @@ def fetch_product_hunt_data_simple() -> List[Product]:
           featuredAt
           website
           url
-        }}
-      }}
-    }}
-    """
+          slug
+          thumbnail {
+            url
+          }
+        }
+      }
+    }
+    """ % (date_str, date_str)
     
     max_retries = 3
     for attempt in range(max_retries):
@@ -566,7 +570,7 @@ def fetch_product_hunt_data_simple() -> List[Product]:
                 # 按票数排序
                 posts.sort(key=lambda x: x['votesCount'], reverse=True)
                 
-                return posts[:24]  # 确保最多24个
+                return posts[:24]  # 返回原始数据，不构造Product对象
                 
             elif response.status_code == 403:
                 print(f"[DEBUG] 收到403错误，可能是Cloudflare防护")
@@ -732,7 +736,7 @@ def fetch_product_hunt_data() -> List[Product]:
                     # 关闭session
                     session.close()
                     
-                    return [Product(**post) for post in sorted_posts]
+                    return sorted_posts  # 返回原始数据，不构造Product对象
                     
             except Exception as e:
                 print(f"[DEBUG] 简单查询失败，尝试分页查询: {e}")
@@ -795,9 +799,22 @@ def generate_markdown(products, date_str):
     today = datetime.now(timezone.utc)
     date_today = today.strftime('%Y-%m-%d')
 
-    markdown_content = f"# PH今日热榜 | {date_today}\n\n"
-    for rank, product in enumerate(products, 1):
-        markdown_content += product.to_markdown(rank)
+    markdown_content = f"今日 Product Hunt 热榜前五产品:\n\n"
+    
+    # 只处理前5个产品
+    for i, post in enumerate(products[:5]):
+        thumbnail = post.get('thumbnail', {})
+        image_url = thumbnail.get('url', '') if thumbnail else ''
+        
+        markdown_content += f"""##### *PH今日热榜 | {date_today}*
+###### **{i+1}. {post['name']}**
+![{post['name']}]({image_url})  
+**标语**：{post['tagline']}  
+**介绍**：{post['description']}  
+**票数**: 🔺{post['votesCount']}  
+**关键词**：AI工具, 产品推荐
+
+"""
 
     # 确保 data 目录存在
     os.makedirs('data', exist_ok=True)
@@ -816,25 +833,17 @@ def main():
     print(f"[DEBUG] Python版本: {os.sys.version}")
     print(f"[DEBUG] requests版本: {requests.__version__}")
     
-    # 获取昨天的日期并格式化
-    yesterday = datetime.now(timezone.utc) - timedelta(days=1)
-    date_str = yesterday.strftime('%Y-%m-%d')
+    # 获取今天的日期并格式化
+    today = datetime.now(timezone.utc)
+    date_str = today.strftime('%Y-%m-%d')
     print(f"[DEBUG] 处理日期: {date_str}")
 
     # 获取Product Hunt数据
     print("[DEBUG] 开始获取Product Hunt数据...")
     try:
-        # 首先尝试GitHub Actions专用版本
-        print("[DEBUG] 尝试使用GitHub Actions专用版本...")
-        products = fetch_product_hunt_data_github_actions()
-        
-        if not products:
-            print("[DEBUG] GitHub Actions版本失败，尝试使用简化版本...")
-            products = fetch_product_hunt_data_simple()
-        
-        if not products:
-            print("[DEBUG] 简化版本失败，尝试使用完整版本...")
-            products = fetch_product_hunt_data()
+        # 直接使用简化版本（基于测试成功的版本）
+        print("[DEBUG] 使用简化版本（基于测试成功的版本）...")
+        products = fetch_product_hunt_data_simple()
         
         print(f"[DEBUG] 成功获取{len(products)}个产品数据")
         
