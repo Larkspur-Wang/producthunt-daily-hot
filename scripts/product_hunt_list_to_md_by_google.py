@@ -195,11 +195,45 @@ class Product:
         )
 
 def get_producthunt_token():
-    """使用 developer token 进行认证"""
+    """获取Product Hunt API token"""
+    # 首先尝试使用developer token
     token = os.getenv('PRODUCTHUNT_DEVELOPER_TOKEN')
-    print(f"token is {token};")
+    print(f"token is {'***' if token else 'None'};")
+    
     if not token:
-        raise Exception("Product Hunt developer token not found in environment variables")
+        # 如果没有developer token，尝试使用OAuth
+        client_id = os.getenv('PRODUCTHUNT_CLIENT_ID')
+        client_secret = os.getenv('PRODUCTHUNT_CLIENT_SECRET')
+        
+        if not client_id or not client_secret:
+            raise Exception("Neither Product Hunt developer token nor OAuth credentials found in environment variables")
+        
+        # 获取OAuth token
+        print("[DEBUG] 尝试使用OAuth认证...")
+        try:
+            auth_url = "https://api.producthunt.com/v2/oauth/token"
+            auth_data = {
+                "client_id": client_id,
+                "client_secret": client_secret,
+                "grant_type": "client_credentials"
+            }
+            
+            response = requests.post(auth_url, json=auth_data, timeout=30)
+            response.raise_for_status()
+            
+            auth_result = response.json()
+            token = auth_result.get('access_token')
+            
+            if not token:
+                raise Exception("Failed to get access token from OAuth")
+                
+            print("[DEBUG] OAuth认证成功")
+            return token
+            
+        except Exception as e:
+            print(f"[DEBUG] OAuth认证失败: {e}")
+            raise
+    
     return token
 
 def get_session_headers() -> Dict[str, str]:
@@ -300,13 +334,39 @@ def fetch_product_hunt_data() -> List[Product]:
       }
     }
     """
+    
+    # 备用查询 - 更简单的版本
+    simple_query = """
+    {
+      posts(first: 24, order: VOTES, postedAfter: "%sT00:00:00Z", postedBefore: "%sT23:59:59Z") {
+        nodes {
+          id
+          name
+          tagline
+          description
+          votesCount
+          createdAt
+          featuredAt
+          website
+          url
+        }
+      }
+    }
+    """
 
-    def make_graphql_request(cursor: str, api_url: str) -> Dict[str, Any]:
+    def make_graphql_request(cursor: str, api_url: str, use_simple_query: bool = False) -> Dict[str, Any]:
         """发送GraphQL请求"""
-        query = base_query % (date_str, date_str, cursor)
+        # 根据参数选择查询类型
+        if use_simple_query:
+            query = simple_query % (date_str, date_str)
+            print(f"[DEBUG] 使用简单查询...")
+        else:
+            query = base_query % (date_str, date_str, cursor)
+            print(f"[DEBUG] 使用分页查询...")
+            
         print(f"[DEBUG] 发送请求到Product Hunt API...")
         
-        # 尝试两种不同的请求方式
+        # 尝试不同的请求方式
         methods = [
             # 方法1: POST with JSON
             lambda: session.post(api_url, headers=headers, json={"query": query}, timeout=30),
@@ -368,36 +428,58 @@ def fetch_product_hunt_data() -> List[Product]:
             retry_count = 0
             max_retries = 3
 
-            while has_next_page and len(all_posts) < 24:
-                try:
-                    # 在第一次请求或后续请求之间添加随机延迟
-                    if cursor != "":
-                        random_delay(5, 10)
+            # 首先尝试简单查询（一次性获取24个）
+            try:
+                print("[DEBUG] 尝试简单查询...")
+                data = make_graphql_request("", api_url, use_simple_query=True)
+                posts = data['data']['posts']['nodes']
+                all_posts.extend(posts)
+                print(f"[DEBUG] 简单查询成功获取 {len(posts)} 个产品")
+                
+                # 如果简单查询成功，直接跳过分页
+                if all_posts:
+                    sorted_posts = sorted(all_posts, key=lambda x: x['votesCount'], reverse=True)[:24]
+                    print(f"[DEBUG] 最终选取前24个产品")
                     
-                    data = make_graphql_request(cursor, api_url)
-                    posts = data['data']['posts']['nodes']
-                    all_posts.extend(posts)
+                    # 关闭session
+                    session.close()
+                    
+                    return [Product(**post) for post in sorted_posts]
+                    
+            except Exception as e:
+                print(f"[DEBUG] 简单查询失败，尝试分页查询: {e}")
+                
+                # 回退到分页查询
+                while has_next_page and len(all_posts) < 24:
+                    try:
+                        # 在第一次请求或后续请求之间添加随机延迟
+                        if cursor != "":
+                            random_delay(5, 10)
+                        
+                        data = make_graphql_request(cursor, api_url, use_simple_query=False)
+                        posts = data['data']['posts']['nodes']
+                        all_posts.extend(posts)
 
-                    has_next_page = data['data']['posts']['pageInfo']['hasNextPage']
-                    cursor = data['data']['posts']['pageInfo']['endCursor']
-                    
-                    print(f"[DEBUG] 已获取 {len(posts)} 个产品，总计 {len(all_posts)} 个")
-                    
-                    # 重置重试计数
-                    retry_count = 0
-                    
-                except Exception as e:
-                    retry_count += 1
-                    print(f"[DEBUG] 获取数据失败 (尝试 {retry_count}/{max_retries}): {e}")
-                    
-                    if retry_count >= max_retries:
-                        print("[DEBUG] 达到最大重试次数，尝试下一个API端点")
-                        break
-                    
-                    # 指数退避
-                    delay = 10 * (2 ** (retry_count - 1)) + random.uniform(0, 5)
-                    print(f"[DEBUG] {delay:.2f} 秒后重试...")
-                    time.sleep(delay)
+                        has_next_page = data['data']['posts']['pageInfo']['hasNextPage']
+                        cursor = data['data']['posts']['pageInfo']['endCursor']
+                        
+                        print(f"[DEBUG] 已获取 {len(posts)} 个产品，总计 {len(all_posts)} 个")
+                        
+                        # 重置重试计数
+                        retry_count = 0
+                        
+                    except Exception as e:
+                        retry_count += 1
+                        print(f"[DEBUG] 获取数据失败 (尝试 {retry_count}/{max_retries}): {e}")
+                        
+                        if retry_count >= max_retries:
+                            print("[DEBUG] 达到最大重试次数，尝试下一个API端点")
+                            break
+                        
+                        # 指数退避
+                        delay = 10 * (2 ** (retry_count - 1)) + random.uniform(0, 5)
+                        print(f"[DEBUG] {delay:.2f} 秒后重试...")
+                        time.sleep(delay)
             
             # 如果成功获取到数据，返回结果
             if all_posts:
