@@ -1,5 +1,9 @@
 import os
 # from dotenv import load_dotenv
+try:
+    import cloudscraper
+except ImportError:
+    cloudscraper = None
 import requests
 from datetime import datetime, timedelta, timezone
 from bs4 import BeautifulSoup
@@ -256,6 +260,32 @@ def get_session_headers() -> Dict[str, str]:
 
 def create_session_with_retry() -> requests.Session:
     """创建带有重试策略的Session"""
+    # 优先使用cloudscraper
+    if cloudscraper is not None:
+        print("[DEBUG] 使用cloudscraper创建session...")
+        try:
+            # 创建cloudscraper实例
+            scraper = cloudscraper.create_scraper()
+            
+            # 设置重试策略
+            retry_strategy = Retry(
+                total=3,
+                backoff_factor=1,
+                status_forcelist=[403, 429, 500, 502, 503, 504],
+                respect_retry_after_header=True
+            )
+            
+            # 设置适配器
+            adapter = HTTPAdapter(max_retries=retry_strategy)
+            scraper.mount("https://", adapter)
+            scraper.mount("http://", adapter)
+            
+            return scraper
+        except Exception as e:
+            print(f"[DEBUG] cloudscraper创建失败，回退到requests: {e}")
+    
+    # 回退到普通requests
+    print("[DEBUG] 使用requests创建session...")
     session = requests.Session()
     
     # 设置重试策略

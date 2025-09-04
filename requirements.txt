@@ -5,3 +5,4 @@ pytz
 huggingface_hub 
 markdown
 google-generativeai
+cloudscraper
