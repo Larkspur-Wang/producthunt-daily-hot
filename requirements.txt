@@ -2,6 +2,7 @@
 requests>=2.31.0
 beautifulsoup4>=4.12.0
 pytz>=2023.3
+python-dotenv>=1.0.0
 
 # Cloudflare bypass
 cloudscraper>=1.2.60
