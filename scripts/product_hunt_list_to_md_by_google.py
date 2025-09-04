@@ -312,6 +312,15 @@ def fetch_product_hunt_data() -> List[Product]:
         try:
             response = session.post(url, headers=headers, json={"query": query}, timeout=30)
             
+            print(f"[DEBUG] 响应状态码: {response.status_code}")
+            print(f"[DEBUG] 响应头: {dict(response.headers)}")
+            
+            # 检查响应内容类型
+            content_type = response.headers.get('content-type', '')
+            if 'application/json' not in content_type:
+                print(f"[DEBUG] 警告: 响应不是JSON格式，Content-Type: {content_type}")
+                print(f"[DEBUG] 响应内容前500字符: {response.text[:500]}")
+                
             if response.status_code == 403:
                 print(f"[DEBUG] 收到403错误，可能触发了Cloudflare防护")
                 if "cf-browser-verification" in response.text or "challenge" in response.text.lower():
@@ -319,8 +328,15 @@ def fetch_product_hunt_data() -> List[Product]:
                     raise Exception("Cloudflare challenge detected")
                 
             response.raise_for_status()
-            return response.json()
             
+            # 尝试解析JSON
+            try:
+                return response.json()
+            except json.JSONDecodeError as e:
+                print(f"[DEBUG] JSON解析错误: {e}")
+                print(f"[DEBUG] 响应内容: {response.text}")
+                raise
+                
         except requests.exceptions.RequestException as e:
             print(f"[DEBUG] 请求异常: {e}")
             raise
