@@ -1,14 +1,5 @@
 import os
-from dotenv import load_dotenv
 from pathlib import Path
-
-# 加载 .env 文件
-env_path = Path(__file__).parent.parent / "my_automation" / "xiaohongshu_agent" / "config" / ".env"
-load_dotenv(env_path)
-try:
-    import cloudscraper
-except ImportError:
-    cloudscraper = None
 import requests
 from datetime import datetime, timedelta, timezone
 from bs4 import BeautifulSoup
