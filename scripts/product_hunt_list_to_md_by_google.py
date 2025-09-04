@@ -326,6 +326,106 @@ def retry_with_backoff(func, max_retries: int = 3, base_delay: float = 5):
         
     return wrapper
 
+def fetch_product_hunt_data_simple() -> List[Product]:
+    """简化的Product Hunt数据获取 - 基于测试成功的版本"""
+    print("[DEBUG] 使用简化版本获取Product Hunt数据...")
+    
+    # 使用有效的token
+    token = os.getenv('PRODUCTHUNT_DEVELOPER_TOKEN')
+    if not token:
+        raise Exception("PRODUCTHUNT_DEVELOPER_TOKEN not found in environment variables")
+    
+    print(f"[DEBUG] Token: {'***' if token else 'None'}")
+    
+    # API端点
+    url = "https://api.producthunt.com/v2/api/graphql"
+    
+    # 计算昨天的日期
+    yesterday = datetime.now(timezone.utc) - timedelta(days=1)
+    date_str = yesterday.strftime('%Y-%m-%d')
+    
+    print(f"[DEBUG] 获取日期: {date_str}")
+    
+    # 使用测试成功的headers
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Origin": "https://producthunt.com",
+        "Referer": "https://producthunt.com/",
+        "Connection": "keep-alive"
+    }
+    
+    # 简化的查询 - 直接获取前24个
+    query = f"""
+    {{
+      posts(first: 24, order: VOTES, postedAfter: "{date_str}T00:00:00Z", postedBefore: "{date_str}T23:59:59Z") {{
+        nodes {{
+          id
+          name
+          tagline
+          description
+          votesCount
+          createdAt
+          featuredAt
+          website
+          url
+        }}
+      }}
+    }}
+    """
+    
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            print(f"[DEBUG] 发送API请求 (尝试 {attempt + 1}/{max_retries})...")
+            
+            # 添加随机延迟
+            if attempt > 0:
+                delay = random.uniform(5, 15)
+                print(f"[DEBUG] 等待 {delay:.1f} 秒...")
+                time.sleep(delay)
+            
+            response = requests.post(url, headers=headers, json={"query": query}, timeout=30)
+            
+            print(f"[DEBUG] 状态码: {response.status_code}")
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                if 'errors' in data:
+                    print(f"[ERROR] API错误: {data['errors']}")
+                    if attempt == max_retries - 1:
+                        return []
+                    continue
+                
+                posts = data.get('data', {}).get('posts', {}).get('nodes', [])
+                print(f"[DEBUG] 成功获取 {len(posts)} 个帖子")
+                
+                # 按票数排序
+                posts.sort(key=lambda x: x['votesCount'], reverse=True)
+                
+                return posts[:24]  # 确保最多24个
+                
+            elif response.status_code == 403:
+                print(f"[DEBUG] 收到403错误，可能是Cloudflare防护")
+                if attempt == max_retries - 1:
+                    return []
+            else:
+                print(f"[ERROR] 请求失败: {response.status_code}")
+                if attempt == max_retries - 1:
+                    return []
+                
+        except Exception as e:
+            print(f"[ERROR] 请求异常: {e}")
+            if attempt == max_retries - 1:
+                return []
+    
+    return []
+
 def fetch_product_hunt_data() -> List[Product]:
     """从Product Hunt获取前一天的Top 24数据"""
     print("[DEBUG] 初始化Session和请求头...")
@@ -566,7 +666,14 @@ def main():
     # 获取Product Hunt数据
     print("[DEBUG] 开始获取Product Hunt数据...")
     try:
-        products = fetch_product_hunt_data()
+        # 首先尝试简化版本
+        print("[DEBUG] 尝试使用简化版本获取数据...")
+        products = fetch_product_hunt_data_simple()
+        
+        if not products:
+            print("[DEBUG] 简化版本失败，尝试使用完整版本...")
+            products = fetch_product_hunt_data()
+        
         print(f"[DEBUG] 成功获取{len(products)}个产品数据")
         
         if not products:
