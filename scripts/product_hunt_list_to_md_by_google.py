@@ -203,31 +203,21 @@ def get_producthunt_token():
     return token
 
 def get_session_headers() -> Dict[str, str]:
-    """获取模拟浏览器的请求头"""
+    """获取模拟浏览器的请求头 - 简化版本"""
     user_agents = [
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0",
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1 Safari/605.1.15"
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
     ]
     
     return {
-        "Accept": "application/json, text/plain, */*",
-        "Accept-Encoding": "gzip, deflate, br",
-        "Accept-Language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7",
+        "Accept": "application/json",
+        "Accept-Language": "en-US,en;q=0.9",
         "Authorization": f"Bearer {get_producthunt_token()}",
         "Content-Type": "application/json",
         "User-Agent": random.choice(user_agents),
         "Origin": "https://producthunt.com",
-        "Referer": "https://producthunt.com/",
-        "Sec-Ch-Ua": '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-        "Sec-Ch-Ua-Mobile": "?0",
-        "Sec-Ch-Ua-Platform": '"Windows"',
-        "Sec-Fetch-Dest": "empty",
-        "Sec-Fetch-Mode": "cors",
-        "Sec-Fetch-Site": "same-site",
-        "Connection": "keep-alive"
+        "Referer": "https://producthunt.com/"
     }
 
 def create_session_with_retry() -> requests.Session:
@@ -280,7 +270,14 @@ def fetch_product_hunt_data() -> List[Product]:
     
     yesterday = datetime.now(timezone.utc) - timedelta(days=1)
     date_str = yesterday.strftime('%Y-%m-%d')
-    url = "https://api.producthunt.com/v2/api/graphql"
+    
+    # 尝试不同的API端点
+    api_endpoints = [
+        "https://api.producthunt.com/v2/api/graphql",
+        "https://producthunt.com/api/graphql"
+    ]
+    
+    last_exception = None
     
     base_query = """
     {
@@ -304,88 +301,123 @@ def fetch_product_hunt_data() -> List[Product]:
     }
     """
 
-    def make_graphql_request(cursor: str) -> Dict[str, Any]:
+    def make_graphql_request(cursor: str, api_url: str) -> Dict[str, Any]:
         """发送GraphQL请求"""
         query = base_query % (date_str, date_str, cursor)
         print(f"[DEBUG] 发送请求到Product Hunt API...")
         
-        try:
-            response = session.post(url, headers=headers, json={"query": query}, timeout=30)
-            
-            print(f"[DEBUG] 响应状态码: {response.status_code}")
-            print(f"[DEBUG] 响应头: {dict(response.headers)}")
-            
-            # 检查响应内容类型
-            content_type = response.headers.get('content-type', '')
-            if 'application/json' not in content_type:
-                print(f"[DEBUG] 警告: 响应不是JSON格式，Content-Type: {content_type}")
-                print(f"[DEBUG] 响应内容前500字符: {response.text[:500]}")
-                
-            if response.status_code == 403:
-                print(f"[DEBUG] 收到403错误，可能触发了Cloudflare防护")
-                if "cf-browser-verification" in response.text or "challenge" in response.text.lower():
-                    print("[DEBUG] 检测到Cloudflare挑战页面，需要更高级的绕过方法")
-                    raise Exception("Cloudflare challenge detected")
-                
-            response.raise_for_status()
-            
-            # 尝试解析JSON
+        # 尝试两种不同的请求方式
+        methods = [
+            # 方法1: POST with JSON
+            lambda: session.post(api_url, headers=headers, json={"query": query}, timeout=30),
+            # 方法2: POST with form data
+            lambda: session.post(api_url, headers={**headers, "Content-Type": "application/x-www-form-urlencoded"}, 
+                               data=f"query={query}", timeout=30)
+        ]
+        
+        last_exception = None
+        
+        for i, method in enumerate(methods):
             try:
-                return response.json()
-            except json.JSONDecodeError as e:
-                print(f"[DEBUG] JSON解析错误: {e}")
-                print(f"[DEBUG] 响应内容: {response.text}")
-                raise
+                print(f"[DEBUG] 尝试请求方法 {i+1}...")
+                response = method()
                 
-        except requests.exceptions.RequestException as e:
-            print(f"[DEBUG] 请求异常: {e}")
-            raise
+                print(f"[DEBUG] 响应状态码: {response.status_code}")
+                
+                # 检查响应内容类型
+                content_type = response.headers.get('content-type', '')
+                if 'application/json' not in content_type:
+                    print(f"[DEBUG] 警告: 响应不是JSON格式，Content-Type: {content_type}")
+                    print(f"[DEBUG] 响应内容前500字符: {response.text[:500]}")
+                    
+                if response.status_code == 403:
+                    print(f"[DEBUG] 收到403错误，可能触发了Cloudflare防护")
+                    if "cf-browser-verification" in response.text or "challenge" in response.text.lower():
+                        print("[DEBUG] 检测到Cloudflare挑战页面")
+                    last_exception = Exception(f"403 Forbidden: {response.text[:200]}")
+                    continue
+                
+                response.raise_for_status()
+                
+                # 尝试解析JSON
+                try:
+                    return response.json()
+                except json.JSONDecodeError as e:
+                    print(f"[DEBUG] JSON解析错误: {e}")
+                    print(f"[DEBUG] 响应内容: {response.text}")
+                    last_exception = e
+                    continue
+                    
+            except requests.exceptions.RequestException as e:
+                print(f"[DEBUG] 请求异常: {e}")
+                last_exception = e
+                continue
+        
+        # 所有方法都失败了
+        raise last_exception or Exception("All request methods failed")
 
-    all_posts = []
-    has_next_page = True
-    cursor = ""
-    retry_count = 0
-    max_retries = 3
-
-    while has_next_page and len(all_posts) < 24:
+    # 尝试每个API端点
+    for api_url in api_endpoints:
         try:
-            # 在第一次请求或后续请求之间添加随机延迟
-            if cursor != "":
-                random_delay(5, 10)
+            print(f"\n[DEBUG] === 尝试API端点: {api_url} ===")
+            url = api_url
             
-            data = make_graphql_request(cursor)
-            posts = data['data']['posts']['nodes']
-            all_posts.extend(posts)
-
-            has_next_page = data['data']['posts']['pageInfo']['hasNextPage']
-            cursor = data['data']['posts']['pageInfo']['endCursor']
-            
-            print(f"[DEBUG] 已获取 {len(posts)} 个产品，总计 {len(all_posts)} 个")
-            
-            # 重置重试计数
+            all_posts = []
+            has_next_page = True
+            cursor = ""
             retry_count = 0
-            
-        except Exception as e:
-            retry_count += 1
-            print(f"[DEBUG] 获取数据失败 (尝试 {retry_count}/{max_retries}): {e}")
-            
-            if retry_count >= max_retries:
-                print("[DEBUG] 达到最大重试次数，终止请求")
-                break
-            
-            # 指数退避
-            delay = 10 * (2 ** (retry_count - 1)) + random.uniform(0, 5)
-            print(f"[DEBUG] {delay:.2f} 秒后重试...")
-            time.sleep(delay)
+            max_retries = 3
 
-    # 只保留前24个产品
-    sorted_posts = sorted(all_posts, key=lambda x: x['votesCount'], reverse=True)[:24]
-    print(f"[DEBUG] 最终选取前24个产品")
+            while has_next_page and len(all_posts) < 24:
+                try:
+                    # 在第一次请求或后续请求之间添加随机延迟
+                    if cursor != "":
+                        random_delay(5, 10)
+                    
+                    data = make_graphql_request(cursor, api_url)
+                    posts = data['data']['posts']['nodes']
+                    all_posts.extend(posts)
+
+                    has_next_page = data['data']['posts']['pageInfo']['hasNextPage']
+                    cursor = data['data']['posts']['pageInfo']['endCursor']
+                    
+                    print(f"[DEBUG] 已获取 {len(posts)} 个产品，总计 {len(all_posts)} 个")
+                    
+                    # 重置重试计数
+                    retry_count = 0
+                    
+                except Exception as e:
+                    retry_count += 1
+                    print(f"[DEBUG] 获取数据失败 (尝试 {retry_count}/{max_retries}): {e}")
+                    
+                    if retry_count >= max_retries:
+                        print("[DEBUG] 达到最大重试次数，尝试下一个API端点")
+                        break
+                    
+                    # 指数退避
+                    delay = 10 * (2 ** (retry_count - 1)) + random.uniform(0, 5)
+                    print(f"[DEBUG] {delay:.2f} 秒后重试...")
+                    time.sleep(delay)
+            
+            # 如果成功获取到数据，返回结果
+            if all_posts:
+                sorted_posts = sorted(all_posts, key=lambda x: x['votesCount'], reverse=True)[:24]
+                print(f"[DEBUG] 最终选取前24个产品")
+                
+                # 关闭session
+                session.close()
+                
+                return [Product(**post) for post in sorted_posts]
+                
+        except Exception as e:
+            print(f"[DEBUG] API端点 {api_url} 失败: {e}")
+            last_exception = e
+            continue
     
-    # 关闭session
+    # 所有API端点都失败了
+    print("[DEBUG] 所有API端点都失败了")
     session.close()
-    
-    return [Product(**post) for post in sorted_posts]
+    raise last_exception or Exception("所有API端点都失败了")
 
 def generate_markdown(products, date_str):
     """生成Markdown内容并保存到data目录"""
