@@ -9,6 +9,7 @@ import random
 import json
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
+from typing import Optional, List, Dict, Any
 
 # 加载 .env 文件
 # load_dotenv()
@@ -86,9 +87,27 @@ class Product:
         print(f"正在获取URL: {self.url}")  # 打印正在请求的URL
         
         headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7",
+            "Accept-Encoding": "gzip, deflate, br",
+            "Connection": "keep-alive",
+            "Upgrade-Insecure-Requests": "1",
+            "Sec-Fetch-Dest": "document",
+            "Sec-Fetch-Mode": "navigate",
+            "Sec-Fetch-Site": "none",
+            "Cache-Control": "max-age=0"
         }
-        response = requests.get(self.url, headers=headers)
+        
+        # 添加随机延迟
+        random_delay(2, 5)
+        
+        try:
+            response = requests.get(self.url, headers=headers, timeout=10)
+            response.raise_for_status()
+        except requests.exceptions.RequestException as e:
+            print(f"[DEBUG] 请求失败: {e}")
+            return ""
         print(f"请求状态码: {response.status_code}")  # 打印请求状态码
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, 'html.parser')
@@ -183,23 +202,85 @@ def get_producthunt_token():
         raise Exception("Product Hunt developer token not found in environment variables")
     return token
 
-def fetch_product_hunt_data():
+def get_session_headers() -> Dict[str, str]:
+    """获取模拟浏览器的请求头"""
+    user_agents = [
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1 Safari/605.1.15"
+    ]
+    
+    return {
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7",
+        "Authorization": f"Bearer {get_producthunt_token()}",
+        "Content-Type": "application/json",
+        "User-Agent": random.choice(user_agents),
+        "Origin": "https://producthunt.com",
+        "Referer": "https://producthunt.com/",
+        "Sec-Ch-Ua": '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+        "Sec-Ch-Ua-Mobile": "?0",
+        "Sec-Ch-Ua-Platform": '"Windows"',
+        "Sec-Fetch-Dest": "empty",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Site": "same-site",
+        "Connection": "keep-alive"
+    }
+
+def create_session_with_retry() -> requests.Session:
+    """创建带有重试策略的Session"""
+    session = requests.Session()
+    
+    # 设置重试策略
+    retry_strategy = Retry(
+        total=3,
+        backoff_factor=1,
+        status_forcelist=[403, 429, 500, 502, 503, 504],
+        respect_retry_after_header=True
+    )
+    
+    # 设置适配器
+    adapter = HTTPAdapter(max_retries=retry_strategy)
+    session.mount("https://", adapter)
+    session.mount("http://", adapter)
+    
+    return session
+
+def random_delay(min_seconds: float = 3, max_seconds: float = 8) -> None:
+    """随机延迟，避免被识别为机器人"""
+    delay = random.uniform(min_seconds, max_seconds)
+    print(f"[DEBUG] 等待 {delay:.2f} 秒...")
+    time.sleep(delay)
+
+def retry_with_backoff(func, max_retries: int = 3, base_delay: float = 5):
+    """带指数退避的重试装饰器"""
+    def wrapper(*args, **kwargs):
+        for attempt in range(max_retries):
+            try:
+                return func(*args, **kwargs)
+            except Exception as e:
+                if attempt == max_retries - 1:
+                    raise e
+                
+                # 计算延迟时间（指数退避 + 随机抖动）
+                delay = base_delay * (2 ** attempt) + random.uniform(0, 2)
+                print(f"[DEBUG] 请求失败，{delay:.2f} 秒后重试 (尝试 {attempt + 1}/{max_retries}): {e}")
+                time.sleep(delay)
+        
+    return wrapper
+
+def fetch_product_hunt_data() -> List[Product]:
     """从Product Hunt获取前一天的Top 24数据"""
-    token = get_producthunt_token()
+    print("[DEBUG] 初始化Session和请求头...")
+    session = create_session_with_retry()
+    headers = get_session_headers()
+    
     yesterday = datetime.now(timezone.utc) - timedelta(days=1)
     date_str = yesterday.strftime('%Y-%m-%d')
     url = "https://api.producthunt.com/v2/api/graphql"
-    
-    # 添加更多请求头信息
-    headers = {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {token}",
-        "User-Agent": "DecohackBot/1.0 (https://decohack.com)",
-        "Origin": "https://decohack.com",
-        "Accept-Language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7",
-        "Connection": "keep-alive"
-    }
     
     base_query = """
     {
@@ -223,26 +304,72 @@ def fetch_product_hunt_data():
     }
     """
 
+    def make_graphql_request(cursor: str) -> Dict[str, Any]:
+        """发送GraphQL请求"""
+        query = base_query % (date_str, date_str, cursor)
+        print(f"[DEBUG] 发送请求到Product Hunt API...")
+        
+        try:
+            response = session.post(url, headers=headers, json={"query": query}, timeout=30)
+            
+            if response.status_code == 403:
+                print(f"[DEBUG] 收到403错误，可能触发了Cloudflare防护")
+                if "cf-browser-verification" in response.text or "challenge" in response.text.lower():
+                    print("[DEBUG] 检测到Cloudflare挑战页面，需要更高级的绕过方法")
+                    raise Exception("Cloudflare challenge detected")
+                
+            response.raise_for_status()
+            return response.json()
+            
+        except requests.exceptions.RequestException as e:
+            print(f"[DEBUG] 请求异常: {e}")
+            raise
+
     all_posts = []
     has_next_page = True
     cursor = ""
+    retry_count = 0
+    max_retries = 3
 
     while has_next_page and len(all_posts) < 24:
-        query = base_query % (date_str, date_str, cursor)
-        response = requests.post(url, headers=headers, json={"query": query})
+        try:
+            # 在第一次请求或后续请求之间添加随机延迟
+            if cursor != "":
+                random_delay(5, 10)
+            
+            data = make_graphql_request(cursor)
+            posts = data['data']['posts']['nodes']
+            all_posts.extend(posts)
 
-        if response.status_code != 200:
-            raise Exception(f"Failed to fetch data from Product Hunt: {response.status_code}, {response.text}")
-
-        data = response.json()['data']['posts']
-        posts = data['nodes']
-        all_posts.extend(posts)
-
-        has_next_page = data['pageInfo']['hasNextPage']
-        cursor = data['pageInfo']['endCursor']
+            has_next_page = data['data']['posts']['pageInfo']['hasNextPage']
+            cursor = data['data']['posts']['pageInfo']['endCursor']
+            
+            print(f"[DEBUG] 已获取 {len(posts)} 个产品，总计 {len(all_posts)} 个")
+            
+            # 重置重试计数
+            retry_count = 0
+            
+        except Exception as e:
+            retry_count += 1
+            print(f"[DEBUG] 获取数据失败 (尝试 {retry_count}/{max_retries}): {e}")
+            
+            if retry_count >= max_retries:
+                print("[DEBUG] 达到最大重试次数，终止请求")
+                break
+            
+            # 指数退避
+            delay = 10 * (2 ** (retry_count - 1)) + random.uniform(0, 5)
+            print(f"[DEBUG] {delay:.2f} 秒后重试...")
+            time.sleep(delay)
 
     # 只保留前24个产品
-    return [Product(**post) for post in sorted(all_posts, key=lambda x: x['votesCount'], reverse=True)[:24]]
+    sorted_posts = sorted(all_posts, key=lambda x: x['votesCount'], reverse=True)[:24]
+    print(f"[DEBUG] 最终选取前24个产品")
+    
+    # 关闭session
+    session.close()
+    
+    return [Product(**post) for post in sorted_posts]
 
 def generate_markdown(products, date_str):
     """生成Markdown内容并保存到data目录"""
@@ -268,6 +395,8 @@ def generate_markdown(products, date_str):
 
 def main():
     print("\n[DEBUG] 程序开始运行...")
+    print(f"[DEBUG] Python版本: {os.sys.version}")
+    print(f"[DEBUG] requests版本: {requests.__version__}")
     
     # 获取昨天的日期并格式化
     yesterday = datetime.now(timezone.utc) - timedelta(days=1)
@@ -276,8 +405,18 @@ def main():
 
     # 获取Product Hunt数据
     print("[DEBUG] 开始获取Product Hunt数据...")
-    products = fetch_product_hunt_data()
-    print(f"[DEBUG] 成功获取{len(products)}个产品数据")
+    try:
+        products = fetch_product_hunt_data()
+        print(f"[DEBUG] 成功获取{len(products)}个产品数据")
+        
+        if not products:
+            print("[DEBUG] 警告: 没有获取到任何产品数据")
+            return
+            
+    except Exception as e:
+        print(f"[DEBUG] 获取Product Hunt数据失败: {e}")
+        print("[DEBUG] 程序异常终止")
+        raise
 
     # 生成Markdown文件
     print("[DEBUG] 开始生成Markdown文件...")
