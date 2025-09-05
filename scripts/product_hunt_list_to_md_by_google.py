@@ -24,7 +24,7 @@ GEMINI_API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 producthunt_client_id = os.getenv('PRODUCTHUNT_CLIENT_ID')
 producthunt_client_secret = os.getenv('PRODUCTHUNT_CLIENT_SECRET')
 
-def call_gemini_api(prompt: str, model: str = "gemini-2.0-flash-exp", temperature: float = 0.8) -> str:
+def call_gemini_api(prompt: str, model: str = "gemini-2.5-flash", temperature: float = 0.8) -> str:
     """调用Google Gemini API"""
     print(f"\n[DEBUG] 正在调用Gemini API，模型：{model}")
     try:
@@ -61,7 +61,7 @@ def call_gemini_api(prompt: str, model: str = "gemini-2.0-flash-exp", temperatur
         return ""
 
 class Product:
-    def __init__(self, id: str, name: str, tagline: str, description: str, votesCount: int, createdAt: str, featuredAt: str, website: str, url: str, **kwargs):
+    def __init__(self, id: str, name: str, tagline: str, description: str, votesCount: int, createdAt: str, featuredAt: str, website: str, url: str, media=None, **kwargs):
         print(f"\n[DEBUG] 正在初始化产品: {name}")
         self.name = name
         self.tagline = tagline
@@ -73,7 +73,7 @@ class Product:
         self.url = url
         
         print(f"[DEBUG] 获取产品图片URL...")
-        self.og_image_url = self.fetch_og_image_url()
+        self.og_image_url = self.get_image_url_from_media(media)
         
         print(f"[DEBUG] 生成产品关键词...")
         self.keyword = self.generate_keywords()
@@ -85,6 +85,30 @@ class Product:
         self.translated_description = self.translate_text(self.description)
         
         print(f"[DEBUG] 产品 {name} 初始化完成\n")
+
+    def get_image_url_from_media(self, media):
+        """从API返回的media字段中获取图片URL"""
+        try:
+            if media and isinstance(media, list) and len(media) > 0:
+                # 优先使用第一张图片
+                image_url = media[0].get('url', '')
+                if image_url:
+                    print(f"成功从API获取图片URL: {self.name}")
+                    return image_url
+            
+            # 如果API没有返回图片，尝试使用备用方法
+            print(f"API未返回图片，尝试使用备用方法: {self.name}")
+            backup_url = self.fetch_og_image_url()
+            if backup_url:
+                print(f"使用备用方法获取图片URL成功: {self.name}")
+                return backup_url
+            else:
+                print(f"无法获取图片URL: {self.name}")
+                
+            return ""
+        except Exception as e:
+            print(f"获取图片URL时出错: {self.name}, 错误: {e}")
+            return ""
 
     def fetch_og_image_url(self) -> str:
         """获取产品的Open Graph图片URL"""
@@ -135,7 +159,7 @@ class Product:
         max_retries = 3
         for attempt in range(max_retries):
             try:
-                keywords = call_gemini_api(prompt, model="gemini-2.0-flash-exp")
+                keywords = call_gemini_api(prompt, model="gemini-2.5-flash")
                 if keywords:
                     if ',' not in keywords:
                         keywords = ', '.join(keywords.split())
@@ -159,7 +183,7 @@ class Product:
         max_retries = 3
         for attempt in range(max_retries):
             try:
-                translated_text = call_gemini_api(prompt, model="gemini-2.0-flash-exp")
+                translated_text = call_gemini_api(prompt, model="gemini-2.5-flash")
                 if translated_text:
                     time.sleep(5)  # 在API调用后等待5秒
                     return translated_text
@@ -403,6 +427,11 @@ def fetch_product_hunt_data_github_actions() -> List[Product]:
           featuredAt
           website
           url
+          media {{
+            url
+            type
+            videoUrl
+          }}
         }}
       }}
     }}
@@ -531,6 +560,11 @@ def fetch_product_hunt_data_simple() -> List[Product]:
           featuredAt
           website
           url
+          media {{
+            url
+            type
+            videoUrl
+          }}
         }}
       }}
     }}
@@ -614,6 +648,11 @@ def fetch_product_hunt_data() -> List[Product]:
           featuredAt
           website
           url
+          media {
+            url
+            type
+            videoUrl
+          }
         }
         pageInfo {
           hasNextPage
@@ -637,6 +676,11 @@ def fetch_product_hunt_data() -> List[Product]:
           featuredAt
           website
           url
+          media {
+            url
+            type
+            videoUrl
+          }
         }
       }
     }

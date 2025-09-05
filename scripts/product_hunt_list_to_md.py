@@ -1,22 +1,45 @@
 import os
-# from dotenv import load_dotenv
+try:
+    from dotenv import load_dotenv
+    # 加载 .env 文件
+    load_dotenv(override=True)
+except ImportError:
+    # 在 GitHub Actions 等环境中，环境变量已经设置好，不需要 dotenv
+    print("dotenv 模块未安装，将直接使用环境变量")
+
 import requests
 from datetime import datetime, timedelta, timezone
-from openai import OpenAI
+import openai
 from bs4 import BeautifulSoup
 import pytz
-
-# 加载 .env 文件
-# load_dotenv()
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 # 创建 OpenAI 客户端实例
-client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+api_key = os.getenv('OPENAI_API_KEY')
+openai_base_url = os.getenv('OPENAI_BASE_URL')  # 新增：从环境变量获取base URL
+openai_model = os.getenv('OPENAI_MODEL', 'gpt-4o-mini')  # 新增：从环境变量获取模型，默认使用gpt-4o-mini
 
-producthunt_client_id = os.getenv('PRODUCTHUNT_CLIENT_ID')
-producthunt_client_secret = os.getenv('PRODUCTHUNT_CLIENT_SECRET')
+if not api_key:
+    print("警告: 未设置 OPENAI_API_KEY 环境变量，将无法使用 OpenAI 服务")
+    client = None
+else:
+    openai.api_key = api_key
+    try:
+        # 支持自定义base URL和模型
+        client_params = {"api_key": api_key}
+        if openai_base_url:
+            client_params["base_url"] = openai_base_url
+            print(f"使用自定义OpenAI base URL: {openai_base_url}")
+        
+        client = openai.Client(**client_params)
+        print(f"成功初始化 OpenAI 客户端，使用模型: {openai_model}")
+    except Exception as e:
+        print(f"初始化 OpenAI 客户端失败: {e}")
+        client = None
 
 class Product:
-    def __init__(self, id: str, name: str, tagline: str, description: str, votesCount: int, createdAt: str, featuredAt: str, website: str, url: str, **kwargs):
+    def __init__(self, id: str, name: str, tagline: str, description: str, votesCount: int, createdAt: str, featuredAt: str, website: str, url: str, media=None, **kwargs):
         self.name = name
         self.tagline = tagline
         self.description = description
@@ -25,59 +48,118 @@ class Product:
         self.featured = "是" if featuredAt else "否"
         self.website = website
         self.url = url
-        self.og_image_url = self.fetch_og_image_url()
+        self.og_image_url = self.get_image_url_from_media(media)
         self.keyword = self.generate_keywords()
         self.translated_tagline = self.translate_text(self.tagline)
         self.translated_description = self.translate_text(self.description)
 
+    def get_image_url_from_media(self, media):
+        """从API返回的media字段中获取图片URL"""
+        try:
+            if media and isinstance(media, list) and len(media) > 0:
+                # 优先使用第一张图片
+                image_url = media[0].get('url', '')
+                if image_url:
+                    print(f"成功从API获取图片URL: {self.name}")
+                    return image_url
+            
+            # 如果API没有返回图片，尝试使用备用方法
+            print(f"API未返回图片，尝试使用备用方法: {self.name}")
+            backup_url = self.fetch_og_image_url()
+            if backup_url:
+                print(f"使用备用方法获取图片URL成功: {self.name}")
+                return backup_url
+            else:
+                print(f"无法获取图片URL: {self.name}")
+                
+            return ""
+        except Exception as e:
+            print(f"获取图片URL时出错: {self.name}, 错误: {e}")
+            return ""
+
     def fetch_og_image_url(self) -> str:
-        """获取产品的Open Graph图片URL"""
-        response = requests.get(self.url)
-        if response.status_code == 200:
-            soup = BeautifulSoup(response.text, 'html.parser')
-            og_image = soup.find("meta", property="og:image")
-            if og_image:
-                return og_image["content"]
-        return ""
+        """获取产品的Open Graph图片URL（备用方法）"""
+        try:
+            response = requests.get(self.url, timeout=10)
+            if response.status_code == 200:
+                soup = BeautifulSoup(response.text, 'html.parser')
+                # 查找og:image meta标签
+                og_image = soup.find("meta", property="og:image")
+                if og_image:
+                    return og_image["content"]
+                # 备用:查找twitter:image meta标签
+                twitter_image = soup.find("meta", name="twitter:image") 
+                if twitter_image:
+                    return twitter_image["content"]
+            return ""
+        except Exception as e:
+            print(f"获取OG图片URL时出错: {self.name}, 错误: {e}")
+            return ""
 
     def generate_keywords(self) -> str:
         """生成产品的关键词，显示在一行，用逗号分隔"""
-        prompt = f"根据以下内容生成适合的中文关键词，用英文逗号分隔开：\n\n产品名称：{self.name}\n\n标语：{self.tagline}\n\n描述：{self.description}"
-        
         try:
-            response = client.chat.completions.create(
-                model="gpt-4o-mini",
-                messages=[
-                    {"role": "system", "content": "Generate suitable Chinese keywords based on the product information provided. The keywords should be separated by commas."},
-                    {"role": "user", "content": prompt},
-                ],
-                max_tokens=50,
-                temperature=0.7,
-            )
-            keywords = response.choices[0].message.content.strip()
-            if ',' not in keywords:
-                keywords = ', '.join(keywords.split())
-            return keywords
+            # 如果 OpenAI 客户端不可用，直接使用备用方法
+            if client is None:
+                print(f"OpenAI 客户端不可用，使用备用关键词生成方法: {self.name}")
+                words = set((self.name + ", " + self.tagline).replace("&", ",").replace("|", ",").replace("-", ",").split(","))
+                return ", ".join([word.strip() for word in words if word.strip()])
+                
+            prompt = f"根据以下内容生成适合的中文关键词，用英文逗号分隔开：\n\n产品名称：{self.name}\n\n标语：{self.tagline}\n\n描述：{self.description}"
+            
+            try:
+                print(f"正在为 {self.name} 生成关键词...")
+                response = client.chat.completions.create(
+                    model=openai_model,
+                    messages=[
+                        {"role": "system", "content": "Generate suitable Chinese keywords based on the product information provided. The keywords should be separated by commas."},
+                        {"role": "user", "content": prompt},
+                    ],
+                    max_tokens=50,
+                    temperature=0.7,
+                )
+                keywords = response.choices[0].message.content.strip()
+                if ',' not in keywords:
+                    keywords = ', '.join(keywords.split())
+                print(f"成功为 {self.name} 生成关键词")
+                return keywords
+            except Exception as e:
+                print(f"OpenAI API 调用失败，使用备用关键词生成方法: {e}")
+                # 备用方法：从标题和标语中提取关键词
+                words = set((self.name + ", " + self.tagline).replace("&", ",").replace("|", ",").replace("-", ",").split(","))
+                return ", ".join([word.strip() for word in words if word.strip()])
         except Exception as e:
-            print(f"Error occurred during keyword generation: {e}")
-            return "无关键词"
+            print(f"关键词生成失败: {e}")
+            return self.name  # 至少返回产品名称作为关键词
 
     def translate_text(self, text: str) -> str:
         """使用OpenAI翻译文本内容"""
         try:
-            response = client.chat.completions.create(
-                model="gpt-4o-mini",
-                messages=[
-                    {"role": "system", "content": "你是世界上最专业的翻译工具，擅长英文和中文互译。你是一位精通英文和中文的专业翻译，尤其擅长将IT公司黑话和专业词汇翻译成简洁易懂的地道表达。你的任务是将以下内容翻译成地道的中文，风格与科普杂志或日常对话相似。"},
-                    {"role": "user", "content": text},
-                ],
-                max_tokens=500,
-                temperature=0.7,
-            )
-            translated_text = response.choices[0].message.content.strip()
-            return translated_text
+            # 如果 OpenAI 客户端不可用，直接返回原文
+            if client is None:
+                print(f"OpenAI 客户端不可用，无法翻译: {self.name}")
+                return text
+                
+            try:
+                print(f"正在翻译 {self.name} 的内容...")
+                response = client.chat.completions.create(
+                    model=openai_model,
+                    messages=[
+                        {"role": "system", "content": "你是世界上最专业的翻译工具，擅长英文和中文互译。你是一位精通英文和中文的专业翻译，尤其擅长将IT公司黑话和专业词汇翻译成简洁易懂的地道表达。你的任务是将以下内容翻译成地道的中文，风格与科普杂志或日常对话相似。"},
+                        {"role": "user", "content": text},
+                    ],
+                    max_tokens=500,
+                    temperature=0.7,
+                )
+                translated_text = response.choices[0].message.content.strip()
+                print(f"成功翻译 {self.name} 的内容")
+                return translated_text
+            except Exception as e:
+                print(f"OpenAI API 翻译失败: {e}")
+                # 如果 API 调用失败，返回原文
+                return text
         except Exception as e:
-            print(f"Error occurred during translation: {e}")
+            print(f"翻译过程中出错: {e}")
             return text
 
     def convert_to_beijing_time(self, utc_time_str: str) -> str:
@@ -105,25 +187,36 @@ class Product:
         )
 
 def get_producthunt_token():
-    """通过 client_id 和 client_secret 获取 Product Hunt 的 access_token"""
-    url = "https://api.producthunt.com/v2/oauth/token"
+    """获取 Product Hunt 访问令牌"""
+    # 优先使用 PRODUCTHUNT_DEVELOPER_TOKEN 环境变量
+    developer_token = os.getenv('PRODUCTHUNT_DEVELOPER_TOKEN')
+    if developer_token:
+        print("使用 PRODUCTHUNT_DEVELOPER_TOKEN 环境变量")
+        return developer_token
+    
+    # 如果没有 developer token，尝试使用 client credentials 获取访问令牌
+    client_id = os.getenv('PRODUCTHUNT_CLIENT_ID')
+    client_secret = os.getenv('PRODUCTHUNT_CLIENT_SECRET')
+    
+    if not client_id or not client_secret:
+        raise Exception("Product Hunt client ID or client secret not found in environment variables")
+    
+    # 使用 client credentials 获取访问令牌
+    token_url = "https://api.producthunt.com/v2/oauth/token"
     payload = {
-        "client_id": producthunt_client_id,
-        "client_secret": producthunt_client_secret,
-        "grant_type": "client_credentials",
+        "client_id": client_id,
+        "client_secret": client_secret,
+        "grant_type": "client_credentials"
     }
-
-    headers = {
-        "Content-Type": "application/json",
-    }
-
-    response = requests.post(url, json=payload, headers=headers)
-
-    if response.status_code != 200:
-        raise Exception(f"Failed to obtain access token: {response.status_code}, {response.text}")
-
-    token = response.json().get("access_token")
-    return token
+    
+    try:
+        response = requests.post(token_url, json=payload)
+        response.raise_for_status()
+        token_data = response.json()
+        return token_data.get("access_token")
+    except Exception as e:
+        print(f"获取 Product Hunt 访问令牌时出错: {e}")
+        raise Exception(f"Failed to get Product Hunt access token: {e}")
 
 def fetch_product_hunt_data():
     """从Product Hunt获取前一天的Top 30数据"""
@@ -131,7 +224,27 @@ def fetch_product_hunt_data():
     yesterday = datetime.now(timezone.utc) - timedelta(days=1)
     date_str = yesterday.strftime('%Y-%m-%d')
     url = "https://api.producthunt.com/v2/api/graphql"
-    headers = {"Authorization": f"Bearer {token}"}
+    
+    # 添加更多请求头信息
+    headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {token}",
+        "User-Agent": "DecohackBot/1.0 (https://decohack.com)",
+        "Origin": "https://decohack.com",
+        "Accept-Language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7",
+        "Connection": "keep-alive"
+    }
+
+    # 设置重试策略
+    retry_strategy = Retry(
+        total=3,  # 最多重试3次
+        backoff_factor=1,  # 重试间隔时间
+        status_forcelist=[429, 500, 502, 503, 504]  # 需要重试的HTTP状态码
+    )
+    adapter = HTTPAdapter(max_retries=retry_strategy)
+    session = requests.Session()
+    session.mount("https://", adapter)
 
     base_query = """
     {
@@ -146,6 +259,11 @@ def fetch_product_hunt_data():
           featuredAt
           website
           url
+          media {
+            url
+            type
+            videoUrl
+          }
         }
         pageInfo {
           hasNextPage
@@ -161,10 +279,12 @@ def fetch_product_hunt_data():
 
     while has_next_page and len(all_posts) < 30:
         query = base_query % (date_str, date_str, cursor)
-        response = requests.post(url, headers=headers, json={"query": query})
-
-        if response.status_code != 200:
-            raise Exception(f"Failed to fetch data from Product Hunt: {response.status_code}, {response.text}")
+        try:
+            response = session.post(url, headers=headers, json={"query": query})
+            response.raise_for_status()  # 抛出非200状态码的异常
+        except requests.exceptions.RequestException as e:
+            print(f"请求失败: {e}")
+            raise Exception(f"Failed to fetch data from Product Hunt: {e}")
 
         data = response.json()['data']['posts']
         posts = data['nodes']
@@ -175,6 +295,49 @@ def fetch_product_hunt_data():
 
     # 只保留前30个产品
     return [Product(**post) for post in sorted(all_posts, key=lambda x: x['votesCount'], reverse=True)[:30]]
+
+def fetch_mock_data():
+    """生成模拟数据用于测试"""
+    print("使用模拟数据进行测试...")
+    mock_products = [
+        {
+            "id": "1",
+            "name": "Venice",
+            "tagline": "Private & censorship-resistant AI | Unlock unlimited intelligence",
+            "description": "Venice is a private, censorship-resistant AI platform powered by open-source models and decentralized infrastructure. The app combines the benefits of decentralized blockchain technology with the power of generative AI.",
+            "votesCount": 566,
+            "createdAt": "2025-03-07T16:01:00Z",
+            "featuredAt": "2025-03-07T16:01:00Z",
+            "website": "https://www.producthunt.com/r/4D6Z6F7I3SXTGN",
+            "url": "https://www.producthunt.com/posts/venice-3",
+            "media": [
+                {
+                    "url": "https://ph-files.imgix.net/97baee49-6dda-47f5-8a47-91d2c56e1976.jpeg",
+                    "type": "image",
+                    "videoUrl": None
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "name": "Mistral OCR",
+            "tagline": "Introducing the world's most powerful document understanding API",
+            "description": "Introducing Mistral OCR—an advanced, lightweight optical character recognition model focused on speed, accuracy, and efficiency. Whether extracting text from images or digitizing documents, it delivers top-tier performance with ease.",
+            "votesCount": 477,
+            "createdAt": "2025-03-07T16:01:00Z",
+            "featuredAt": "2025-03-07T16:01:00Z",
+            "website": "https://www.producthunt.com/r/SPXNTAWQSVRLGH",
+            "url": "https://www.producthunt.com/posts/mistral-ocr",
+            "media": [
+                {
+                    "url": "https://ph-files.imgix.net/4224517b-29e4-4944-98c9-2eee59374870.png",
+                    "type": "image",
+                    "videoUrl": None
+                }
+            ]
+        }
+    ]
+    return [Product(**product) for product in mock_products]
 
 def generate_markdown(products, date_str):
     """生成Markdown内容并保存到data目录"""
@@ -203,8 +366,13 @@ def main():
     yesterday = datetime.now(timezone.utc) - timedelta(days=1)
     date_str = yesterday.strftime('%Y-%m-%d')
 
-    # 获取Product Hunt数据
-    products = fetch_product_hunt_data()
+    try:
+        # 尝试获取Product Hunt数据
+        products = fetch_product_hunt_data()
+    except Exception as e:
+        print(f"获取Product Hunt数据失败: {e}")
+        print("使用模拟数据继续...")
+        products = fetch_mock_data()
 
     # 生成Markdown文件
     generate_markdown(products, date_str)
