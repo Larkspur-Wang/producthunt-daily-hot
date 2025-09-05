@@ -3,3 +3,5 @@ __pycache__/
 *.pyo
 .env
 daily_report_errors.log
+data/producthunt-daily-2025-09-04.md
+my_automation
