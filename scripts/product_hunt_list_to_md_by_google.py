@@ -1,22 +1,21 @@
 import os
-# from dotenv import load_dotenv
-try:
-    import cloudscraper
-except ImportError:
-    cloudscraper = None
-import requests
-from datetime import datetime, timedelta, timezone
-from bs4 import BeautifulSoup
-import pytz
-import time
 import random
+import time
 import json
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
+from datetime import datetime, timedelta, timezone
 from typing import Optional, List, Dict, Any
 
-# 加载 .env 文件
-# load_dotenv()
+try:
+    from dotenv import load_dotenv
+    load_dotenv(override=True)
+except ImportError:
+    print("dotenv 模块未安装，将直接使用环境变量")
+    
+import requests
+from bs4 import BeautifulSoup
+import pytz
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
 GEMINI_API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
@@ -96,61 +95,12 @@ class Product:
                     print(f"成功从API获取图片URL: {self.name}")
                     return image_url
             
-            # 如果API没有返回图片，尝试使用备用方法
-            print(f"API未返回图片，尝试使用备用方法: {self.name}")
-            backup_url = self.fetch_og_image_url()
-            if backup_url:
-                print(f"使用备用方法获取图片URL成功: {self.name}")
-                return backup_url
-            else:
-                print(f"无法获取图片URL: {self.name}")
-                
+            # 如果API没有返回图片，返回空字符串
+            print(f"API未返回图片: {self.name}")
             return ""
         except Exception as e:
             print(f"获取图片URL时出错: {self.name}, 错误: {e}")
             return ""
-
-    def fetch_og_image_url(self) -> str:
-        """获取产品的Open Graph图片URL"""
-        print(f"正在获取URL: {self.url}")  # 打印正在请求的URL
-        
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
-            "Accept-Language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7",
-            "Accept-Encoding": "gzip, deflate, br",
-            "Connection": "keep-alive",
-            "Upgrade-Insecure-Requests": "1",
-            "Sec-Fetch-Dest": "document",
-            "Sec-Fetch-Mode": "navigate",
-            "Sec-Fetch-Site": "none",
-            "Cache-Control": "max-age=0"
-        }
-        
-        # 添加随机延迟
-        random_delay(2, 5)
-        
-        try:
-            response = requests.get(self.url, headers=headers, timeout=10)
-            response.raise_for_status()
-        except requests.exceptions.RequestException as e:
-            print(f"[DEBUG] 请求失败: {e}")
-            return ""
-        print(f"请求状态码: {response.status_code}")  # 打印请求状态码
-        if response.status_code == 200:
-            soup = BeautifulSoup(response.text, 'html.parser')
-            # 查找og:image meta标签
-            og_image = soup.find("meta", property="og:image")
-            if og_image:
-                print(f"找到 og:image 标签: {og_image}") # 打印 og:image 标签内容
-                return og_image["content"]
-            # 备用:查找twitter:image meta标签
-            twitter_image = soup.find("meta", name="twitter:image")
-            if twitter_image:
-                print(f"找到 twitter:image 标签: {twitter_image}") # 打印 twitter:image 标签内容
-                return twitter_image["content"]
-        print("没有找到图片 URL") # 打印未找到图片 URL 的消息
-        return ""
 
     def generate_keywords(self) -> str:
         """生成产品的关键词，显示在一行，用逗号分隔"""
